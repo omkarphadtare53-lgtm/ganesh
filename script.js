@@ -61,12 +61,12 @@ loginForm.addEventListener("submit", async (e) => {
 
         // Save authentication token
         sessionStorage.setItem(
-            "ekopa_token",
+            "ganesh_token",
             data.token
         );
 
         sessionStorage.setItem(
-            "ekopa_user",
+            "ganesh_user",
             JSON.stringify(data.user)
         );
 
@@ -147,11 +147,11 @@ async function checkAuthentication() {
 logoutButton.addEventListener("click", () => {
 
     sessionStorage.removeItem(
-        "ekopa_token"
+        "ganesh_token"
     );
 
     sessionStorage.removeItem(
-        "ekopa_user"
+        "ganesh_user"
     );
 
     dashboard.hidden = true;
