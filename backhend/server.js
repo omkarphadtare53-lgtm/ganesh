@@ -151,5 +151,5 @@ app.post("/api/login", async (req, res) => {
 });
 
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`ganesh running on port ${PORT}`);
+  console.log(`server running on port ${PORT}`);
 });
