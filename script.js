@@ -1,3 +1,4 @@
+const API_URL = "https://ganesh-b.onrender.com";
 window.addEventListener("load",()=>{const p=document.getElementById("preloader");setTimeout(()=>{p.style.opacity="0";setTimeout(()=>p.style.display="none",500)},700)});
 const navbar=document.getElementById("navbar");window.addEventListener("scroll",()=>{navbar.classList.toggle("scrolled",window.scrollY>50)});
 const menuBtn=document.getElementById("menuBtn"),navMenu=document.getElementById("navMenu");menuBtn.addEventListener("click",()=>{navMenu.classList.toggle("active");const i=menuBtn.querySelector("i");i.classList.toggle("fa-bars");i.classList.toggle("fa-xmark")});document.querySelectorAll("#navMenu a").forEach(l=>l.addEventListener("click",()=>{navMenu.classList.remove("active");const i=menuBtn.querySelector("i");i.classList.remove("fa-xmark");i.classList.add("fa-bars")}));
@@ -5,3 +6,123 @@ const festivalDate=new Date("2026-09-06T10:00:00").getTime();function updateCoun
 const lightbox=document.getElementById("lightbox"),lightboxImage=document.getElementById("lightboxImage");document.querySelectorAll(".gallery-item").forEach(item=>item.addEventListener("click",()=>{lightboxImage.src=item.querySelector("img").src;lightbox.classList.add("active")}));document.getElementById("closeLightbox").addEventListener("click",()=>lightbox.classList.remove("active"));lightbox.addEventListener("click",e=>{if(e.target===lightbox)lightbox.classList.remove("active")});
 function copyUPI(){const u=document.getElementById("upiId").innerText;navigator.clipboard.writeText(u).then(()=>alert("UPI ID कॉपी झाला!")).catch(()=>alert("UPI ID: "+u))}
 const backTop=document.getElementById("backTop");window.addEventListener("scroll",()=>backTop.style.display=window.scrollY>500?"block":"none");backTop.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));document.addEventListener("keydown",e=>{if(e.key==="Escape")lightbox.classList.remove("active")});
+// ===============================
+// EKOPA AUTHENTICATION
+// ===============================
+
+const loginForm = document.getElementById("loginForm");
+
+if (loginForm) {
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
+
+        const message = document.getElementById("loginMessage");
+
+        message.textContent = "Logging in...";
+
+        try {
+            const response = await fetch(`${API_URL}/api/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                message.textContent = data.message || "Login failed";
+                return;
+            }
+
+            sessionStorage.setItem("ekopa_token", data.token);
+            sessionStorage.setItem(
+                "ekopa_user",
+                JSON.stringify(data.user)
+            );
+
+            message.textContent = "Login successful!";
+
+            setTimeout(() => {
+                window.location.href = "admin.html";
+            }, 500);
+
+        } catch (error) {
+            console.error("Login error:", error);
+            message.textContent =
+                "Backend server शी connection होत नाही.";
+        }
+    });
+}
+
+
+// ===============================
+// REGISTER
+// ===============================
+
+const registerForm = document.getElementById("registerForm");
+
+if (registerForm) {
+    registerForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name =
+            document.getElementById("registerName").value.trim();
+
+        const email =
+            document.getElementById("registerEmail").value.trim();
+
+        const password =
+            document.getElementById("registerPassword").value;
+
+        const message =
+            document.getElementById("registerMessage");
+
+        message.textContent = "Creating account...";
+
+        try {
+            const response = await fetch(
+                `${API_URL}/api/register`,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        password
+                    })
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                message.textContent =
+                    data.message || "Registration failed";
+                return;
+            }
+
+            message.textContent =
+                "Account created successfully!";
+
+            registerForm.reset();
+
+        } catch (error) {
+            console.error("Register error:", error);
+
+            message.textContent =
+                "Backend server शी connection होत नाही.";
+        }
+    });
+}
