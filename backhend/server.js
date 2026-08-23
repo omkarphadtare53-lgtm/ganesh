@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: process.env.https://ganesh-af34.onrender.com
+    origin: "https://ganesh-af34.onrender.com"
   })
 );
 
