@@ -99,7 +99,7 @@ function showDashboard() {
 async function checkAuthentication() {
 
     const token =
-        sessionStorage.getItem("ekopa_token");
+        sessionStorage.getItem("ganesh_token");
 
     if (!token) {
         return;
