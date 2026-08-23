@@ -10,11 +10,8 @@ const app = express();
 
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: "https://ganesh-af34.onrender.com"
-  })
-);
+app.use(cors());
+   
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
