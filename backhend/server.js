@@ -137,7 +137,25 @@ app.post("/api/register", async (req, res) => {
 // ==========================================
 // LOGIN
 // ==========================================
+app.get("/api/db-test", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT NOW()");
 
+    res.json({
+      success: true,
+      database: "connected",
+      time: result.rows[0].now
+    });
+
+  } catch (error) {
+    console.error("DB TEST ERROR:", error);
+
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+});
 app.post("/api/login", async (req, res) => {
 
   try {
