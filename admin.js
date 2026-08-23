@@ -3,7 +3,7 @@ const dash = document.getElementById("dashboard");
 const form = document.getElementById("loginForm");
 const error = document.getElementById("error");
 
-const API_URL = "https://ganesh-backend.onrender.com"; // Frontend आणि backend same domain वर असल्यास रिकामे ठेवा
+const API_URL ="https://ganesh-b.onrender.com"; // Frontend आणि backend same domain वर असल्यास रिकामे ठेवा
 
 function showDashboard() {
   login.hidden = true;
