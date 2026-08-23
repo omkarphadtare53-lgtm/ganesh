@@ -137,22 +137,23 @@ app.post("/api/register", async (req, res) => {
 // ==========================================
 // LOGIN
 // ==========================================
-app.get("/api/db-test", async (req, res) => {
+app.get("/api/users-test", async (req, res) => {
   try {
-    const result = await pool.query("SELECT NOW()");
+    const result = await pool.query(
+      "SELECT id, name, mobile, role FROM users LIMIT 5"
+    );
 
     res.json({
       success: true,
-      database: "connected",
-      time: result.rows[0].now
+      users: result.rows
     });
 
   } catch (error) {
-    console.error("DB TEST ERROR:", error);
+    console.error("USERS TEST ERROR:", error);
 
     res.status(500).json({
       success: false,
-      message: error.message
+      error: error.message
     });
   }
 });
