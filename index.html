@@ -1,1 +1,830 @@
-<!doctype html><html lang="mr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin Portal | एकोपा गणेश मंडळ</title><link rel="stylesheet" href="style.css"><style>.admin-page{min-height:100vh;background:linear-gradient(135deg,#2b0b02,#8a2c0c);display:flex;align-items:center;justify-content:center;padding:25px;box-sizing:border-box}.admin-card{width:min(900px,100%);background:#fff;border-radius:24px;padding:35px;box-shadow:0 25px 70px #0006;box-sizing:border-box}.login-card{max-width:480px}.admin-logo{text-align:center;font-size:55px}.admin-card h1{font-size:36px;margin:8px 0}.muted{color:#765e51}.form{display:flex;flex-direction:column;gap:9px}.form label{font-weight:700;margin-top:8px}.form input{padding:13px;border:1px solid #d8c2b2;border-radius:10px;font:inherit}.btn{padding:13px;border:0;border-radius:10px;background:#f05a28;color:white;font:inherit;font-weight:700;cursor:pointer;margin-top:8px}.error{color:#c93613;min-height:22px}.back{display:inline-block;margin-top:20px;color:#f05a28;font-weight:700;text-decoration:none}.head{display:flex;justify-content:space-between;align-items:center;gap:15px}.logout{background:#4a1d08}.stats,.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:22px}.stats div,.tool{background:#fff4e5;border-radius:15px;padding:20px;text-align:center}.stats strong{display:block;color:#f05a28;font-size:24px}.tool{text-align:left}.tool h3{margin-top:0}.note{margin-top:20px;padding:15px;background:#fff0df;border-radius:12px;color:#6d4939}@media(max-width:650px){.stats,.tools{grid-template-columns:1fr}.admin-card{padding:24px}.head{align-items:flex-start}}</style></head><body class="admin-page"><div class="admin-card login-card" id="loginCard"><div class="admin-logo">🙏</div><p>एकोपा गणेश मंडळ</p><h1>Admin Portal</h1><p class="muted">Website व्यवस्थापनासाठी Login करा</p><form class="form" id="loginForm"><label>Mobile Number</label><input id="mobile" type="tel" maxlength="10" inputmode="numeric" required placeholder="मोबाईल नंबर"><label>Password</label><input id="password" type="password" required placeholder="Password"><button class="btn" type="submit">Login</button><div class="error" id="error"></div></form><a class="back" href="index.html">← Website वर जा</a></div><div class="admin-card" id="dashboard" hidden><div class="head"><div><p>एकोपा गणेश मंडळ</p><h1>Admin Dashboard</h1></div><button class="btn logout" id="logout">Logout</button></div><div class="stats"><div><strong>२०२६</strong>Festival Year</div><div><strong>६</strong>Programs</div><div><strong>LIVE</strong>Portal</div></div><div class="tools"><div class="tool"><h3>📅 कार्यक्रम</h3><p>index.html मधील कार्यक्रम माहिती बदलू शकता.</p></div><div class="tool"><h3>🖼️ Gallery</h3><p>assets folder मध्ये फोटो replace करा.</p></div><div class="tool"><h3>📞 Contact</h3><p>Mobile: <strong>8830537590</strong></p></div></div><div class="note"><strong>Security:</strong> हा static demo login आहे. Production website साठी backend authentication वापरा.</div><a class="back" href="index.html">← Website वर जा</a></div><script src="admin.js"></script></body></html>
+<!doctype html>
+<html lang="mr">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>Admin Portal | एकोपा गणेश मंडळ</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        Arial,
+        "Noto Sans Devanagari",
+        sans-serif;
+    }
+
+    .admin-page {
+      min-height: 100vh;
+
+      background:
+        linear-gradient(
+          135deg,
+          #2b0b02,
+          #8a2c0c
+        );
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 25px;
+    }
+
+    .admin-card {
+      width: min(1000px, 100%);
+
+      background: #fff;
+
+      border-radius: 24px;
+
+      padding: 35px;
+
+      box-shadow:
+        0 25px 70px #0006;
+    }
+
+    .login-card {
+      max-width: 480px;
+    }
+
+    .admin-logo {
+      text-align: center;
+      font-size: 55px;
+    }
+
+    .admin-card h1 {
+      font-size: 36px;
+      margin: 8px 0;
+      color: #321006;
+    }
+
+    .muted {
+      color: #765e51;
+    }
+
+    /* LOGIN */
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .form label {
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .form input,
+    .form textarea,
+    .form select {
+
+      width: 100%;
+
+      padding: 13px;
+
+      border:
+        1px solid #d8c2b2;
+
+      border-radius: 10px;
+
+      font: inherit;
+
+      outline: none;
+    }
+
+    .form input:focus,
+    .form textarea:focus,
+    .form select:focus {
+
+      border-color: #f05a28;
+
+      box-shadow:
+        0 0 0 3px #f05a2820;
+    }
+
+    .btn {
+
+      padding: 13px 18px;
+
+      border: 0;
+
+      border-radius: 10px;
+
+      background: #f05a28;
+
+      color: white;
+
+      font: inherit;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      margin-top: 8px;
+    }
+
+    .btn:hover {
+      background: #d94718;
+    }
+
+    .logout {
+      background: #4a1d08;
+    }
+
+    .logout:hover {
+      background: #2b0b02;
+    }
+
+    .error {
+      color: #c93613;
+
+      min-height: 22px;
+
+      margin-top: 5px;
+    }
+
+    .success {
+      color: #188038;
+
+      min-height: 22px;
+
+      margin-top: 5px;
+    }
+
+    .back {
+
+      display: inline-block;
+
+      margin-top: 20px;
+
+      color: #f05a28;
+
+      font-weight: 700;
+
+      text-decoration: none;
+    }
+
+    /* HEADER */
+
+    .head {
+
+      display: flex;
+
+      justify-content:
+        space-between;
+
+      align-items:
+        center;
+
+      gap: 15px;
+
+      border-bottom:
+        1px solid #ead8ca;
+
+      padding-bottom: 20px;
+    }
+
+    /* STATS */
+
+    .stats {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 15px;
+
+      margin-top: 22px;
+    }
+
+    .stats div {
+
+      background: #fff4e5;
+
+      border-radius: 15px;
+
+      padding: 20px;
+
+      text-align: center;
+
+      color: #6d4939;
+    }
+
+    .stats strong {
+
+      display: block;
+
+      color: #f05a28;
+
+      font-size: 24px;
+
+      margin-bottom: 5px;
+    }
+
+    /* MANAGEMENT */
+
+    .management {
+
+      margin-top: 30px;
+    }
+
+    .management h2 {
+
+      color: #321006;
+
+      margin-bottom: 15px;
+    }
+
+    .program-form {
+
+      background: #fff8f0;
+
+      border:
+        1px solid #f0d9c5;
+
+      border-radius: 16px;
+
+      padding: 20px;
+    }
+
+    .program-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 15px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .program-list {
+
+      margin-top: 25px;
+    }
+
+    .program-item {
+
+      background: #fff;
+
+      border:
+        1px solid #ead8ca;
+
+      border-radius: 14px;
+
+      padding: 18px;
+
+      margin-bottom: 12px;
+
+      box-shadow:
+        0 4px 15px #0000000b;
+    }
+
+    .program-item h3 {
+
+      margin: 0 0 8px;
+
+      color: #8a2c0c;
+    }
+
+    .program-meta {
+
+      color: #765e51;
+
+      font-size: 14px;
+
+      margin-bottom: 8px;
+    }
+
+    .program-description {
+
+      color: #4c3429;
+
+      margin-bottom: 12px;
+    }
+
+    .program-actions {
+
+      display: flex;
+
+      gap: 8px;
+
+      flex-wrap: wrap;
+    }
+
+    .edit-btn {
+      background: #e89116;
+    }
+
+    .delete-btn {
+      background: #c93613;
+    }
+
+    .cancel-btn {
+      background: #777;
+    }
+
+    .empty {
+
+      text-align: center;
+
+      color: #765e51;
+
+      padding: 25px;
+    }
+
+    .note {
+
+      margin-top: 20px;
+
+      padding: 15px;
+
+      background: #fff0df;
+
+      border-radius: 12px;
+
+      color: #6d4939;
+    }
+
+    /* MOBILE */
+
+    @media(max-width: 650px) {
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .program-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+
+      .admin-card {
+        padding: 24px;
+      }
+
+      .head {
+        align-items:
+          flex-start;
+      }
+
+      .head h1 {
+        font-size: 28px;
+      }
+
+      .head {
+        flex-direction: column;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body class="admin-page">
+
+
+<!-- ================================================= -->
+<!-- LOGIN -->
+<!-- ================================================= -->
+
+<div
+  class="admin-card login-card"
+  id="loginCard"
+>
+
+  <div class="admin-logo">
+    🙏
+  </div>
+
+  <p>
+    एकोपा गणेश मंडळ
+  </p>
+
+  <h1>
+    Admin Portal
+  </h1>
+
+  <p class="muted">
+    Website व्यवस्थापनासाठी Login करा
+  </p>
+
+
+  <form
+    class="form"
+    id="loginForm"
+  >
+
+    <label>
+      Mobile Number
+    </label>
+
+    <input
+      id="mobile"
+      type="tel"
+      maxlength="10"
+      inputmode="numeric"
+      autocomplete="username"
+      required
+      placeholder="मोबाईल नंबर"
+    >
+
+
+    <label>
+      Password
+    </label>
+
+    <input
+      id="password"
+      type="password"
+      autocomplete="current-password"
+      required
+      placeholder="Password"
+    >
+
+
+    <button
+      class="btn"
+      type="submit"
+    >
+      Login
+    </button>
+
+
+    <div
+      class="error"
+      id="error"
+    ></div>
+
+  </form>
+
+
+  <a
+    class="back"
+    href="index.html"
+  >
+    ← Website वर जा
+  </a>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- DASHBOARD -->
+<!-- ================================================= -->
+
+<div
+  class="admin-card"
+  id="dashboard"
+  hidden
+>
+
+
+  <!-- HEADER -->
+
+  <div class="head">
+
+    <div>
+
+      <p>
+        एकोपा गणेश मंडळ
+      </p>
+
+      <h1>
+        Admin Dashboard
+      </h1>
+
+    </div>
+
+
+    <button
+      class="btn logout"
+      id="logout"
+      type="button"
+    >
+      Logout
+    </button>
+
+  </div>
+
+
+
+  <!-- STATS -->
+
+  <div class="stats">
+
+    <div>
+
+      <strong>
+        २०२६
+      </strong>
+
+      Festival Year
+
+    </div>
+
+
+    <div>
+
+      <strong id="programCount">
+        0
+      </strong>
+
+      Programs
+
+    </div>
+
+
+    <div>
+
+      <strong>
+        LIVE
+      </strong>
+
+      Portal
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ================================================= -->
+  <!-- PROGRAM MANAGEMENT -->
+  <!-- ================================================= -->
+
+  <section class="management">
+
+    <h2>
+      📅 कार्यक्रम व्यवस्थापन
+    </h2>
+
+
+    <!-- ADD / EDIT FORM -->
+
+    <form
+      id="programForm"
+      class="program-form form"
+    >
+
+      <input
+        type="hidden"
+        id="programId"
+      >
+
+
+      <div class="program-grid">
+
+
+        <div>
+
+          <label>
+            कार्यक्रमाचे नाव
+          </label>
+
+          <input
+            id="programTitle"
+            type="text"
+            maxlength="200"
+            required
+            placeholder="उदा. गणेश स्थापना"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            कार्यक्रमाची तारीख
+          </label>
+
+          <input
+            id="programDate"
+            type="date"
+            required
+          >
+
+        </div>
+
+
+        <div>
+
+          <label>
+            कार्यक्रमाची वेळ
+          </label>
+
+          <input
+            id="programTime"
+            type="text"
+            maxlength="50"
+            placeholder="उदा. सायं. ७:०० वाजता"
+          >
+
+        </div>
+
+
+        <div class="full">
+
+          <label>
+            कार्यक्रमाची माहिती
+          </label>
+
+          <textarea
+            id="programDescription"
+            rows="4"
+            placeholder="कार्यक्रमाची माहिती लिहा..."
+          ></textarea>
+
+        </div>
+
+
+        <div>
+
+          <button
+            class="btn"
+            id="programSubmit"
+            type="submit"
+          >
+            ➕ कार्यक्रम Add करा
+          </button>
+
+
+          <button
+            class="btn cancel-btn"
+            id="cancelEdit"
+            type="button"
+            hidden
+          >
+            Cancel
+          </button>
+
+        </div>
+
+
+      </div>
+
+
+      <div
+        id="programMessage"
+        class="success"
+      ></div>
+
+    </form>
+
+
+
+    <!-- PROGRAM LIST -->
+
+    <div class="program-list">
+
+      <h2>
+        📋 कार्यक्रमांची यादी
+      </h2>
+
+
+      <div id="programList">
+
+        <div class="empty">
+          कार्यक्रम Loading होत आहेत...
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- ================================================= -->
+  <!-- OTHER TOOLS -->
+  <!-- ================================================= -->
+
+  <section class="management">
+
+    <h2>
+      🛠️ Website Tools
+    </h2>
+
+
+    <div class="stats">
+
+
+      <div>
+
+        <strong>
+          🖼️
+        </strong>
+
+        <b>
+          Gallery
+        </b>
+
+        <p>
+          पुढील टप्प्यात Gallery management जोडता येईल.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <strong>
+          📞
+        </strong>
+
+        <b>
+          Contact
+        </b>
+
+        <p>
+          Mobile:
+          <strong>
+            8830537590
+          </strong>
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <strong>
+          🔐
+        </strong>
+
+        <b>
+          Security
+        </b>
+
+        <p>
+          Admin JWT authentication enabled.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- NOTE -->
+
+  <div class="note">
+
+    <strong>
+      Security:
+    </strong>
+
+    हा Admin Dashboard backend authentication वापरतो.
+    कार्यक्रमातील बदल PostgreSQL database मध्ये save केले जातील.
+
+  </div>
+
+
+
+  <a
+    class="back"
+    href="index.html"
+  >
+    ← Website वर जा
+  </a>
+
+
+</div>
+
+
+<script src="admin.js"></script>
+
+</body>
+
+</html>
