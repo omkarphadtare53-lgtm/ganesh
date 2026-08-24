@@ -14,6 +14,7 @@ const logout = document.getElementById("logout");
 // ==========================================
 
 function showDashboard() {
+
   login.hidden = true;
   dash.hidden = false;
 
@@ -26,6 +27,7 @@ function showDashboard() {
 // ==========================================
 
 function showLogin() {
+
   login.hidden = false;
   dash.hidden = true;
 }
@@ -41,14 +43,25 @@ form.addEventListener("submit", async (e) => {
 
   error.textContent = "Login होत आहे...";
 
-  const mobile = document
-    .getElementById("mobile")
-    .value
-    .trim();
+  const mobile =
+    document
+      .getElementById("mobile")
+      .value
+      .trim();
 
-  const password = document
-    .getElementById("password")
-    .value;
+  const password =
+    document
+      .getElementById("password")
+      .value;
+
+  if (!mobile || !password) {
+
+    error.textContent =
+      "Mobile आणि Password आवश्यक आहे.";
+
+    return;
+  }
+
 
   try {
 
@@ -68,14 +81,22 @@ form.addEventListener("submit", async (e) => {
       }
     );
 
-    const data = await response.json();
 
-    console.log("LOGIN RESPONSE:", data);
+    const data =
+      await response.json();
+
+
+    console.log(
+      "LOGIN RESPONSE:",
+      data
+    );
+
 
     if (!response.ok) {
 
       error.textContent =
-        data.message || "Login failed";
+        data.message ||
+        "Login failed";
 
       return;
     }
@@ -84,7 +105,8 @@ form.addEventListener("submit", async (e) => {
     if (
       data.success === true &&
       data.user &&
-      data.user.role === "admin"
+      data.user.role === "admin" &&
+      data.token
     ) {
 
       sessionStorage.setItem(
@@ -97,11 +119,15 @@ form.addEventListener("submit", async (e) => {
         JSON.stringify(data.user)
       );
 
+
       error.textContent = "";
 
       showDashboard();
 
-      console.log("ADMIN DASHBOARD SHOWN");
+
+      console.log(
+        "ADMIN DASHBOARD SHOWN"
+      );
 
     } else {
 
@@ -110,12 +136,17 @@ form.addEventListener("submit", async (e) => {
 
     }
 
+
   } catch (err) {
 
-    console.error("LOGIN ERROR:", err);
+    console.error(
+      "LOGIN ERROR:",
+      err
+    );
 
     error.textContent =
       "Backend शी connection होत नाही.";
+
   }
 
 });
@@ -128,7 +159,10 @@ form.addEventListener("submit", async (e) => {
 async function checkLogin() {
 
   const token =
-    sessionStorage.getItem("adminToken");
+    sessionStorage.getItem(
+      "adminToken"
+    );
+
 
   if (!token) {
 
@@ -140,15 +174,16 @@ async function checkLogin() {
 
   try {
 
-    const response = await fetch(
-      `${API_URL}/api/me`,
-      {
-        headers: {
-          Authorization:
-            `Bearer ${token}`
+    const response =
+      await fetch(
+        `${API_URL}/api/me`,
+        {
+          headers: {
+            Authorization:
+              `Bearer ${token}`
+          }
         }
-      }
-    );
+      );
 
 
     const data =
@@ -181,6 +216,7 @@ async function checkLogin() {
       );
 
       showLogin();
+
     }
 
 
@@ -191,7 +227,16 @@ async function checkLogin() {
       err
     );
 
+    sessionStorage.removeItem(
+      "adminToken"
+    );
+
+    sessionStorage.removeItem(
+      "adminUser"
+    );
+
     showLogin();
+
   }
 
 }
@@ -204,7 +249,9 @@ async function checkLogin() {
 async function loadPrograms() {
 
   const container =
-    document.getElementById("programList");
+    document.getElementById(
+      "programList"
+    );
 
   if (!container) {
     return;
@@ -217,9 +264,10 @@ async function loadPrograms() {
 
   try {
 
-    const response = await fetch(
-      `${API_URL}/api/programs`
-    );
+    const response =
+      await fetch(
+        `${API_URL}/api/programs`
+      );
 
 
     const data =
@@ -232,7 +280,10 @@ async function loadPrograms() {
     );
 
 
-    if (!response.ok || !data.success) {
+    if (
+      !response.ok ||
+      !data.success
+    ) {
 
       container.innerHTML =
         "<p>Programs load होत नाहीत.</p>";
@@ -241,13 +292,31 @@ async function loadPrograms() {
     }
 
 
-    if (
-      !data.programs ||
-      data.programs.length === 0
-    ) {
+    const programs =
+      data.programs || [];
 
-      container.innerHTML =
-        "<p>अजून कोणताही कार्यक्रम नाही.</p>";
+
+    const count =
+      document.getElementById(
+        "programCount"
+      );
+
+
+    if (count) {
+
+      count.textContent =
+        programs.length;
+
+    }
+
+
+    if (programs.length === 0) {
+
+      container.innerHTML = `
+        <div class="empty">
+          अजून कोणताही कार्यक्रम नाही.
+        </div>
+      `;
 
       return;
     }
@@ -256,11 +325,14 @@ async function loadPrograms() {
     container.innerHTML = "";
 
 
-    data.programs.forEach(
+    programs.forEach(
       (program) => {
 
         const item =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
+
 
         item.className =
           "program-item";
@@ -268,36 +340,64 @@ async function loadPrograms() {
 
         item.innerHTML = `
 
-          <div class="program-info">
+          <h3>
+            ${escapeHTML(
+              program.title
+            )}
+          </h3>
 
-            <h3>
-              ${escapeHTML(program.title)}
-            </h3>
+          <div class="program-meta">
 
-            <p>
-              📅 ${program.program_date}
-            </p>
+            📅
+            ${escapeHTML(
+              program.program_date
+            )}
 
             ${
               program.program_time
-                ? `<p>⏰ ${escapeHTML(program.program_time)}</p>`
-                : ""
-            }
-
-            ${
-              program.description
-                ? `<p>${escapeHTML(program.description)}</p>`
+                ? `
+                  &nbsp; | &nbsp;
+                  ⏰
+                  ${escapeHTML(
+                    program.program_time
+                  )}
+                `
                 : ""
             }
 
           </div>
 
-          <button
-            class="delete-program"
-            data-id="${program.id}"
-          >
-            🗑️ Delete
-          </button>
+          ${
+            program.description
+              ? `
+                <div class="program-description">
+                  ${escapeHTML(
+                    program.description
+                  )}
+                </div>
+              `
+              : ""
+          }
+
+          <div class="program-actions">
+
+            <button
+              class="btn edit-btn"
+              type="button"
+              data-edit="${program.id}"
+            >
+              ✏️ Edit
+            </button>
+
+            <button
+              class="btn delete-btn"
+              type="button"
+              data-delete="${program.id}"
+            >
+              🗑️ Delete
+            </button>
+
+          </div>
 
         `;
 
@@ -308,24 +408,54 @@ async function loadPrograms() {
     );
 
 
-    // Delete buttons
+    // EDIT BUTTONS
 
     document
-      .querySelectorAll(".delete-program")
-      .forEach((button) => {
+      .querySelectorAll(
+        "[data-edit]"
+      )
+      .forEach(
+        (button) => {
 
-        button.addEventListener(
-          "click",
-          () => {
+          button.addEventListener(
+            "click",
+            () => {
 
-            deleteProgram(
-              button.dataset.id
-            );
+              const id =
+                button.dataset.edit;
 
-          }
-        );
+              editProgram(id);
 
-      });
+            }
+          );
+
+        }
+      );
+
+
+    // DELETE BUTTONS
+
+    document
+      .querySelectorAll(
+        "[data-delete]"
+      )
+      .forEach(
+        (button) => {
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              const id =
+                button.dataset.delete;
+
+              deleteProgram(id);
+
+            }
+          );
+
+        }
+      );
 
 
   } catch (err) {
@@ -335,15 +465,20 @@ async function loadPrograms() {
       err
     );
 
-    container.innerHTML =
-      "<p>Backend शी connection होत नाही.</p>";
+
+    container.innerHTML = `
+      <p>
+        Backend शी connection होत नाही.
+      </p>
+    `;
+
   }
 
 }
 
 
 // ==========================================
-// ADD PROGRAM
+// ADD / EDIT PROGRAM
 // ==========================================
 
 const programForm =
@@ -361,29 +496,46 @@ if (programForm) {
       e.preventDefault();
 
 
+      const id =
+        document
+          .getElementById(
+            "programId"
+          )
+          .value
+          .trim();
+
+
       const title =
         document
-          .getElementById("programTitle")
+          .getElementById(
+            "programTitle"
+          )
           .value
           .trim();
 
 
       const program_date =
         document
-          .getElementById("programDate")
+          .getElementById(
+            "programDate"
+          )
           .value;
 
 
       const program_time =
         document
-          .getElementById("programTime")
+          .getElementById(
+            "programTime"
+          )
           .value
           .trim();
 
 
       const description =
         document
-          .getElementById("programDescription")
+          .getElementById(
+            "programDescription"
+          )
           .value
           .trim();
 
@@ -394,8 +546,13 @@ if (programForm) {
         );
 
 
-      message.textContent =
-        "Program save होत आहे...";
+      if (!title || !program_date) {
+
+        message.textContent =
+          "कार्यक्रमाचे नाव आणि तारीख आवश्यक आहे.";
+
+        return;
+      }
 
 
       const token =
@@ -404,28 +561,66 @@ if (programForm) {
         );
 
 
+      if (!token) {
+
+        message.textContent =
+          "Login session expired.";
+
+        showLogin();
+
+        return;
+      }
+
+
+      message.textContent =
+        id
+          ? "Program update होत आहे..."
+          : "Program save होत आहे...";
+
+
       try {
+
+        const url =
+          id
+            ? `${API_URL}/api/programs/${id}`
+            : `${API_URL}/api/programs`;
+
+
+        const method =
+          id
+            ? "PUT"
+            : "POST";
+
 
         const response =
           await fetch(
-            `${API_URL}/api/programs`,
+            url,
             {
-              method: "POST",
+              method,
 
               headers: {
+
                 "Content-Type":
                   "application/json",
 
                 Authorization:
                   `Bearer ${token}`
+
               },
 
-              body: JSON.stringify({
-                title,
-                program_date,
-                program_time,
-                description
-              })
+              body:
+                JSON.stringify({
+
+                  title,
+
+                  program_date,
+
+                  program_time,
+
+                  description
+
+                })
+
             }
           );
 
@@ -435,7 +630,7 @@ if (programForm) {
 
 
         console.log(
-          "ADD PROGRAM RESPONSE:",
+          "PROGRAM SAVE RESPONSE:",
           data
         );
 
@@ -444,17 +639,54 @@ if (programForm) {
 
           message.textContent =
             data.message ||
-            "Program add failed.";
+            "Program save failed.";
 
           return;
         }
 
 
         message.textContent =
-          "✅ Program successfully added!";
+          id
+            ? "✅ Program updated successfully!"
+            : "✅ Program successfully added!";
 
 
         programForm.reset();
+
+
+        document
+          .getElementById(
+            "programId"
+          )
+          .value = "";
+
+
+        const submitButton =
+          document.getElementById(
+            "programSubmit"
+          );
+
+
+        if (submitButton) {
+
+          submitButton.textContent =
+            "➕ कार्यक्रम Add करा";
+
+        }
+
+
+        const cancelButton =
+          document.getElementById(
+            "cancelEdit"
+          );
+
+
+        if (cancelButton) {
+
+          cancelButton.hidden =
+            true;
+
+        }
 
 
         await loadPrograms();
@@ -463,14 +695,181 @@ if (programForm) {
       } catch (err) {
 
         console.error(
-          "ADD PROGRAM ERROR:",
+          "SAVE PROGRAM ERROR:",
           err
         );
 
 
         message.textContent =
           "Backend शी connection होत नाही.";
+
       }
+
+    }
+  );
+
+}
+
+
+// ==========================================
+// EDIT PROGRAM
+// ==========================================
+
+async function editProgram(id) {
+
+  const token =
+    sessionStorage.getItem(
+      "adminToken"
+    );
+
+
+  try {
+
+    const response =
+      await fetch(
+        `${API_URL}/api/programs/${id}`,
+        {
+          headers: {
+            Authorization:
+              `Bearer ${token}`
+          }
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    console.log(
+      "EDIT PROGRAM RESPONSE:",
+      data
+    );
+
+
+    if (
+      !response.ok ||
+      !data.success
+    ) {
+
+      alert(
+        data.message ||
+        "Program load failed."
+      );
+
+      return;
+    }
+
+
+    const program =
+      data.program;
+
+
+    document.getElementById(
+      "programId"
+    ).value =
+      program.id;
+
+
+    document.getElementById(
+      "programTitle"
+    ).value =
+      program.title || "";
+
+
+    document.getElementById(
+      "programDate"
+    ).value =
+      program.program_date || "";
+
+
+    document.getElementById(
+      "programTime"
+    ).value =
+      program.program_time || "";
+
+
+    document.getElementById(
+      "programDescription"
+    ).value =
+      program.description || "";
+
+
+    document.getElementById(
+      "programSubmit"
+    ).textContent =
+      "💾 Program Update करा";
+
+
+    document.getElementById(
+      "cancelEdit"
+    ).hidden =
+      false;
+
+
+    document
+      .getElementById(
+        "programForm"
+      )
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+
+
+  } catch (err) {
+
+    console.error(
+      "EDIT PROGRAM ERROR:",
+      err
+    );
+
+
+    alert(
+      "Backend शी connection होत नाही."
+    );
+
+  }
+
+}
+
+
+// ==========================================
+// CANCEL EDIT
+// ==========================================
+
+const cancelEdit =
+  document.getElementById(
+    "cancelEdit"
+  );
+
+
+if (cancelEdit) {
+
+  cancelEdit.addEventListener(
+    "click",
+    () => {
+
+      programForm.reset();
+
+
+      document.getElementById(
+        "programId"
+      ).value = "";
+
+
+      document.getElementById(
+        "programSubmit"
+      ).textContent =
+        "➕ कार्यक्रम Add करा";
+
+
+      cancelEdit.hidden =
+        true;
+
+
+      document.getElementById(
+        "programMessage"
+      ).textContent = "";
 
     }
   );
@@ -543,7 +942,7 @@ async function deleteProgram(id) {
     );
 
 
-    loadPrograms();
+    await loadPrograms();
 
 
   } catch (err) {
@@ -557,6 +956,7 @@ async function deleteProgram(id) {
     alert(
       "Backend शी connection होत नाही."
     );
+
   }
 
 }
@@ -568,16 +968,40 @@ async function deleteProgram(id) {
 
 function escapeHTML(value) {
 
-  if (!value) {
+  if (value === null ||
+      value === undefined) {
+
     return "";
   }
 
+
   return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
+
 }
 
 
