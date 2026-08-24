@@ -8,10 +8,28 @@ const { Pool } = require("pg");
 
 const app = express();
 
+
+// ======================================================
+// MIDDLEWARE
+// ======================================================
+
 app.use(express.json());
 
-app.use(cors());
-   
+app.use(
+  cors({
+    origin: [
+      "https://ganesh-af34.onrender.com",
+      "https://omkarphadtare53-lgtm.github.io"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+  })
+);
+
+
+// ======================================================
+// DATABASE
+// ======================================================
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -20,26 +38,107 @@ const pool = new Pool({
   }
 });
 
+
+// ======================================================
+// PORT
+// ======================================================
+
 const PORT = process.env.PORT || 10000;
 
 
-// ==========================================
-// TEST
-// ==========================================
+// ======================================================
+// TEST BACKEND
+// ======================================================
 
-app.get("/", (req, res) => {
-  res.json({
-    success: true,
-    message: "ganesh backend is working!"
-  });
+app.get("/", async (req, res) => {
+
+  try {
+
+    await pool.query("SELECT 1");
+
+    res.json({
+      success: true,
+      database: "connected",
+      message: "Ganesh backend is working!"
+    });
+
+  } catch (error) {
+
+    console.error("DATABASE ERROR:", error);
+
+    res.status(500).json({
+      success: false,
+      database: "disconnected",
+      error: error.message
+    });
+  }
 });
 
 
-// ==========================================
+// ======================================================
+// DATABASE TEST
+// ======================================================
+
+app.get("/api/db-test", async (req, res) => {
+
+  try {
+
+    await pool.query("SELECT 1");
+
+    res.json({
+      success: true,
+      database: "connected"
+    });
+
+  } catch (error) {
+
+    console.error("DB TEST ERROR:", error);
+
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+
+// ======================================================
+// USERS TEST
+// ======================================================
+
+app.get("/api/users-test", async (req, res) => {
+
+  try {
+
+    const result = await pool.query(
+      `SELECT id, name, email, mobile, role
+       FROM users
+       ORDER BY id`
+    );
+
+    res.json({
+      success: true,
+      users: result.rows
+    });
+
+  } catch (error) {
+
+    console.error("USERS TEST ERROR:", error);
+
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+
+// ======================================================
 // REGISTER
-// ==========================================
+// ======================================================
 
 app.post("/api/register", async (req, res) => {
+
   try {
 
     const {
@@ -49,26 +148,39 @@ app.post("/api/register", async (req, res) => {
       password
     } = req.body;
 
+
     if (!name || !password || (!email && !mobile)) {
+
       return res.status(400).json({
-        message: "Name, mobile/email and password are required"
+        message:
+          "Name, mobile/email and password are required"
       });
+
     }
+
 
     if (password.length < 8) {
+
       return res.status(400).json({
-        message: "Password must be at least 8 characters"
+        message:
+          "Password must be at least 8 characters"
       });
+
     }
 
-    // Check mobile format if provided
+
     if (mobile && !/^[0-9]{10}$/.test(mobile)) {
+
       return res.status(400).json({
-        message: "Mobile number must contain 10 digits"
+        message:
+          "Mobile number must contain 10 digits"
       });
+
     }
 
-    // Check existing email
+
+    // Check email
+
     if (email) {
 
       const existingEmail = await pool.query(
@@ -77,13 +189,19 @@ app.post("/api/register", async (req, res) => {
       );
 
       if (existingEmail.rows.length > 0) {
+
         return res.status(409).json({
-          message: "Email already registered"
+          message:
+            "Email already registered"
         });
+
       }
+
     }
 
-    // Check existing mobile
+
+    // Check mobile
+
     if (mobile) {
 
       const existingMobile = await pool.query(
@@ -92,71 +210,75 @@ app.post("/api/register", async (req, res) => {
       );
 
       if (existingMobile.rows.length > 0) {
+
         return res.status(409).json({
-          message: "Mobile number already registered"
+          message:
+            "Mobile number already registered"
         });
+
       }
+
     }
 
-    const passwordHash = await bcrypt.hash(
-      password,
-      12
-    );
+
+    const passwordHash =
+      await bcrypt.hash(password, 12);
+
 
     const result = await pool.query(
+
       `INSERT INTO users
        (name, email, mobile, password_hash, role)
        VALUES ($1, $2, $3, $4, $5)
        RETURNING id, name, email, mobile, role`,
+
       [
         name.trim(),
-        email ? email.toLowerCase() : null,
+        email
+          ? email.toLowerCase()
+          : null,
         mobile || null,
         passwordHash,
         "user"
       ]
+
     );
+
 
     res.status(201).json({
+
       success: true,
-      message: "Registration successful",
-      user: result.rows[0]
+
+      message:
+        "Registration successful",
+
+      user:
+        result.rows[0]
+
     });
+
 
   } catch (error) {
 
-    console.error("REGISTER ERROR:", error);
-
-    res.status(500).json({
-      message: "Server error"
-    });
-  }
-});
-
-
-// ==========================================
-// LOGIN
-// ==========================================
-app.get("/api/users-test", async (req, res) => {
-  try {
-    const result = await pool.query(
-      "SELECT id, name, mobile, role FROM users LIMIT 5"
+    console.error(
+      "REGISTER ERROR:",
+      error
     );
 
-    res.json({
-      success: true,
-      users: result.rows
-    });
-
-  } catch (error) {
-    console.error("USERS TEST ERROR:", error);
-
     res.status(500).json({
-      success: false,
-      error: error.message
+      message:
+        "Server error"
     });
+
   }
+
 });
+
+
+// ======================================================
+// LOGIN
+// ======================================================
+
 app.post("/api/login", async (req, res) => {
 
   try {
@@ -166,107 +288,180 @@ app.post("/api/login", async (req, res) => {
       password
     } = req.body;
 
+
     if (!mobile || !password) {
+
       return res.status(400).json({
-        message: "Mobile number and password are required"
+        message:
+          "Mobile number and password are required"
       });
+
     }
 
-    // Validate mobile
+
     if (!/^[0-9]{10}$/.test(mobile)) {
+
       return res.status(400).json({
-        message: "Invalid mobile number"
+        message:
+          "Invalid mobile number"
       });
+
     }
 
-    // Find user
+
     const result = await pool.query(
-      "SELECT * FROM users WHERE mobile = $1",
+
+      `SELECT
+        id,
+        name,
+        email,
+        mobile,
+        password_hash,
+        role
+       FROM users
+       WHERE mobile = $1`,
+
       [mobile]
+
     );
+
 
     if (result.rows.length === 0) {
 
       return res.status(401).json({
-        message: "Invalid mobile number or password"
+        message:
+          "Invalid mobile number or password"
       });
+
     }
 
-    const user = result.rows[0];
 
-    // Check password
+    const user =
+      result.rows[0];
+
+
+    // Password check
+
     const validPassword =
       await bcrypt.compare(
         password,
         user.password_hash
       );
 
+
     if (!validPassword) {
 
       return res.status(401).json({
-        message: "Invalid mobile number or password"
+        message:
+          "Invalid mobile number or password"
       });
+
     }
 
-    // IMPORTANT:
-    // Only admin can access Admin Portal
+
+    // Admin check
 
     if (user.role !== "admin") {
 
       return res.status(403).json({
-        message: "Admin access required"
+        message:
+          "Admin access required"
       });
+
     }
 
-    // Create JWT
+
+    // JWT
+
+    if (!process.env.JWT_SECRET) {
+
+      console.error(
+        "JWT_SECRET is missing"
+      );
+
+      return res.status(500).json({
+        message:
+          "JWT_SECRET is not configured"
+      });
+
+    }
+
+
     const token = jwt.sign(
+
       {
         id: user.id,
         mobile: user.mobile,
         role: user.role
       },
+
       process.env.JWT_SECRET,
+
       {
         expiresIn: "1h"
       }
+
     );
+
 
     res.json({
 
       success: true,
 
-      message: "Admin login successful",
+      message:
+        "Admin login successful",
 
       token,
 
       user: {
+
         id: user.id,
+
         name: user.name,
+
+        email: user.email,
+
         mobile: user.mobile,
+
         role: user.role
+
       }
 
     });
 
+
   } catch (error) {
 
-    console.error("LOGIN ERROR:", error);
+    console.error(
+      "LOGIN ERROR:",
+      error
+    );
 
     res.status(500).json({
-      message: "Server error"
+      message:
+        "Server error",
+      error:
+        error.message
     });
+
   }
+
 });
 
 
-// ==========================================
+// ======================================================
 // AUTHENTICATION MIDDLEWARE
-// ==========================================
+// ======================================================
 
-function authenticateToken(req, res, next) {
+function authenticateToken(
+  req,
+  res,
+  next
+) {
 
   const authHeader =
     req.headers.authorization;
+
 
   if (
     !authHeader ||
@@ -274,12 +469,16 @@ function authenticateToken(req, res, next) {
   ) {
 
     return res.status(401).json({
-      message: "Authentication required"
+      message:
+        "Authentication required"
     });
+
   }
+
 
   const token =
     authHeader.substring(7);
+
 
   try {
 
@@ -289,98 +488,38 @@ function authenticateToken(req, res, next) {
         process.env.JWT_SECRET
       );
 
-    req.user = decoded;
+    req.user =
+      decoded;
 
     next();
 
+
   } catch (error) {
 
+    console.error(
+      "TOKEN ERROR:",
+      error.message
+    );
+
     return res.status(401).json({
-      message: "Invalid or expired token"
+      message:
+        "Invalid or expired token"
     });
+
   }
+
 }
 
 
-// ==========================================
-// CURRENT USER
-// ==========================================
+// ======================================================
+// ADMIN MIDDLEWARE
+// ======================================================
 
-app.get(
-  "/api/me",
-  authenticateToken,
-  async (req, res) => {
+function requireAdmin(
+  req,
+  res,
+  next
+) {
 
-    try {
-
-      const result = await pool.query(
-        `SELECT id, name, email, mobile, role
-         FROM users
-         WHERE id = $1`,
-        [req.user.id]
-      );
-
-      if (result.rows.length === 0) {
-
-        return res.status(404).json({
-          message: "User not found"
-        });
-      }
-
-      const user = result.rows[0];
-
-      if (user.role !== "admin") {
-
-        return res.status(403).json({
-          message: "Admin access required"
-        });
-      }
-
-      res.json({
-        success: true,
-        user
-      });
-
-    } catch (error) {
-
-      console.error("ME ERROR:", error);
-
-      res.status(500).json({
-        message: "Server error"
-      });
-    }
-  }
-);
-
-
-// ==========================================
-// LOGOUT
-// ==========================================
-
-app.post(
-  "/api/logout",
-  authenticateToken,
-  (req, res) => {
-
-    res.json({
-      success: true,
-      message: "Logout successful"
-    });
-
-  }
-);
-
-
-// ==========================================
-// START SERVER
-// ==========================================
-
-app.listen(
-  PORT,
-  "0.0.0.0",
-  () => {
-    console.log(
-      `ganesh backend running on port ${PORT}`
-    );
-  }
-);
+  if (
+   
