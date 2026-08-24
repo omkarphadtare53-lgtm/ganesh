@@ -1,3 +1,4 @@
+console.log("ADMIN JS LOADED");
 const API_URL = "https://ganesh-b.onrender.com";
 
 const login = document.getElementById("loginCard");
