@@ -1,12 +1,23 @@
 console.log("ADMIN JS LOADED");
 
-const API_URL = "https://ganesh-b.onrender.com";
+const API_URL =
+  "https://ganesh-b.onrender.com";
 
-const login = document.getElementById("loginCard");
-const dash = document.getElementById("dashboard");
-const form = document.getElementById("loginForm");
-const error = document.getElementById("error");
-const logout = document.getElementById("logout");
+
+const login =
+  document.getElementById("loginCard");
+
+const dash =
+  document.getElementById("dashboard");
+
+const form =
+  document.getElementById("loginForm");
+
+const error =
+  document.getElementById("error");
+
+const logout =
+  document.getElementById("logout");
 
 
 // ==========================================
@@ -15,8 +26,15 @@ const logout = document.getElementById("logout");
 
 function showDashboard() {
 
-  login.hidden = true;
-  dash.hidden = false;
+  login.classList.add("hidden");
+
+  dash.classList.remove("hidden");
+
+  loadFinance();
+
+  loadDonations();
+
+  loadExpenses();
 
   loadPrograms();
 }
@@ -28,8 +46,9 @@ function showDashboard() {
 
 function showLogin() {
 
-  login.hidden = false;
-  dash.hidden = true;
+  login.classList.remove("hidden");
+
+  dash.classList.add("hidden");
 }
 
 
@@ -37,119 +56,104 @@ function showLogin() {
 // LOGIN
 // ==========================================
 
-form.addEventListener("submit", async (e) => {
+form.addEventListener(
+  "submit",
+  async (e) => {
 
-  e.preventDefault();
-
-  error.textContent = "Login होत आहे...";
-
-  const mobile =
-    document
-      .getElementById("mobile")
-      .value
-      .trim();
-
-  const password =
-    document
-      .getElementById("password")
-      .value;
-
-  if (!mobile || !password) {
+    e.preventDefault();
 
     error.textContent =
-      "Mobile आणि Password आवश्यक आहे.";
+      "Login होत आहे...";
 
-    return;
-  }
+    const mobile =
+      document
+        .getElementById("mobile")
+        .value
+        .trim();
 
+    const password =
+      document
+        .getElementById("password")
+        .value;
 
-  try {
+    try {
 
-    const response = await fetch(
-      `${API_URL}/api/login`,
-      {
-        method: "POST",
+      const response =
+        await fetch(
+          `${API_URL}/api/login`,
+          {
+            method: "POST",
 
-        headers: {
-          "Content-Type": "application/json"
-        },
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
 
-        body: JSON.stringify({
-          mobile,
-          password
-        })
-      }
-    );
+            body: JSON.stringify({
+              mobile,
+              password
+            })
+          }
+        );
 
-
-    const data =
-      await response.json();
-
-
-    console.log(
-      "LOGIN RESPONSE:",
-      data
-    );
-
-
-    if (!response.ok) {
-
-      error.textContent =
-        data.message ||
-        "Login failed";
-
-      return;
-    }
-
-
-    if (
-      data.success === true &&
-      data.user &&
-      data.user.role === "admin" &&
-      data.token
-    ) {
-
-      sessionStorage.setItem(
-        "adminToken",
-        data.token
-      );
-
-      sessionStorage.setItem(
-        "adminUser",
-        JSON.stringify(data.user)
-      );
-
-
-      error.textContent = "";
-
-      showDashboard();
-
+      const data =
+        await response.json();
 
       console.log(
-        "ADMIN DASHBOARD SHOWN"
+        "LOGIN RESPONSE:",
+        data
       );
 
-    } else {
+      if (!response.ok) {
+
+        error.textContent =
+          data.message ||
+          "Login failed";
+
+        return;
+      }
+
+      if (
+        data.success &&
+        data.user &&
+        data.user.role === "admin"
+      ) {
+
+        sessionStorage.setItem(
+          "adminToken",
+          data.token
+        );
+
+        sessionStorage.setItem(
+          "adminUser",
+          JSON.stringify(data.user)
+        );
+
+        error.textContent = "";
+
+        showDashboard();
+
+      } else {
+
+        error.textContent =
+          "Admin access required.";
+
+      }
+
+    } catch (err) {
+
+      console.error(
+        "LOGIN ERROR:",
+        err
+      );
 
       error.textContent =
-        "Admin access required.";
+        "Backend शी connection होत नाही.";
 
     }
 
-
-  } catch (err) {
-
-    console.error(
-      "LOGIN ERROR:",
-      err
-    );
-
-    error.textContent =
-      "Backend शी connection होत नाही.";
-
   }
-
-});
+);
 
 
 // ==========================================
@@ -163,14 +167,12 @@ async function checkLogin() {
       "adminToken"
     );
 
-
   if (!token) {
 
     showLogin();
 
     return;
   }
-
 
   try {
 
@@ -185,16 +187,8 @@ async function checkLogin() {
         }
       );
 
-
     const data =
       await response.json();
-
-
-    console.log(
-      "ME RESPONSE:",
-      data
-    );
-
 
     if (
       response.ok &&
@@ -219,20 +213,11 @@ async function checkLogin() {
 
     }
 
-
   } catch (err) {
 
     console.error(
-      "AUTH CHECK ERROR:",
+      "AUTH ERROR:",
       err
-    );
-
-    sessionStorage.removeItem(
-      "adminToken"
-    );
-
-    sessionStorage.removeItem(
-      "adminUser"
     );
 
     showLogin();
@@ -243,42 +228,382 @@ async function checkLogin() {
 
 
 // ==========================================
-// LOAD PROGRAMS
+// TOKEN
 // ==========================================
 
-async function loadPrograms() {
+function getToken() {
 
-  const container =
-    document.getElementById(
-      "programList"
-    );
+  return sessionStorage.getItem(
+    "adminToken"
+  );
 
-  if (!container) {
-    return;
-  }
+}
 
 
-  container.innerHTML =
-    "<p>Programs loading...</p>";
+// ==========================================
+// FINANCE SUMMARY
+// ==========================================
 
+async function loadFinance() {
 
   try {
 
     const response =
       await fetch(
-        `${API_URL}/api/programs`
+        `${API_URL}/api/finance/summary`,
+        {
+          headers: {
+            Authorization:
+              `Bearer ${getToken()}`
+          }
+        }
       );
-
 
     const data =
       await response.json();
 
+    if (!response.ok) {
 
-    console.log(
-      "PROGRAMS RESPONSE:",
-      data
+      console.error(data);
+
+      return;
+    }
+
+    document.getElementById(
+      "totalDonation"
+    ).textContent =
+      "₹" +
+      Number(
+        data.totalDonation
+      ).toLocaleString("en-IN");
+
+
+    document.getElementById(
+      "totalExpense"
+    ).textContent =
+      "₹" +
+      Number(
+        data.totalExpense
+      ).toLocaleString("en-IN");
+
+
+    document.getElementById(
+      "balance"
+    ).textContent =
+      "₹" +
+      Number(
+        data.balance
+      ).toLocaleString("en-IN");
+
+  } catch (err) {
+
+    console.error(
+      "FINANCE ERROR:",
+      err
     );
 
+  }
+
+}
+
+
+// ==========================================
+// SHOW FINANCE FORM
+// ==========================================
+
+function showFinanceForm(type) {
+
+  document
+    .getElementById(
+      "donationSection"
+    )
+    .classList.add("hidden");
+
+  document
+    .getElementById(
+      "expenseSection"
+    )
+    .classList.add("hidden");
+
+
+  if (type === "donation") {
+
+    document
+      .getElementById(
+        "donationSection"
+      )
+      .classList.remove("hidden");
+
+  }
+
+
+  if (type === "expense") {
+
+    document
+      .getElementById(
+        "expenseSection"
+      )
+      .classList.remove("hidden");
+
+  }
+
+}
+
+
+// ==========================================
+// ADD DONATION
+// ==========================================
+
+document
+  .getElementById("donationForm")
+  .addEventListener(
+    "submit",
+    async (e) => {
+
+      e.preventDefault();
+
+      const message =
+        document.getElementById(
+          "donationMessage"
+        );
+
+      message.textContent =
+        "जमा होत आहे...";
+
+      try {
+
+        const response =
+          await fetch(
+            `${API_URL}/api/donations`,
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json",
+
+                Authorization:
+                  `Bearer ${getToken()}`
+              },
+
+              body: JSON.stringify({
+
+                donor_name:
+                  document
+                    .getElementById(
+                      "donorName"
+                    )
+                    .value
+                    .trim(),
+
+                mobile:
+                  document
+                    .getElementById(
+                      "donorMobile"
+                    )
+                    .value
+                    .trim(),
+
+                amount:
+                  document
+                    .getElementById(
+                      "donationAmount"
+                    )
+                    .value,
+
+                payment_mode:
+                  document
+                    .getElementById(
+                      "donationMode"
+                    )
+                    .value,
+
+                note:
+                  document
+                    .getElementById(
+                      "donationNote"
+                    )
+                    .value
+                    .trim()
+
+              })
+            }
+          );
+
+        const data =
+          await response.json();
+
+        if (!response.ok) {
+
+          message.textContent =
+            data.message ||
+            "Donation failed";
+
+          return;
+        }
+
+        message.textContent =
+          "✅ जमा यशस्वी!";
+
+        document
+          .getElementById(
+            "donationForm"
+          )
+          .reset();
+
+        loadFinance();
+
+        loadDonations();
+
+      } catch (err) {
+
+        console.error(err);
+
+        message.textContent =
+          "Backend connection error";
+
+      }
+
+    }
+  );
+
+
+// ==========================================
+// ADD EXPENSE
+// ==========================================
+
+document
+  .getElementById("expenseForm")
+  .addEventListener(
+    "submit",
+    async (e) => {
+
+      e.preventDefault();
+
+      const message =
+        document.getElementById(
+          "expenseMessage"
+        );
+
+      message.textContent =
+        "खर्च save होत आहे...";
+
+      try {
+
+        const response =
+          await fetch(
+            `${API_URL}/api/expenses`,
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json",
+
+                Authorization:
+                  `Bearer ${getToken()}`
+              },
+
+              body: JSON.stringify({
+
+                title:
+                  document
+                    .getElementById(
+                      "expenseTitle"
+                    )
+                    .value
+                    .trim(),
+
+                amount:
+                  document
+                    .getElementById(
+                      "expenseAmount"
+                    )
+                    .value,
+
+                payment_mode:
+                  document
+                    .getElementById(
+                      "expenseMode"
+                    )
+                    .value,
+
+                note:
+                  document
+                    .getElementById(
+                      "expenseNote"
+                    )
+                    .value
+                    .trim()
+
+              })
+            }
+          );
+
+        const data =
+          await response.json();
+
+        if (!response.ok) {
+
+          message.textContent =
+            data.message ||
+            "Expense failed";
+
+          return;
+        }
+
+        message.textContent =
+          "✅ खर्च save झाला!";
+
+        document
+          .getElementById(
+            "expenseForm"
+          )
+          .reset();
+
+        loadFinance();
+
+        loadExpenses();
+
+      } catch (err) {
+
+        console.error(err);
+
+        message.textContent =
+          "Backend connection error";
+
+      }
+
+    }
+  );
+
+
+// ==========================================
+// LOAD DONATIONS
+// ==========================================
+
+async function loadDonations() {
+
+  const container =
+    document.getElementById(
+      "donationList"
+    );
+
+  try {
+
+    const response =
+      await fetch(
+        `${API_URL}/api/donations`,
+        {
+          headers: {
+            Authorization:
+              `Bearer ${getToken()}`
+          }
+        }
+      );
+
+    const data =
+      await response.json();
 
     if (
       !response.ok ||
@@ -286,191 +611,79 @@ async function loadPrograms() {
     ) {
 
       container.innerHTML =
-        "<p>Programs load होत नाहीत.</p>";
+        "Data load failed.";
 
       return;
     }
 
+    if (
+      !data.donations ||
+      data.donations.length === 0
+    ) {
 
-    const programs =
-      data.programs || [];
-
-
-    const count =
-      document.getElementById(
-        "programCount"
-      );
-
-
-    if (count) {
-
-      count.textContent =
-        programs.length;
-
-    }
-
-
-    if (programs.length === 0) {
-
-      container.innerHTML = `
-        <div class="empty">
-          अजून कोणताही कार्यक्रम नाही.
-        </div>
-      `;
+      container.innerHTML =
+        "अजून जमा नोंद नाही.";
 
       return;
     }
-
 
     container.innerHTML = "";
 
+    data.donations.forEach(
+      (item) => {
 
-    programs.forEach(
-      (program) => {
-
-        const item =
+        const div =
           document.createElement(
             "div"
           );
 
+        div.className =
+          "item";
 
-        item.className =
-          "program-item";
+        div.innerHTML = `
 
+          <div class="item-info">
 
-        item.innerHTML = `
+            <strong>
+              ${escapeHTML(
+                item.donor_name
+              )}
+            </strong>
 
-          <h3>
-            ${escapeHTML(
-              program.title
-            )}
-          </h3>
+            <div>
+              ₹${Number(
+                item.amount
+              ).toLocaleString("en-IN")}
+            </div>
 
-          <div class="program-meta">
-
-            📅
-            ${escapeHTML(
-              program.program_date
-            )}
-
-            ${
-              program.program_time
-                ? `
-                  &nbsp; | &nbsp;
-                  ⏰
-                  ${escapeHTML(
-                    program.program_time
-                  )}
-                `
-                : ""
-            }
+            <small>
+              ${escapeHTML(
+                item.payment_mode
+              )}
+            </small>
 
           </div>
 
-          ${
-            program.description
-              ? `
-                <div class="program-description">
-                  ${escapeHTML(
-                    program.description
-                  )}
-                </div>
-              `
-              : ""
-          }
-
-          <div class="program-actions">
-
-            <button
-              class="btn edit-btn"
-              type="button"
-              data-edit="${program.id}"
-            >
-              ✏️ Edit
-            </button>
-
-            <button
-              class="btn delete-btn"
-              type="button"
-              data-delete="${program.id}"
-            >
-              🗑️ Delete
-            </button>
-
-          </div>
+          <button
+            class="delete"
+            onclick="deleteDonation(${item.id})"
+          >
+            Delete
+          </button>
 
         `;
 
-
-        container.appendChild(item);
+        container.appendChild(div);
 
       }
     );
 
-
-    // EDIT BUTTONS
-
-    document
-      .querySelectorAll(
-        "[data-edit]"
-      )
-      .forEach(
-        (button) => {
-
-          button.addEventListener(
-            "click",
-            () => {
-
-              const id =
-                button.dataset.edit;
-
-              editProgram(id);
-
-            }
-          );
-
-        }
-      );
-
-
-    // DELETE BUTTONS
-
-    document
-      .querySelectorAll(
-        "[data-delete]"
-      )
-      .forEach(
-        (button) => {
-
-          button.addEventListener(
-            "click",
-            () => {
-
-              const id =
-                button.dataset.delete;
-
-              deleteProgram(id);
-
-            }
-          );
-
-        }
-      );
-
-
   } catch (err) {
 
-    console.error(
-      "LOAD PROGRAMS ERROR:",
-      err
-    );
+    console.error(err);
 
-
-    container.innerHTML = `
-      <p>
-        Backend शी connection होत नाही.
-      </p>
-    `;
+    container.innerHTML =
+      "Backend connection error.";
 
   }
 
@@ -478,355 +691,111 @@ async function loadPrograms() {
 
 
 // ==========================================
-// ADD / EDIT PROGRAM
+// LOAD EXPENSES
 // ==========================================
 
-const programForm =
-  document.getElementById(
-    "programForm"
-  );
-
-
-if (programForm) {
-
-  programForm.addEventListener(
-    "submit",
-    async (e) => {
-
-      e.preventDefault();
-
-
-      const id =
-        document
-          .getElementById(
-            "programId"
-          )
-          .value
-          .trim();
-
-
-      const title =
-        document
-          .getElementById(
-            "programTitle"
-          )
-          .value
-          .trim();
-
-
-      const program_date =
-        document
-          .getElementById(
-            "programDate"
-          )
-          .value;
-
-
-      const program_time =
-        document
-          .getElementById(
-            "programTime"
-          )
-          .value
-          .trim();
-
-
-      const description =
-        document
-          .getElementById(
-            "programDescription"
-          )
-          .value
-          .trim();
-
-
-      const message =
-        document.getElementById(
-          "programMessage"
-        );
-
-
-      if (!title || !program_date) {
-
-        message.textContent =
-          "कार्यक्रमाचे नाव आणि तारीख आवश्यक आहे.";
-
-        return;
-      }
-
-
-      const token =
-        sessionStorage.getItem(
-          "adminToken"
-        );
-
-
-      if (!token) {
-
-        message.textContent =
-          "Login session expired.";
-
-        showLogin();
-
-        return;
-      }
-
-
-      message.textContent =
-        id
-          ? "Program update होत आहे..."
-          : "Program save होत आहे...";
-
-
-      try {
-
-        const url =
-          id
-            ? `${API_URL}/api/programs/${id}`
-            : `${API_URL}/api/programs`;
-
-
-        const method =
-          id
-            ? "PUT"
-            : "POST";
-
-
-        const response =
-          await fetch(
-            url,
-            {
-              method,
-
-              headers: {
-
-                "Content-Type":
-                  "application/json",
-
-                Authorization:
-                  `Bearer ${token}`
-
-              },
-
-              body:
-                JSON.stringify({
-
-                  title,
-
-                  program_date,
-
-                  program_time,
-
-                  description
-
-                })
-
-            }
-          );
-
-
-        const data =
-          await response.json();
-
-
-        console.log(
-          "PROGRAM SAVE RESPONSE:",
-          data
-        );
-
-
-        if (!response.ok) {
-
-          message.textContent =
-            data.message ||
-            "Program save failed.";
-
-          return;
-        }
-
-
-        message.textContent =
-          id
-            ? "✅ Program updated successfully!"
-            : "✅ Program successfully added!";
-
-
-        programForm.reset();
-
-
-        document
-          .getElementById(
-            "programId"
-          )
-          .value = "";
-
-
-        const submitButton =
-          document.getElementById(
-            "programSubmit"
-          );
-
-
-        if (submitButton) {
-
-          submitButton.textContent =
-            "➕ कार्यक्रम Add करा";
-
-        }
-
-
-        const cancelButton =
-          document.getElementById(
-            "cancelEdit"
-          );
-
-
-        if (cancelButton) {
-
-          cancelButton.hidden =
-            true;
-
-        }
-
-
-        await loadPrograms();
-
-
-      } catch (err) {
-
-        console.error(
-          "SAVE PROGRAM ERROR:",
-          err
-        );
-
-
-        message.textContent =
-          "Backend शी connection होत नाही.";
-
-      }
-
-    }
-  );
-
-}
-
-
-// ==========================================
-// EDIT PROGRAM
-// ==========================================
-
-async function editProgram(id) {
-
-  const token =
-    sessionStorage.getItem(
-      "adminToken"
+async function loadExpenses() {
+
+  const container =
+    document.getElementById(
+      "expenseList"
     );
-
 
   try {
 
     const response =
       await fetch(
-        `${API_URL}/api/programs/${id}`,
+        `${API_URL}/api/expenses`,
         {
           headers: {
             Authorization:
-              `Bearer ${token}`
+              `Bearer ${getToken()}`
           }
         }
       );
 
-
     const data =
       await response.json();
-
-
-    console.log(
-      "EDIT PROGRAM RESPONSE:",
-      data
-    );
-
 
     if (
       !response.ok ||
       !data.success
     ) {
 
-      alert(
-        data.message ||
-        "Program load failed."
-      );
+      container.innerHTML =
+        "Data load failed.";
 
       return;
     }
 
+    if (
+      !data.expenses ||
+      data.expenses.length === 0
+    ) {
 
-    const program =
-      data.program;
+      container.innerHTML =
+        "अजून खर्च नोंद नाही.";
 
+      return;
+    }
 
-    document.getElementById(
-      "programId"
-    ).value =
-      program.id;
+    container.innerHTML = "";
 
+    data.expenses.forEach(
+      (item) => {
 
-    document.getElementById(
-      "programTitle"
-    ).value =
-      program.title || "";
+        const div =
+          document.createElement(
+            "div"
+          );
 
+        div.className =
+          "item";
 
-    document.getElementById(
-      "programDate"
-    ).value =
-      program.program_date || "";
+        div.innerHTML = `
 
+          <div class="item-info">
 
-    document.getElementById(
-      "programTime"
-    ).value =
-      program.program_time || "";
+            <strong>
+              ${escapeHTML(
+                item.title
+              )}
+            </strong>
 
+            <div>
+              ₹${Number(
+                item.amount
+              ).toLocaleString("en-IN")}
+            </div>
 
-    document.getElementById(
-      "programDescription"
-    ).value =
-      program.description || "";
+            <small>
+              ${escapeHTML(
+                item.payment_mode
+              )}
+            </small>
 
+          </div>
 
-    document.getElementById(
-      "programSubmit"
-    ).textContent =
-      "💾 Program Update करा";
+          <button
+            class="delete"
+            onclick="deleteExpense(${item.id})"
+          >
+            Delete
+          </button>
 
+        `;
 
-    document.getElementById(
-      "cancelEdit"
-    ).hidden =
-      false;
+        container.appendChild(div);
 
-
-    document
-      .getElementById(
-        "programForm"
-      )
-      .scrollIntoView({
-        behavior: "smooth"
-      });
-
+      }
+    );
 
   } catch (err) {
 
-    console.error(
-      "EDIT PROGRAM ERROR:",
-      err
-    );
+    console.error(err);
 
-
-    alert(
-      "Backend शी connection होत नाही."
-    );
+    container.innerHTML =
+      "Backend connection error.";
 
   }
 
@@ -834,97 +803,36 @@ async function editProgram(id) {
 
 
 // ==========================================
-// CANCEL EDIT
+// DELETE DONATION
 // ==========================================
 
-const cancelEdit =
-  document.getElementById(
-    "cancelEdit"
-  );
+async function deleteDonation(id) {
 
-
-if (cancelEdit) {
-
-  cancelEdit.addEventListener(
-    "click",
-    () => {
-
-      programForm.reset();
-
-
-      document.getElementById(
-        "programId"
-      ).value = "";
-
-
-      document.getElementById(
-        "programSubmit"
-      ).textContent =
-        "➕ कार्यक्रम Add करा";
-
-
-      cancelEdit.hidden =
-        true;
-
-
-      document.getElementById(
-        "programMessage"
-      ).textContent = "";
-
-    }
-  );
-
-}
-
-
-// ==========================================
-// DELETE PROGRAM
-// ==========================================
-
-async function deleteProgram(id) {
-
-  const confirmDelete =
-    confirm(
-      "हा कार्यक्रम delete करायचा आहे का?"
-    );
-
-
-  if (!confirmDelete) {
+  if (
+    !confirm(
+      "ही जमा नोंद delete करायची का?"
+    )
+  ) {
     return;
   }
-
-
-  const token =
-    sessionStorage.getItem(
-      "adminToken"
-    );
-
 
   try {
 
     const response =
       await fetch(
-        `${API_URL}/api/programs/${id}`,
+        `${API_URL}/api/donations/${id}`,
         {
           method: "DELETE",
 
           headers: {
             Authorization:
-              `Bearer ${token}`
+              `Bearer ${getToken()}`
           }
         }
       );
 
-
     const data =
       await response.json();
-
-
-    console.log(
-      "DELETE PROGRAM RESPONSE:",
-      data
-    );
-
 
     if (!response.ok) {
 
@@ -936,25 +844,344 @@ async function deleteProgram(id) {
       return;
     }
 
+    loadFinance();
 
-    alert(
-      "Program deleted successfully."
-    );
-
-
-    await loadPrograms();
-
+    loadDonations();
 
   } catch (err) {
 
-    console.error(
-      "DELETE PROGRAM ERROR:",
-      err
-    );
-
+    console.error(err);
 
     alert(
-      "Backend शी connection होत नाही."
+      "Backend connection error"
+    );
+
+  }
+
+}
+
+
+// ==========================================
+// DELETE EXPENSE
+// ==========================================
+
+async function deleteExpense(id) {
+
+  if (
+    !confirm(
+      "हा खर्च delete करायचा का?"
+    )
+  ) {
+    return;
+  }
+
+  try {
+
+    const response =
+      await fetch(
+        `${API_URL}/api/expenses/${id}`,
+        {
+          method: "DELETE",
+
+          headers: {
+            Authorization:
+              `Bearer ${getToken()}`
+          }
+        }
+      );
+
+    const data =
+      await response.json();
+
+    if (!response.ok) {
+
+      alert(
+        data.message ||
+        "Delete failed"
+      );
+
+      return;
+    }
+
+    loadFinance();
+
+    loadExpenses();
+
+  } catch (err) {
+
+    console.error(err);
+
+    alert(
+      "Backend connection error"
+    );
+
+  }
+
+}
+
+
+// ==========================================
+// PROGRAMS
+// ==========================================
+
+async function loadPrograms() {
+
+  const container =
+    document.getElementById(
+      "programList"
+    );
+
+  try {
+
+    const response =
+      await fetch(
+        `${API_URL}/api/programs`
+      );
+
+    const data =
+      await response.json();
+
+    if (
+      !response.ok ||
+      !data.success
+    ) {
+
+      container.innerHTML =
+        "Programs load failed.";
+
+      return;
+    }
+
+    if (
+      !data.programs ||
+      data.programs.length === 0
+    ) {
+
+      container.innerHTML =
+        "अजून कार्यक्रम नाही.";
+
+      return;
+    }
+
+    container.innerHTML = "";
+
+    data.programs.forEach(
+      (program) => {
+
+        const div =
+          document.createElement(
+            "div"
+          );
+
+        div.className =
+          "program-item";
+
+        div.innerHTML = `
+
+          <div>
+
+            <strong>
+              ${escapeHTML(
+                program.title
+              )}
+            </strong>
+
+            <p>
+              📅 ${escapeHTML(
+                program.program_date
+              )}
+            </p>
+
+            <p>
+              ${escapeHTML(
+                program.program_time || ""
+              )}
+            </p>
+
+          </div>
+
+          <button
+            class="delete"
+            onclick="deleteProgram(${program.id})"
+          >
+            Delete
+          </button>
+
+        `;
+
+        container.appendChild(div);
+
+      }
+    );
+
+  } catch (err) {
+
+    console.error(err);
+
+    container.innerHTML =
+      "Backend connection error.";
+
+  }
+
+}
+
+
+// ==========================================
+// ADD PROGRAM
+// ==========================================
+
+document
+  .getElementById("programForm")
+  .addEventListener(
+    "submit",
+    async (e) => {
+
+      e.preventDefault();
+
+      const message =
+        document.getElementById(
+          "programMessage"
+        );
+
+      try {
+
+        const response =
+          await fetch(
+            `${API_URL}/api/programs`,
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json",
+
+                Authorization:
+                  `Bearer ${getToken()}`
+              },
+
+              body: JSON.stringify({
+
+                title:
+                  document
+                    .getElementById(
+                      "programTitle"
+                    )
+                    .value
+                    .trim(),
+
+                program_date:
+                  document
+                    .getElementById(
+                      "programDate"
+                    )
+                    .value,
+
+                program_time:
+                  document
+                    .getElementById(
+                      "programTime"
+                    )
+                    .value
+                    .trim(),
+
+                description:
+                  document
+                    .getElementById(
+                      "programDescription"
+                    )
+                    .value
+                    .trim()
+
+              })
+            }
+          );
+
+        const data =
+          await response.json();
+
+        if (!response.ok) {
+
+          message.textContent =
+            data.message ||
+            "Program failed";
+
+          return;
+        }
+
+        message.textContent =
+          "✅ Program added!";
+
+        document
+          .getElementById(
+            "programForm"
+          )
+          .reset();
+
+        loadPrograms();
+
+      } catch (err) {
+
+        console.error(err);
+
+        message.textContent =
+          "Backend connection error.";
+
+      }
+
+    }
+  );
+
+
+// ==========================================
+// DELETE PROGRAM
+// ==========================================
+
+async function deleteProgram(id) {
+
+  if (
+    !confirm(
+      "हा कार्यक्रम delete करायचा का?"
+    )
+  ) {
+    return;
+  }
+
+  try {
+
+    const response =
+      await fetch(
+        `${API_URL}/api/programs/${id}`,
+        {
+          method: "DELETE",
+
+          headers: {
+            Authorization:
+              `Bearer ${getToken()}`
+          }
+        }
+      );
+
+    const data =
+      await response.json();
+
+    if (!response.ok) {
+
+      alert(
+        data.message ||
+        "Delete failed"
+      );
+
+      return;
+    }
+
+    loadPrograms();
+
+  } catch (err) {
+
+    console.error(err);
+
+    alert(
+      "Backend connection error"
     );
 
   }
@@ -968,39 +1195,12 @@ async function deleteProgram(id) {
 
 function escapeHTML(value) {
 
-  if (value === null ||
-      value === undefined) {
-
-    return "";
-  }
-
-
-  return String(value)
-
-    .replaceAll(
-      "&",
-      "&amp;"
-    )
-
-    .replaceAll(
-      "<",
-      "&lt;"
-    )
-
-    .replaceAll(
-      ">",
-      "&gt;"
-    )
-
-    .replaceAll(
-      '"',
-      "&quot;"
-    )
-
-    .replaceAll(
-      "'",
-      "&#039;"
-    );
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 
 }
 
@@ -1014,10 +1214,7 @@ logout.addEventListener(
   async () => {
 
     const token =
-      sessionStorage.getItem(
-        "adminToken"
-      );
-
+      getToken();
 
     try {
 
@@ -1039,13 +1236,9 @@ logout.addEventListener(
 
     } catch (err) {
 
-      console.error(
-        "LOGOUT ERROR:",
-        err
-      );
+      console.error(err);
 
     }
-
 
     sessionStorage.removeItem(
       "adminToken"
@@ -1054,7 +1247,6 @@ logout.addEventListener(
     sessionStorage.removeItem(
       "adminUser"
     );
-
 
     showLogin();
 
