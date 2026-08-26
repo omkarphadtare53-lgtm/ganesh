@@ -47,7 +47,10 @@ pool.query("SELECT NOW()")
     console.log("DATABASE CONNECTED");
   })
   .catch((err) => {
-    console.error("DATABASE CONNECTION ERROR:", err.message);
+    console.error(
+      "DATABASE CONNECTION ERROR:",
+      err.message
+    );
   });
 
 
@@ -69,7 +72,10 @@ app.get("/", (req, res) => {
 
 app.get("/api/db-test", async (req, res) => {
   try {
-    const result = await pool.query("SELECT NOW()");
+
+    const result = await pool.query(
+      "SELECT NOW()"
+    );
 
     res.json({
       success: true,
@@ -78,7 +84,11 @@ app.get("/api/db-test", async (req, res) => {
     });
 
   } catch (error) {
-    console.error("DB TEST ERROR:", error);
+
+    console.error(
+      "DB TEST ERROR:",
+      error
+    );
 
     res.status(500).json({
       success: false,
@@ -94,6 +104,7 @@ app.get("/api/db-test", async (req, res) => {
 
 app.get("/api/users-test", async (req, res) => {
   try {
+
     const result = await pool.query(
       `SELECT id, name, email, mobile, role
        FROM users
@@ -106,7 +117,11 @@ app.get("/api/users-test", async (req, res) => {
     });
 
   } catch (error) {
-    console.error("USERS TEST ERROR:", error);
+
+    console.error(
+      "USERS TEST ERROR:",
+      error
+    );
 
     res.status(500).json({
       success: false,
@@ -121,6 +136,7 @@ app.get("/api/users-test", async (req, res) => {
 // ==========================================
 
 app.post("/api/register", async (req, res) => {
+
   try {
 
     const {
@@ -130,85 +146,144 @@ app.post("/api/register", async (req, res) => {
       password
     } = req.body;
 
-    if (!name || !password || (!email && !mobile)) {
+
+    if (
+      !name ||
+      !password ||
+      (!email && !mobile)
+    ) {
       return res.status(400).json({
         success: false,
-        message: "Name, mobile/email and password are required"
+        message:
+          "Name, mobile/email and password are required"
       });
     }
+
 
     if (password.length < 8) {
+
       return res.status(400).json({
         success: false,
-        message: "Password must be at least 8 characters"
+        message:
+          "Password must be at least 8 characters"
       });
+
     }
 
-    if (mobile && !/^[0-9]{10}$/.test(mobile)) {
+
+    if (
+      mobile &&
+      !/^[0-9]{10}$/.test(mobile)
+    ) {
+
       return res.status(400).json({
         success: false,
-        message: "Mobile number must contain 10 digits"
+        message:
+          "Mobile number must contain 10 digits"
       });
+
     }
+
 
     if (email) {
-      const existingEmail = await pool.query(
-        "SELECT id FROM users WHERE email = $1",
-        [email.toLowerCase()]
-      );
+
+      const existingEmail =
+        await pool.query(
+          "SELECT id FROM users WHERE email = $1",
+          [email.toLowerCase()]
+        );
+
 
       if (existingEmail.rows.length > 0) {
+
         return res.status(409).json({
           success: false,
-          message: "Email already registered"
+          message:
+            "Email already registered"
         });
+
       }
+
     }
+
 
     if (mobile) {
-      const existingMobile = await pool.query(
-        "SELECT id FROM users WHERE mobile = $1",
-        [mobile]
-      );
+
+      const existingMobile =
+        await pool.query(
+          "SELECT id FROM users WHERE mobile = $1",
+          [mobile]
+        );
+
 
       if (existingMobile.rows.length > 0) {
+
         return res.status(409).json({
           success: false,
-          message: "Mobile number already registered"
+          message:
+            "Mobile number already registered"
         });
+
       }
+
     }
 
-    const passwordHash = await bcrypt.hash(password, 12);
+
+    const passwordHash =
+      await bcrypt.hash(password, 12);
+
 
     const result = await pool.query(
+
       `INSERT INTO users
        (name, email, mobile, password_hash, role)
        VALUES ($1, $2, $3, $4, $5)
        RETURNING id, name, email, mobile, role`,
+
       [
         name.trim(),
-        email ? email.toLowerCase() : null,
+        email
+          ? email.toLowerCase()
+          : null,
         mobile || null,
         passwordHash,
         "user"
       ]
+
     );
 
+
     res.status(201).json({
+
       success: true,
-      message: "Registration successful",
-      user: result.rows[0]
+
+      message:
+        "Registration successful",
+
+      user:
+        result.rows[0]
+
     });
+
 
   } catch (error) {
-    console.error("REGISTER ERROR:", error);
+
+    console.error(
+      "REGISTER ERROR:",
+      error
+    );
 
     res.status(500).json({
+
       success: false,
-      message: "Server error"
+
+      message:
+        "Server error"
+
     });
+
   }
+
 });
 
 
@@ -217,6 +292,7 @@ app.post("/api/register", async (req, res) => {
 // ==========================================
 
 app.post("/api/login", async (req, res) => {
+
   try {
 
     const {
@@ -224,21 +300,39 @@ app.post("/api/login", async (req, res) => {
       password
     } = req.body;
 
+
     if (!mobile || !password) {
+
       return res.status(400).json({
+
         success: false,
-        message: "Mobile number and password are required"
+
+        message:
+          "Mobile number and password are required"
+
       });
+
     }
 
-    if (!/^[0-9]{10}$/.test(mobile)) {
+
+    if (
+      !/^[0-9]{10}$/.test(mobile)
+    ) {
+
       return res.status(400).json({
+
         success: false,
-        message: "Invalid mobile number"
+
+        message:
+          "Invalid mobile number"
+
       });
+
     }
+
 
     const result = await pool.query(
+
       `SELECT
         id,
         name,
@@ -248,77 +342,137 @@ app.post("/api/login", async (req, res) => {
         role
        FROM users
        WHERE mobile = $1`,
+
       [mobile]
+
     );
+
 
     if (result.rows.length === 0) {
+
       return res.status(401).json({
+
         success: false,
-        message: "Invalid mobile number or password"
+
+        message:
+          "Invalid mobile number or password"
+
       });
+
     }
 
-    const user = result.rows[0];
 
-    const validPassword = await bcrypt.compare(
-      password,
-      user.password_hash
-    );
+    const user =
+      result.rows[0];
+
+
+    const validPassword =
+      await bcrypt.compare(
+        password,
+        user.password_hash
+      );
+
 
     if (!validPassword) {
+
       return res.status(401).json({
+
         success: false,
-        message: "Invalid mobile number or password"
+
+        message:
+          "Invalid mobile number or password"
+
       });
+
     }
+
 
     if (user.role !== "admin") {
+
       return res.status(403).json({
+
         success: false,
-        message: "Admin access required"
+
+        message:
+          "Admin access required"
+
       });
+
     }
+
 
     if (!process.env.JWT_SECRET) {
+
       return res.status(500).json({
+
         success: false,
-        message: "JWT_SECRET is not configured"
+
+        message:
+          "JWT_SECRET is not configured"
+
       });
+
     }
 
-    const token = jwt.sign(
-      {
-        id: user.id,
-        mobile: user.mobile,
-        role: user.role
-      },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "1h"
-      }
-    );
+
+    const token =
+      jwt.sign(
+
+        {
+          id: user.id,
+          mobile: user.mobile,
+          role: user.role
+        },
+
+        process.env.JWT_SECRET,
+
+        {
+          expiresIn: "1h"
+        }
+
+      );
+
 
     res.json({
+
       success: true,
-      message: "Admin login successful",
+
+      message:
+        "Admin login successful",
+
       token,
+
       user: {
+
         id: user.id,
         name: user.name,
         email: user.email,
         mobile: user.mobile,
         role: user.role
+
       }
+
     });
+
 
   } catch (error) {
-    console.error("LOGIN ERROR:", error);
+
+    console.error(
+      "LOGIN ERROR:",
+      error
+    );
 
     res.status(500).json({
+
       success: false,
-      message: "Server error"
+
+      message:
+        "Server error"
+
     });
+
   }
+
 });
 
 
@@ -326,40 +480,66 @@ app.post("/api/login", async (req, res) => {
 // AUTH MIDDLEWARE
 // ==========================================
 
-function authenticateToken(req, res, next) {
+function authenticateToken(
+  req,
+  res,
+  next
+) {
 
-  const authHeader = req.headers.authorization;
+  const authHeader =
+    req.headers.authorization;
+
 
   if (
     !authHeader ||
     !authHeader.startsWith("Bearer ")
   ) {
+
     return res.status(401).json({
+
       success: false,
-      message: "Authentication required"
+
+      message:
+        "Authentication required"
+
     });
+
   }
 
-  const token = authHeader.substring(7);
+
+  const token =
+    authHeader.substring(7);
+
 
   try {
 
-    const decoded = jwt.verify(
-      token,
-      process.env.JWT_SECRET
-    );
+    const decoded =
+      jwt.verify(
+        token,
+        process.env.JWT_SECRET
+      );
 
-    req.user = decoded;
+
+    req.user =
+      decoded;
+
 
     next();
+
 
   } catch (error) {
 
     return res.status(401).json({
+
       success: false,
-      message: "Invalid or expired token"
+
+      message:
+        "Invalid or expired token"
+
     });
+
   }
+
 }
 
 
@@ -367,99 +547,173 @@ function authenticateToken(req, res, next) {
 // CURRENT USER
 // ==========================================
 
-app.get("/api/me", authenticateToken, async (req, res) => {
+app.get(
+  "/api/me",
+  authenticateToken,
+  async (req, res) => {
 
-  try {
+    try {
 
-    const result = await pool.query(
-      `SELECT id, name, email, mobile, role
-       FROM users
-       WHERE id = $1`,
-      [req.user.id]
-    );
+      const result =
+        await pool.query(
 
-    if (result.rows.length === 0) {
-      return res.status(404).json({
-        success: false,
-        message: "User not found"
+          `SELECT
+            id,
+            name,
+            email,
+            mobile,
+            role
+           FROM users
+           WHERE id = $1`,
+
+          [req.user.id]
+
+        );
+
+
+      if (result.rows.length === 0) {
+
+        return res.status(404).json({
+
+          success: false,
+
+          message:
+            "User not found"
+
+        });
+
+      }
+
+
+      const user =
+        result.rows[0];
+
+
+      if (user.role !== "admin") {
+
+        return res.status(403).json({
+
+          success: false,
+
+          message:
+            "Admin access required"
+
+        });
+
+      }
+
+
+      res.json({
+
+        success: true,
+
+        user
+
       });
+
+
+    } catch (error) {
+
+      console.error(
+        "ME ERROR:",
+        error
+      );
+
+      res.status(500).json({
+
+        success: false,
+
+        message:
+          "Server error"
+
+      });
+
     }
 
-    const user = result.rows[0];
-
-    if (user.role !== "admin") {
-      return res.status(403).json({
-        success: false,
-        message: "Admin access required"
-      });
-    }
-
-    res.json({
-      success: true,
-      user
-    });
-
-  } catch (error) {
-
-    console.error("ME ERROR:", error);
-
-    res.status(500).json({
-      success: false,
-      message: "Server error"
-    });
   }
-});
+);
 
 
 // ==========================================
 // LOGOUT
 // ==========================================
 
-app.post("/api/logout", authenticateToken, (req, res) => {
-
-  res.json({
-    success: true,
-    message: "Logout successful"
-  });
-
-});
-
-
-// ==========================================
-// PROGRAMS - GET
-// ==========================================
-
-app.get("/api/programs", async (req, res) => {
-
-  try {
-
-    const result = await pool.query(
-      `SELECT
-        id,
-        title,
-        program_date,
-        program_time,
-        description,
-        created_at
-       FROM programs
-       ORDER BY program_date ASC, program_time ASC`
-    );
+app.post(
+  "/api/logout",
+  authenticateToken,
+  (req, res) => {
 
     res.json({
+
       success: true,
-      programs: result.rows
+
+      message:
+        "Logout successful"
+
     });
 
-  } catch (error) {
-
-    console.error("PROGRAMS GET ERROR:", error);
-
-    res.status(500).json({
-      success: false,
-      message: "Server error"
-    });
   }
-});
+);
+
+
+// ==========================================
+// PROGRAMS - GET PUBLIC
+// ==========================================
+
+app.get(
+  "/api/programs",
+  async (req, res) => {
+
+    try {
+
+      const result =
+        await pool.query(
+
+          `SELECT
+            id,
+            title,
+            program_date,
+            program_time,
+            description,
+            created_at
+           FROM programs
+           ORDER BY
+             program_date ASC,
+             program_time ASC`
+
+        );
+
+
+      res.json({
+
+        success: true,
+
+        programs:
+          result.rows
+
+      });
+
+
+    } catch (error) {
+
+      console.error(
+        "PROGRAMS GET ERROR:",
+        error
+      );
+
+      res.status(500).json({
+
+        success: false,
+
+        message:
+          "Server error"
+
+      });
+
+    }
+
+  }
+);
 
 
 // ==========================================
@@ -473,12 +727,21 @@ app.post(
 
     try {
 
-      if (req.user.role !== "admin") {
+      if (
+        req.user.role !== "admin"
+      ) {
+
         return res.status(403).json({
+
           success: false,
-          message: "Admin access required"
+
+          message:
+            "Admin access required"
+
         });
+
       }
+
 
       const {
         title,
@@ -487,41 +750,78 @@ app.post(
         description
       } = req.body;
 
-      if (!title || !program_date) {
+
+      if (
+        !title ||
+        !program_date
+      ) {
+
         return res.status(400).json({
+
           success: false,
-          message: "Title and program date are required"
+
+          message:
+            "Title and program date are required"
+
         });
+
       }
 
-      const result = await pool.query(
-        `INSERT INTO programs
-        (title, program_date, program_time, description)
-        VALUES ($1, $2, $3, $4)
-        RETURNING *`,
-        [
-          title.trim(),
-          program_date,
-          program_time || null,
-          description || null
-        ]
-      );
+
+      const result =
+        await pool.query(
+
+          `INSERT INTO programs
+          (
+            title,
+            program_date,
+            program_time,
+            description
+          )
+          VALUES ($1, $2, $3, $4)
+          RETURNING *`,
+
+          [
+            title.trim(),
+            program_date,
+            program_time || null,
+            description || null
+          ]
+
+        );
+
 
       res.status(201).json({
+
         success: true,
-        message: "Program added successfully",
-        program: result.rows[0]
+
+        message:
+          "Program added successfully",
+
+        program:
+          result.rows[0]
+
       });
+
 
     } catch (error) {
 
-      console.error("PROGRAM ADD ERROR:", error);
+      console.error(
+        "PROGRAM ADD ERROR:",
+        error
+      );
 
       res.status(500).json({
+
         success: false,
-        message: "Server error"
+
+        message:
+          "Server error"
+
       });
+
     }
+
   }
 );
 
@@ -537,110 +837,195 @@ app.delete(
 
     try {
 
-      if (req.user.role !== "admin") {
+      if (
+        req.user.role !== "admin"
+      ) {
+
         return res.status(403).json({
+
           success: false,
-          message: "Admin access required"
+
+          message:
+            "Admin access required"
+
         });
+
       }
 
-      const id = Number(req.params.id);
 
-      if (!Number.isInteger(id)) {
+      const id =
+        Number(req.params.id);
+
+
+      if (
+        !Number.isInteger(id)
+      ) {
+
         return res.status(400).json({
+
           success: false,
-          message: "Invalid program ID"
+
+          message:
+            "Invalid program ID"
+
         });
+
       }
 
-      const result = await pool.query(
-        `DELETE FROM programs
-         WHERE id = $1
-         RETURNING id`,
-        [id]
-      );
 
-      if (result.rows.length === 0) {
+      const result =
+        await pool.query(
+
+          `DELETE FROM programs
+           WHERE id = $1
+           RETURNING id`,
+
+          [id]
+
+        );
+
+
+      if (
+        result.rows.length === 0
+      ) {
+
         return res.status(404).json({
+
           success: false,
-          message: "Program not found"
+
+          message:
+            "Program not found"
+
         });
+
       }
+
 
       res.json({
+
         success: true,
-        message: "Program deleted successfully"
+
+        message:
+          "Program deleted successfully"
+
       });
+
 
     } catch (error) {
 
-      console.error("PROGRAM DELETE ERROR:", error);
+      console.error(
+        "PROGRAM DELETE ERROR:",
+        error
+      );
 
       res.status(500).json({
+
         success: false,
-        message: "Server error"
+
+        message:
+          "Server error"
+
       });
+
     }
+
   }
 );
 
 
 // =====================================================
-// FINANCE - SUMMARY
+// FINANCE - PUBLIC SUMMARY
+// =====================================================
+//
+// IMPORTANT:
+// हा endpoint PUBLIC आहे.
+// येथे authenticateToken नाही.
+// त्यामुळे public index.html ला finance summary
+// login शिवाय मिळेल.
+//
 // =====================================================
 
 app.get(
   "/api/finance/summary",
-  authenticateToken,
   async (req, res) => {
 
     try {
 
-      if (req.user.role !== "admin") {
-        return res.status(403).json({
-          success: false,
-          message: "Admin access required"
-        });
-      }
+      const donations =
+        await pool.query(
 
-      const donations = await pool.query(
-        `SELECT COALESCE(SUM(amount), 0) AS total
-         FROM donations`
-      );
+          `SELECT
+             COALESCE(
+               SUM(amount),
+               0
+             ) AS total
+           FROM donations`
 
-      const expenses = await pool.query(
-        `SELECT COALESCE(SUM(amount), 0) AS total
-         FROM expenses`
-      );
+        );
+
+
+      const expenses =
+        await pool.query(
+
+          `SELECT
+             COALESCE(
+               SUM(amount),
+               0
+             ) AS total
+           FROM expenses`
+
+        );
+
 
       const totalDonation =
-        Number(donations.rows[0].total);
+        Number(
+          donations.rows[0].total
+        );
+
 
       const totalExpense =
-        Number(expenses.rows[0].total);
+        Number(
+          expenses.rows[0].total
+        );
+
 
       const balance =
-        totalDonation - totalExpense;
+        totalDonation -
+        totalExpense;
+
 
       res.json({
+
         success: true,
+
         totalDonation,
+
         totalExpense,
+
         balance
+
       });
+
 
     } catch (error) {
 
       console.error(
-        "FINANCE SUMMARY ERROR:",
+        "PUBLIC FINANCE SUMMARY ERROR:",
         error
       );
 
+
       res.status(500).json({
+
         success: false,
-        message: "Server error"
+
+        message:
+          "Server error"
+
       });
+
     }
+
   }
 );
 
@@ -656,23 +1041,41 @@ app.get(
 
     try {
 
-      if (req.user.role !== "admin") {
+      if (
+        req.user.role !== "admin"
+      ) {
+
         return res.status(403).json({
+
           success: false,
-          message: "Admin access required"
+
+          message:
+            "Admin access required"
+
         });
+
       }
 
-      const result = await pool.query(
-        `SELECT *
-         FROM donations
-         ORDER BY created_at DESC`
-      );
+
+      const result =
+        await pool.query(
+
+          `SELECT *
+           FROM donations
+           ORDER BY created_at DESC`
+
+        );
+
 
       res.json({
+
         success: true,
-        donations: result.rows
+
+        donations:
+          result.rows
+
       });
+
 
     } catch (error) {
 
@@ -682,10 +1085,16 @@ app.get(
       );
 
       res.status(500).json({
+
         success: false,
-        message: "Server error"
+
+        message:
+          "Server error"
+
       });
+
     }
+
   }
 );
 
@@ -701,12 +1110,21 @@ app.post(
 
     try {
 
-      if (req.user.role !== "admin") {
+      if (
+        req.user.role !== "admin"
+      ) {
+
         return res.status(403).json({
+
           success: false,
-          message: "Admin access required"
+
+          message:
+            "Admin access required"
+
         });
+
       }
+
 
       const {
         donor_name,
@@ -716,44 +1134,84 @@ app.post(
         note
       } = req.body;
 
-      if (!donor_name || !amount) {
-        return res.status(400).json({
-          success: false,
-          message: "Donor name and amount are required"
-        });
-      }
-
-      const numericAmount = Number(amount);
 
       if (
-        !Number.isFinite(numericAmount) ||
-        numericAmount <= 0
+        !donor_name ||
+        !amount
       ) {
+
         return res.status(400).json({
+
           success: false,
-          message: "Invalid amount"
+
+          message:
+            "Donor name and amount are required"
+
         });
+
       }
 
-      const result = await pool.query(
-        `INSERT INTO donations
-        (donor_name, mobile, amount, payment_mode, note)
-        VALUES ($1, $2, $3, $4, $5)
-        RETURNING *`,
-        [
-          donor_name.trim(),
-          mobile || null,
-          numericAmount,
-          payment_mode || "Cash",
-          note || null
-        ]
-      );
+
+      const numericAmount =
+        Number(amount);
+
+
+      if (
+        !Number.isFinite(
+          numericAmount
+        ) ||
+        numericAmount <= 0
+      ) {
+
+        return res.status(400).json({
+
+          success: false,
+
+          message:
+            "Invalid amount"
+
+        });
+
+      }
+
+
+      const result =
+        await pool.query(
+
+          `INSERT INTO donations
+          (
+            donor_name,
+            mobile,
+            amount,
+            payment_mode,
+            note
+          )
+          VALUES ($1, $2, $3, $4, $5)
+          RETURNING *`,
+
+          [
+            donor_name.trim(),
+            mobile || null,
+            numericAmount,
+            payment_mode || "Cash",
+            note || null
+          ]
+
+        );
+
 
       res.status(201).json({
+
         success: true,
-        message: "Donation added successfully",
-        donation: result.rows[0]
+
+        message:
+          "Donation added successfully",
+
+        donation:
+          result.rows[0]
+
       });
+
 
     } catch (error) {
 
@@ -763,10 +1221,16 @@ app.post(
       );
 
       res.status(500).json({
+
         success: false,
-        message: "Server error"
+
+        message:
+          "Server error"
+
       });
+
     }
+
   }
 );
 
@@ -782,33 +1246,63 @@ app.delete(
 
     try {
 
-      if (req.user.role !== "admin") {
+      if (
+        req.user.role !== "admin"
+      ) {
+
         return res.status(403).json({
+
           success: false,
-          message: "Admin access required"
+
+          message:
+            "Admin access required"
+
         });
+
       }
 
-      const id = Number(req.params.id);
 
-      const result = await pool.query(
-        `DELETE FROM donations
-         WHERE id = $1
-         RETURNING id`,
-        [id]
-      );
+      const id =
+        Number(req.params.id);
 
-      if (result.rows.length === 0) {
+
+      const result =
+        await pool.query(
+
+          `DELETE FROM donations
+           WHERE id = $1
+           RETURNING id`,
+
+          [id]
+
+        );
+
+
+      if (
+        result.rows.length === 0
+      ) {
+
         return res.status(404).json({
+
           success: false,
-          message: "Donation not found"
+
+          message:
+            "Donation not found"
+
         });
+
       }
+
 
       res.json({
+
         success: true,
-        message: "Donation deleted successfully"
+
+        message:
+          "Donation deleted successfully"
+
       });
+
 
     } catch (error) {
 
@@ -818,10 +1312,16 @@ app.delete(
       );
 
       res.status(500).json({
+
         success: false,
-        message: "Server error"
+
+        message:
+          "Server error"
+
       });
+
     }
+
   }
 );
 
@@ -837,23 +1337,41 @@ app.get(
 
     try {
 
-      if (req.user.role !== "admin") {
+      if (
+        req.user.role !== "admin"
+      ) {
+
         return res.status(403).json({
+
           success: false,
-          message: "Admin access required"
+
+          message:
+            "Admin access required"
+
         });
+
       }
 
-      const result = await pool.query(
-        `SELECT *
-         FROM expenses
-         ORDER BY created_at DESC`
-      );
+
+      const result =
+        await pool.query(
+
+          `SELECT *
+           FROM expenses
+           ORDER BY created_at DESC`
+
+        );
+
 
       res.json({
+
         success: true,
-        expenses: result.rows
+
+        expenses:
+          result.rows
+
       });
+
 
     } catch (error) {
 
@@ -863,10 +1381,16 @@ app.get(
       );
 
       res.status(500).json({
+
         success: false,
-        message: "Server error"
+
+        message:
+          "Server error"
+
       });
+
     }
+
   }
 );
 
@@ -882,12 +1406,21 @@ app.post(
 
     try {
 
-      if (req.user.role !== "admin") {
+      if (
+        req.user.role !== "admin"
+      ) {
+
         return res.status(403).json({
+
           success: false,
-          message: "Admin access required"
+
+          message:
+            "Admin access required"
+
         });
+
       }
+
 
       const {
         title,
@@ -896,43 +1429,82 @@ app.post(
         note
       } = req.body;
 
-      if (!title || !amount) {
-        return res.status(400).json({
-          success: false,
-          message: "Title and amount are required"
-        });
-      }
-
-      const numericAmount = Number(amount);
 
       if (
-        !Number.isFinite(numericAmount) ||
-        numericAmount <= 0
+        !title ||
+        !amount
       ) {
+
         return res.status(400).json({
+
           success: false,
-          message: "Invalid amount"
+
+          message:
+            "Title and amount are required"
+
         });
+
       }
 
-      const result = await pool.query(
-        `INSERT INTO expenses
-        (title, amount, payment_mode, note)
-        VALUES ($1, $2, $3, $4)
-        RETURNING *`,
-        [
-          title.trim(),
-          numericAmount,
-          payment_mode || "Cash",
-          note || null
-        ]
-      );
+
+      const numericAmount =
+        Number(amount);
+
+
+      if (
+        !Number.isFinite(
+          numericAmount
+        ) ||
+        numericAmount <= 0
+      ) {
+
+        return res.status(400).json({
+
+          success: false,
+
+          message:
+            "Invalid amount"
+
+        });
+
+      }
+
+
+      const result =
+        await pool.query(
+
+          `INSERT INTO expenses
+          (
+            title,
+            amount,
+            payment_mode,
+            note
+          )
+          VALUES ($1, $2, $3, $4)
+          RETURNING *`,
+
+          [
+            title.trim(),
+            numericAmount,
+            payment_mode || "Cash",
+            note || null
+          ]
+
+        );
+
 
       res.status(201).json({
+
         success: true,
-        message: "Expense added successfully",
-        expense: result.rows[0]
+
+        message:
+          "Expense added successfully",
+
+        expense:
+          result.rows[0]
+
       });
+
 
     } catch (error) {
 
@@ -942,10 +1514,16 @@ app.post(
       );
 
       res.status(500).json({
+
         success: false,
-        message: "Server error"
+
+        message:
+          "Server error"
+
       });
+
     }
+
   }
 );
 
@@ -961,33 +1539,63 @@ app.delete(
 
     try {
 
-      if (req.user.role !== "admin") {
+      if (
+        req.user.role !== "admin"
+      ) {
+
         return res.status(403).json({
+
           success: false,
-          message: "Admin access required"
+
+          message:
+            "Admin access required"
+
         });
+
       }
 
-      const id = Number(req.params.id);
 
-      const result = await pool.query(
-        `DELETE FROM expenses
-         WHERE id = $1
-         RETURNING id`,
-        [id]
-      );
+      const id =
+        Number(req.params.id);
 
-      if (result.rows.length === 0) {
+
+      const result =
+        await pool.query(
+
+          `DELETE FROM expenses
+           WHERE id = $1
+           RETURNING id`,
+
+          [id]
+
+        );
+
+
+      if (
+        result.rows.length === 0
+      ) {
+
         return res.status(404).json({
+
           success: false,
-          message: "Expense not found"
+
+          message:
+            "Expense not found"
+
         });
+
       }
+
 
       res.json({
+
         success: true,
-        message: "Expense deleted successfully"
+
+        message:
+          "Expense deleted successfully"
+
       });
+
 
     } catch (error) {
 
@@ -997,10 +1605,16 @@ app.delete(
       );
 
       res.status(500).json({
+
         success: false,
-        message: "Server error"
+
+        message:
+          "Server error"
+
       });
+
     }
+
   }
 );
 
@@ -1009,31 +1623,48 @@ app.delete(
 // 404
 // ==========================================
 
-app.use((req, res) => {
+app.use(
+  (req, res) => {
 
-  res.status(404).json({
-    success: false,
-    message: "Route not found",
-    path: req.originalUrl
-  });
+    res.status(404).json({
 
-});
+      success: false,
+
+      message:
+        "Route not found",
+
+      path:
+        req.originalUrl
+
+    });
+
+  }
+);
 
 
 // ==========================================
 // ERROR HANDLER
 // ==========================================
 
-app.use((err, req, res, next) => {
+app.use(
+  (err, req, res, next) => {
 
-  console.error("UNHANDLED ERROR:", err);
+    console.error(
+      "UNHANDLED ERROR:",
+      err
+    );
 
-  res.status(500).json({
-    success: false,
-    message: "Internal server error"
-  });
+    res.status(500).json({
 
-});
+      success: false,
+
+      message:
+        "Internal server error"
+
+    });
+
+  }
+);
 
 
 // ==========================================
