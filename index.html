@@ -2,823 +2,704 @@
 <html lang="mr">
 
 <head>
-  <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  >
-
-  <title>Admin Portal | एकोपा गणेश मंडळ</title>
-
-  <link rel="stylesheet" href="style.css">
-
-  <style>
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family:
-        Arial,
-        "Noto Sans Devanagari",
-        sans-serif;
-    }
-
-    .admin-page {
-      min-height: 100vh;
-
-      background:
-        linear-gradient(
-          135deg,
-          #2b0b02,
-          #8a2c0c
-        );
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      padding: 25px;
-    }
-
-    .admin-card {
-      width: min(1000px, 100%);
-
-      background: #fff;
-
-      border-radius: 24px;
-
-      padding: 35px;
-
-      box-shadow:
-        0 25px 70px #0006;
-    }
-
-    .login-card {
-      max-width: 480px;
-    }
-
-    .admin-logo {
-      text-align: center;
-      font-size: 55px;
-    }
-
-    .admin-card h1 {
-      font-size: 36px;
-      margin: 8px 0;
-      color: #321006;
-    }
-
-    .muted {
-      color: #765e51;
-    }
-
-    /* LOGIN */
-
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-    }
-
-    .form label {
-      font-weight: 700;
-      margin-top: 8px;
-    }
-
-    .form input,
-    .form textarea,
-    .form select {
-
-      width: 100%;
-
-      padding: 13px;
-
-      border:
-        1px solid #d8c2b2;
-
-      border-radius: 10px;
-
-      font: inherit;
-
-      outline: none;
-    }
-
-    .form input:focus,
-    .form textarea:focus,
-    .form select:focus {
-
-      border-color: #f05a28;
-
-      box-shadow:
-        0 0 0 3px #f05a2820;
-    }
-
-    .btn {
-
-      padding: 13px 18px;
-
-      border: 0;
-
-      border-radius: 10px;
-
-      background: #f05a28;
-
-      color: white;
-
-      font: inherit;
-
-      font-weight: 700;
-
-      cursor: pointer;
-
-      margin-top: 8px;
-    }
-
-    .btn:hover {
-      background: #d94718;
-    }
-
-    .logout {
-      background: #4a1d08;
-    }
-
-    .logout:hover {
-      background: #2b0b02;
-    }
-
-    .error {
-      color: #c93613;
-
-      min-height: 22px;
-
-      margin-top: 5px;
-    }
-
-    .success {
-      color: #188038;
-
-      min-height: 22px;
-
-      margin-top: 5px;
-    }
-
-    .back {
-
-      display: inline-block;
-
-      margin-top: 20px;
-
-      color: #f05a28;
-
-      font-weight: 700;
-
-      text-decoration: none;
-    }
-
-    /* HEADER */
-
-    .head {
-
-      display: flex;
-
-      justify-content:
-        space-between;
-
-      align-items:
-        center;
-
-      gap: 15px;
-
-      border-bottom:
-        1px solid #ead8ca;
-
-      padding-bottom: 20px;
-    }
-
-    /* STATS */
-
-    .stats {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 15px;
-
-      margin-top: 22px;
-    }
-
-    .stats div {
-
-      background: #fff4e5;
-
-      border-radius: 15px;
-
-      padding: 20px;
-
-      text-align: center;
-
-      color: #6d4939;
-    }
-
-    .stats strong {
-
-      display: block;
-
-      color: #f05a28;
-
-      font-size: 24px;
-
-      margin-bottom: 5px;
-    }
-
-    /* MANAGEMENT */
-
-    .management {
-
-      margin-top: 30px;
-    }
-
-    .management h2 {
-
-      color: #321006;
-
-      margin-bottom: 15px;
-    }
-
-    .program-form {
-
-      background: #fff8f0;
-
-      border:
-        1px solid #f0d9c5;
-
-      border-radius: 16px;
-
-      padding: 20px;
-    }
-
-    .program-grid {
-
-      display: grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      gap: 15px;
-    }
-
-    .full {
-      grid-column: 1 / -1;
-    }
-
-    .program-list {
-
-      margin-top: 25px;
-    }
-
-    .program-item {
-
-      background: #fff;
-
-      border:
-        1px solid #ead8ca;
-
-      border-radius: 14px;
-
-      padding: 18px;
-
-      margin-bottom: 12px;
-
-      box-shadow:
-        0 4px 15px #0000000b;
-    }
-
-    .program-item h3 {
-
-      margin: 0 0 8px;
-
-      color: #8a2c0c;
-    }
-
-    .program-meta {
-
-      color: #765e51;
-
-      font-size: 14px;
-
-      margin-bottom: 8px;
-    }
-
-    .program-description {
-
-      color: #4c3429;
-
-      margin-bottom: 12px;
-    }
-
-    .program-actions {
-
-      display: flex;
-
-      gap: 8px;
-
-      flex-wrap: wrap;
-    }
-
-    .edit-btn {
-      background: #e89116;
-    }
-
-    .delete-btn {
-      background: #c93613;
-    }
-
-    .cancel-btn {
-      background: #777;
-    }
-
-    .empty {
-
-      text-align: center;
-
-      color: #765e51;
-
-      padding: 25px;
-    }
-
-    .note {
-
-      margin-top: 20px;
-
-      padding: 15px;
-
-      background: #fff0df;
-
-      border-radius: 12px;
-
-      color: #6d4939;
-    }
-
-    /* MOBILE */
-
-    @media(max-width: 650px) {
-
-      .stats {
-        grid-template-columns: 1fr;
-      }
-
-      .program-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .full {
-        grid-column: auto;
-      }
-
-      .admin-card {
-        padding: 24px;
-      }
-
-      .head {
-        align-items:
-          flex-start;
-      }
-
-      .head h1 {
-        font-size: 28px;
-      }
-
-      .head {
-        flex-direction: column;
-      }
-
-    }
-
-  </style>
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>Admin Dashboard | एकोपा गणेश मंडळ</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(
+    135deg,
+    #2b0b02,
+    #8a2c0c
+  );
+  color: #35170b;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.admin-page {
+  min-height: 100vh;
+  padding: 25px;
+}
+
+.card {
+  width: min(1100px, 100%);
+  margin: auto;
+  background: white;
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 20px 60px #0005;
+}
+
+.login-card {
+  max-width: 480px;
+  margin-top: 8vh;
+}
+
+.logo {
+  text-align: center;
+  font-size: 55px;
+}
+
+h1 {
+  margin: 8px 0;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.muted {
+  color: #765e51;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d8c2b2;
+  border-radius: 10px;
+  font: inherit;
+}
+
+textarea {
+  min-height: 80px;
+}
+
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 13px 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn {
+  background: #f05a28;
+  color: white;
+}
+
+.logout {
+  background: #4a1d08;
+  color: white;
+}
+
+.error {
+  color: #c93613;
+  min-height: 22px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin: 25px 0;
+}
+
+.stat {
+  padding: 22px;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.green {
+  background: #d9f8e5;
+  color: #16834b;
+}
+
+.red {
+  background: #ffe1df;
+  color: #c93613;
+}
+
+.blue {
+  background: #e3efff;
+  color: #225c9b;
+}
+
+.section {
+  margin-top: 30px;
+  padding: 22px;
+  border-radius: 18px;
+  background: #fff8f0;
+}
+
+.section h2 {
+  color: #8a2c0c;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.action {
+  flex: 1;
+  min-width: 180px;
+  padding: 18px;
+  background: #ffeeda;
+  color: #6d321b;
+}
+
+.finance-form {
+  background: white;
+  padding: 18px;
+  border-radius: 15px;
+}
+
+.list {
+  margin-top: 20px;
+}
+
+.item {
+  background: white;
+  border-radius: 14px;
+  padding: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info strong {
+  font-size: 18px;
+}
+
+.delete {
+  background: #c93613;
+  color: white;
+}
+
+.program-item {
+  background: white;
+  border-radius: 14px;
+  padding: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 20px;
+  color: #f05a28;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.message {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+@media(max-width:700px) {
+
+  .stats,
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .header {
+    align-items: flex-start;
+  }
+
+  .item,
+  .program-item {
+    flex-direction: column;
+  }
+
+}
+
+</style>
 
 </head>
 
+<body>
 
-<body class="admin-page">
+<div class="admin-page">
 
 
-<!-- ================================================= -->
+<!-- ========================================= -->
 <!-- LOGIN -->
-<!-- ================================================= -->
+<!-- ========================================= -->
 
 <div
-  class="admin-card login-card"
+  class="card login-card"
   id="loginCard"
 >
 
-  <div class="admin-logo">
-    🙏
-  </div>
+<div class="logo">🙏</div>
 
-  <p>
-    एकोपा गणेश मंडळ
-  </p>
+<p>एकोपा गणेश मंडळ</p>
 
-  <h1>
-    Admin Portal
-  </h1>
+<h1>Admin Portal</h1>
 
-  <p class="muted">
-    Website व्यवस्थापनासाठी Login करा
-  </p>
+<p class="muted">
+Website व्यवस्थापनासाठी Login करा
+</p>
 
+<form
+  class="form"
+  id="loginForm"
+>
 
-  <form
-    class="form"
-    id="loginForm"
-  >
+<label>Mobile Number</label>
 
-    <label>
-      Mobile Number
-    </label>
+<input
+  id="mobile"
+  type="tel"
+  maxlength="10"
+  inputmode="numeric"
+  required
+  placeholder="मोबाईल नंबर"
+/>
 
-    <input
-      id="mobile"
-      type="tel"
-      maxlength="10"
-      inputmode="numeric"
-      autocomplete="username"
-      required
-      placeholder="मोबाईल नंबर"
-    >
+<label>Password</label>
 
+<input
+  id="password"
+  type="password"
+  required
+  placeholder="Password"
+/>
 
-    <label>
-      Password
-    </label>
+<button
+  class="btn"
+  type="submit"
+>
+Login
+</button>
 
-    <input
-      id="password"
-      type="password"
-      autocomplete="current-password"
-      required
-      placeholder="Password"
-    >
+<div
+  class="error"
+  id="error"
+></div>
 
+</form>
 
-    <button
-      class="btn"
-      type="submit"
-    >
-      Login
-    </button>
-
-
-    <div
-      class="error"
-      id="error"
-    ></div>
-
-  </form>
-
-
-  <a
-    class="back"
-    href="index.html"
-  >
-    ← Website वर जा
-  </a>
+<a
+  class="back"
+  href="index.html"
+>
+← Website वर जा
+</a>
 
 </div>
 
 
-
-<!-- ================================================= -->
+<!-- ========================================= -->
 <!-- DASHBOARD -->
-<!-- ================================================= -->
+<!-- ========================================= -->
 
 <div
-  class="admin-card"
+  class="card hidden"
   id="dashboard"
-  hidden
 >
 
+<div class="header">
 
-  <!-- HEADER -->
+<div>
 
-  <div class="head">
+<p>एकोपा गणेश मंडळ</p>
 
-    <div>
+<h1>Admin Dashboard</h1>
 
-      <p>
-        एकोपा गणेश मंडळ
-      </p>
+</div>
 
-      <h1>
-        Admin Dashboard
-      </h1>
+<button
+  class="logout"
+  id="logout"
+>
+Logout
+</button>
 
-    </div>
+</div>
 
 
-    <button
-      class="btn logout"
-      id="logout"
-      type="button"
-    >
-      Logout
-    </button>
+<!-- ========================================= -->
+<!-- FINANCE SUMMARY -->
+<!-- ========================================= -->
 
-  </div>
+<div class="section">
 
+<h2>💰 मंडळ आर्थिक स्थिती</h2>
 
+<div class="stats">
 
-  <!-- STATS -->
+<div class="stat green">
 
-  <div class="stats">
+<strong id="totalDonation">
+₹0
+</strong>
 
-    <div>
+एकूण जमा
 
-      <strong>
-        २०२६
-      </strong>
+</div>
 
-      Festival Year
 
-    </div>
+<div class="stat red">
 
+<strong id="totalExpense">
+₹0
+</strong>
 
-    <div>
+एकूण खर्च
 
-      <strong id="programCount">
-        0
-      </strong>
+</div>
 
-      Programs
 
-    </div>
+<div class="stat blue">
 
+<strong id="balance">
+₹0
+</strong>
 
-    <div>
+शिल्लक निधी
 
-      <strong>
-        LIVE
-      </strong>
+</div>
 
-      Portal
+</div>
 
-    </div>
 
-  </div>
+<div class="actions">
 
+<button
+  class="action"
+  onclick="showFinanceForm('donation')"
+>
+➕ नवीन पावती
+</button>
 
+<button
+  class="action"
+  onclick="showFinanceForm('expense')"
+>
+🛒 खर्च नोंदवा
+</button>
 
-  <!-- ================================================= -->
-  <!-- PROGRAM MANAGEMENT -->
-  <!-- ================================================= -->
+</div>
 
-  <section class="management">
+</div>
 
-    <h2>
-      📅 कार्यक्रम व्यवस्थापन
-    </h2>
 
+<!-- ========================================= -->
+<!-- DONATION FORM -->
+<!-- ========================================= -->
 
-    <!-- ADD / EDIT FORM -->
+<div
+  class="section hidden"
+  id="donationSection"
+>
 
-    <form
-      id="programForm"
-      class="program-form form"
-    >
+<h2>🧾 नवीन जमा पावती</h2>
 
-      <input
-        type="hidden"
-        id="programId"
-      >
+<form
+  class="form finance-form"
+  id="donationForm"
+>
 
+<label>देणगीदाराचे नाव</label>
 
-      <div class="program-grid">
+<input
+  id="donorName"
+  required
+  placeholder="नाव"
+/>
 
+<label>Mobile</label>
 
-        <div>
+<input
+  id="donorMobile"
+  maxlength="10"
+  placeholder="मोबाईल नंबर"
+/>
 
-          <label>
-            कार्यक्रमाचे नाव
-          </label>
+<label>रक्कम</label>
 
-          <input
-            id="programTitle"
-            type="text"
-            maxlength="200"
-            required
-            placeholder="उदा. गणेश स्थापना"
-          >
+<input
+  id="donationAmount"
+  type="number"
+  min="1"
+  required
+  placeholder="₹ रक्कम"
+/>
 
-        </div>
+<label>Payment Mode</label>
 
+<select id="donationMode">
 
-        <div>
+<option>Cash</option>
 
-          <label>
-            कार्यक्रमाची तारीख
-          </label>
+<option>UPI</option>
 
-          <input
-            id="programDate"
-            type="date"
-            required
-          >
+<option>Bank</option>
 
-        </div>
+</select>
 
+<label>Note</label>
 
-        <div>
+<textarea
+  id="donationNote"
+  placeholder="टीप"
+></textarea>
 
-          <label>
-            कार्यक्रमाची वेळ
-          </label>
+<button
+  class="btn"
+  type="submit"
+>
+जमा करा
+</button>
 
-          <input
-            id="programTime"
-            type="text"
-            maxlength="50"
-            placeholder="उदा. सायं. ७:०० वाजता"
-          >
+<div
+  class="message"
+  id="donationMessage"
+></div>
 
-        </div>
+</form>
 
+</div>
 
-        <div class="full">
 
-          <label>
-            कार्यक्रमाची माहिती
-          </label>
+<!-- ========================================= -->
+<!-- EXPENSE FORM -->
+<!-- ========================================= -->
 
-          <textarea
-            id="programDescription"
-            rows="4"
-            placeholder="कार्यक्रमाची माहिती लिहा..."
-          ></textarea>
+<div
+  class="section hidden"
+  id="expenseSection"
+>
 
-        </div>
+<h2>🛒 खर्च नोंदवा</h2>
 
+<form
+  class="form finance-form"
+  id="expenseForm"
+>
 
-        <div>
+<label>खर्चाचे नाव</label>
 
-          <button
-            class="btn"
-            id="programSubmit"
-            type="submit"
-          >
-            ➕ कार्यक्रम Add करा
-          </button>
+<input
+  id="expenseTitle"
+  required
+  placeholder="उदा. मंडप खर्च"
+/>
 
+<label>रक्कम</label>
 
-          <button
-            class="btn cancel-btn"
-            id="cancelEdit"
-            type="button"
-            hidden
-          >
-            Cancel
-          </button>
+<input
+  id="expenseAmount"
+  type="number"
+  min="1"
+  required
+  placeholder="₹ रक्कम"
+/>
 
-        </div>
+<label>Payment Mode</label>
 
+<select id="expenseMode">
 
-      </div>
+<option>Cash</option>
 
+<option>UPI</option>
 
-      <div
-        id="programMessage"
-        class="success"
-      ></div>
+<option>Bank</option>
 
-    </form>
+</select>
 
+<label>Note</label>
 
+<textarea
+  id="expenseNote"
+  placeholder="टीप"
+></textarea>
 
-    <!-- PROGRAM LIST -->
+<button
+  class="btn"
+  type="submit"
+>
+खर्च जतन करा
+</button>
 
-    <div class="program-list">
+<div
+  class="message"
+  id="expenseMessage"
+></div>
 
-      <h2>
-        📋 कार्यक्रमांची यादी
-      </h2>
+</form>
 
+</div>
 
-      <div id="programList">
 
-        <div class="empty">
-          कार्यक्रम Loading होत आहेत...
-        </div>
+<!-- ========================================= -->
+<!-- TRANSACTIONS -->
+<!-- ========================================= -->
 
-      </div>
+<div class="grid">
 
-    </div>
 
+<div class="section">
 
-  </section>
+<h2>💰 जमा नोंदी</h2>
 
+<div
+  class="list"
+  id="donationList"
+>
+Loading...
+</div>
 
+</div>
 
-  <!-- ================================================= -->
-  <!-- OTHER TOOLS -->
-  <!-- ================================================= -->
 
-  <section class="management">
+<div class="section">
 
-    <h2>
-      🛠️ Website Tools
-    </h2>
+<h2>💸 खर्च नोंदी</h2>
 
+<div
+  class="list"
+  id="expenseList"
+>
+Loading...
+</div>
 
-    <div class="stats">
+</div>
 
+</div>
 
-      <div>
 
-        <strong>
-          🖼️
-        </strong>
+<!-- ========================================= -->
+<!-- PROGRAMS -->
+<!-- ========================================= -->
 
-        <b>
-          Gallery
-        </b>
+<div class="section">
 
-        <p>
-          पुढील टप्प्यात Gallery management जोडता येईल.
-        </p>
+<h2>📅 कार्यक्रम</h2>
 
-      </div>
+<form
+  class="form finance-form"
+  id="programForm"
+>
 
+<label>कार्यक्रमाचे नाव</label>
 
-      <div>
+<input
+  id="programTitle"
+  required
+  placeholder="कार्यक्रम"
+/>
 
-        <strong>
-          📞
-        </strong>
+<label>तारीख</label>
 
-        <b>
-          Contact
-        </b>
+<input
+  id="programDate"
+  type="date"
+  required
+/>
 
-        <p>
-          Mobile:
-          <strong>
-            8830537590
-          </strong>
-        </p>
+<label>वेळ</label>
 
-      </div>
+<input
+  id="programTime"
+  placeholder="उदा. संध्याकाळी 7 वाजता"
+/>
 
+<label>वर्णन</label>
 
-      <div>
+<textarea
+  id="programDescription"
+></textarea>
 
-        <strong>
-          🔐
-        </strong>
+<button
+  class="btn"
+  type="submit"
+>
+कार्यक्रम Add करा
+</button>
 
-        <b>
-          Security
-        </b>
+<div
+  class="message"
+  id="programMessage"
+></div>
 
-        <p>
-          Admin JWT authentication enabled.
-        </p>
+</form>
 
-      </div>
 
+<div
+  class="list"
+  id="programList"
+>
+Loading...
+</div>
 
-    </div>
+</div>
 
-  </section>
 
+<a
+  class="back"
+  href="index.html"
+>
+← Website वर जा
+</a>
 
-
-  <!-- NOTE -->
-
-  <div class="note">
-
-    <strong>
-      Security:
-    </strong>
-
-    हा Admin Dashboard backend authentication वापरतो.
-    कार्यक्रमातील बदल PostgreSQL database मध्ये save केले जातील.
-
-  </div>
-
-
-
-  <a
-    class="back"
-    href="index.html"
-  >
-    ← Website वर जा
-  </a>
-
+</div>
 
 </div>
 
