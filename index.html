@@ -1098,21 +1098,31 @@
      GALLERY
 ========================================= -->
 
+<!-- =========================================
+     GALLERY
+========================================= -->
+
 <section
-  class="section"
+  class="section gallery"
   id="gallery"
 >
 
   <div class="container">
 
-    <div class="section-title">
+    <div class="section-heading">
+
+      <div class="small-title">
+        🖼️ आमच्या आठवणी
+      </div>
 
       <h2>
-        🖼️ गणेशोत्सव Gallery
+        गणेशोत्सव Gallery
       </h2>
 
+      <div class="heading-line"></div>
+
       <p>
-        एकोपा गणेश मंडळाच्या सुंदर आठवणी
+        गणेशोत्सवातील सुंदर आठवणी
       </p>
 
     </div>
@@ -1120,57 +1130,123 @@
 
     <div class="gallery-grid">
 
-      <div class="gallery-item">
-        <img
-          src="images/gallery1.jpg"
-          alt="गणेशोत्सव फोटो 1"
-          loading="lazy"
+      <div class="gallery-track">
+
+
+        <!-- PHOTO 1 -->
+
+        <div
+          class="gallery-item"
+          onclick="openLightbox(this)"
         >
-      </div>
+
+          <img
+            src="assets/gallery1.jpg"
+            alt="गणेशोत्सव Photo 1"
+          >
+
+          <div class="gallery-overlay">
+            🔍
+          </div>
+
+        </div>
 
 
-      <div class="gallery-item">
-        <img
-          src="images/gallery2.jpg"
-          alt="गणेशोत्सव फोटो 2"
-          loading="lazy"
+        <!-- PHOTO 2 -->
+
+        <div
+          class="gallery-item"
+          onclick="openLightbox(this)"
         >
-      </div>
+
+          <img
+            src="assets/gallery2.jpg"
+            alt="गणेशोत्सव Photo 2"
+          >
+
+          <div class="gallery-overlay">
+            🔍
+          </div>
+
+        </div>
 
 
-      <div class="gallery-item">
-        <img
-          src="images/gallery3.jpg"
-          alt="गणेशोत्सव फोटो 3"
-          loading="lazy"
+        <!-- PHOTO 3 -->
+
+        <div
+          class="gallery-item"
+          onclick="openLightbox(this)"
         >
-      </div>
+
+          <img
+            src="assets/gallery3.jpg"
+            alt="गणेशोत्सव Photo 3"
+          >
+
+          <div class="gallery-overlay">
+            🔍
+          </div>
+
+        </div>
 
 
-      <div class="gallery-item">
-        <img
-          src="images/gallery4.jpg"
-          alt="गणेशोत्सव फोटो 4"
-          loading="lazy"
+        <!-- PHOTO 4 -->
+
+        <div
+          class="gallery-item"
+          onclick="openLightbox(this)"
         >
-      </div>
+
+          <img
+            src="assets/gallery4.jpg"
+            alt="गणेशोत्सव Photo 4"
+          >
+
+          <div class="gallery-overlay">
+            🔍
+          </div>
+
+        </div>
 
 
-      <div class="gallery-item">
-        <img
-          src="images/gallery5.jpg"
-          alt="गणेशोत्सव फोटो 5"
-          loading="lazy"
+        <!-- PHOTO 5 -->
+
+        <div
+          class="gallery-item"
+          onclick="openLightbox(this)"
         >
-      </div>
+
+          <img
+            src="assets/gallery5.jpg"
+            alt="गणेशोत्सव Photo 5"
+          >
+
+          <div class="gallery-overlay">
+            🔍
+          </div>
+
+        </div>
 
 
-      <div class="gallery-item">
-        <img
-          src="images/gallery6.jpg"
-          alt="गणेशोत्सव फोटो 6"
-          loading="lazy"
+        <!-- PHOTO 6 -->
+
+        <div
+          class="gallery-item"
+          onclick="openLightbox(this)"
         >
+
+          <img
+            src="assets/gallery6.jpg"
+            alt="गणेशोत्सव Photo 6"
+          >
+
+          <div class="gallery-overlay">
+            🔍
+          </div>
+
+        </div>
+
+
       </div>
 
     </div>
@@ -1178,6 +1254,33 @@
   </div>
 
 </section>
+
+
+<!-- =========================================
+     GALLERY LIGHTBOX
+========================================= -->
+
+<div
+  class="lightbox"
+  id="galleryLightbox"
+  onclick="closeLightbox()"
+>
+
+  <button
+    class="close-lightbox"
+    onclick="closeLightbox()"
+  >
+    ×
+  </button>
+
+  <img
+    id="lightboxImage"
+    src=""
+    alt="Gallery Photo"
+    onclick="event.stopPropagation()"
+  >
+
+</div>
 
 
 
