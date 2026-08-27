@@ -1,167 +1,827 @@
-window.addEventListener("load",()=>{const p=document.getElementById("preloader");setTimeout(()=>{p.style.opacity="0";setTimeout(()=>p.style.display="none",500)},700)});
-const navbar=document.getElementById("navbar");window.addEventListener("scroll",()=>{navbar.classList.toggle("scrolled",window.scrollY>50)});
-const menuBtn=document.getElementById("menuBtn"),navMenu=document.getElementById("navMenu");menuBtn.addEventListener("click",()=>{navMenu.classList.toggle("active");const i=menuBtn.querySelector("i");i.classList.toggle("fa-bars");i.classList.toggle("fa-xmark")});document.querySelectorAll("#navMenu a").forEach(l=>l.addEventListener("click",()=>{navMenu.classList.remove("active");const i=menuBtn.querySelector("i");i.classList.remove("fa-xmark");i.classList.add("fa-bars")}));
-const festivalDate=new Date("2026-09-06T10:00:00").getTime();function updateCountdown(){const d=festivalDate-Date.now();if(d<=0)return;document.getElementById("days").innerText=String(Math.floor(d/86400000)).padStart(2,"0");document.getElementById("hours").innerText=String(Math.floor(d%86400000/3600000)).padStart(2,"0");document.getElementById("minutes").innerText=String(Math.floor(d%3600000/60000)).padStart(2,"0");document.getElementById("seconds").innerText=String(Math.floor(d%60000/1000)).padStart(2,"0")}updateCountdown();setInterval(updateCountdown,1000);
-const lightbox=document.getElementById("lightbox"),lightboxImage=document.getElementById("lightboxImage");document.querySelectorAll(".gallery-item").forEach(item=>item.addEventListener("click",()=>{lightboxImage.src=item.querySelector("img").src;lightbox.classList.add("active")}));document.getElementById("closeLightbox").addEventListener("click",()=>lightbox.classList.remove("active"));lightbox.addEventListener("click",e=>{if(e.target===lightbox)lightbox.classList.remove("active")});
-function copyUPI(){const u=document.getElementById("upiId").innerText;navigator.clipboard.writeText(u).then(()=>alert("UPI ID कॉपी झाला!")).catch(()=>alert("UPI ID: "+u))}
-const backTop=document.getElementById("backTop");window.addEventListener("scroll",()=>backTop.style.display=window.scrollY>500?"block":"none");backTop.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));document.addEventListener("keydown",e=>{if(e.key==="Escape")lightbox.classList.remove("active")});
-const API_URL = "https://ganesh-b.onrender.com";
+/* =========================================
+   PRELOADER
+========================================= */
 
-const loginCard = document.getElementById("loginCard");
-const dashboard = document.getElementById("dashboard");
+window.addEventListener("load", () => {
 
-const loginForm = document.getElementById("loginForm");
-const errorBox = document.getElementById("error");
+  const preloader =
+    document.getElementById("preloader");
 
-const logoutButton = document.getElementById("logout");
+  if (!preloader) return;
 
+  setTimeout(() => {
 
-// ============================
-// LOGIN
-// ============================
+    preloader.style.opacity = "0";
 
-loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    setTimeout(() => {
+      preloader.style.display = "none";
+    }, 500);
 
-    const mobile = document
-        .getElementById("mobile")
-        .value
-        .trim();
+  }, 700);
 
-    const password = document
-        .getElementById("password")
-        .value;
-
-    errorBox.textContent = "Login होत आहे...";
-
-    try {
-        const response = await fetch(
-            `${API_URL}/api/login`,
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    mobile,
-                    password
-                })
-            }
-        );
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            errorBox.textContent =
-                data.message || "Login failed";
-            return;
-        }
-
-        // Save authentication token
-        sessionStorage.setItem(
-            "ganesh_token",
-            data.token
-        );
-
-        sessionStorage.setItem(
-            "ganesh_user",
-            JSON.stringify(data.user)
-        );
-
-        // Show dashboard
-        showDashboard();
-
-    } catch (error) {
-        console.error(error);
-
-        errorBox.textContent =
-            "Backend server शी connection होत नाही.";
-    }
 });
 
 
-// ============================
-// SHOW DASHBOARD
-// ============================
+/* =========================================
+   NAVBAR SCROLL
+========================================= */
 
-function showDashboard() {
-    loginCard.hidden = true;
-    dashboard.hidden = false;
+const navbar =
+  document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+
+  if (!navbar) return;
+
+  navbar.classList.toggle(
+    "scrolled",
+    window.scrollY > 50
+  );
+
+});
+
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+const menuBtn =
+  document.getElementById("menuBtn");
+
+const navMenu =
+  document.getElementById("navMenu");
+
+if (menuBtn && navMenu) {
+
+  menuBtn.addEventListener("click", () => {
+
+    navMenu.classList.toggle("active");
+
+    const icon =
+      menuBtn.querySelector("i");
+
+    if (icon) {
+
+      icon.classList.toggle(
+        "fa-bars"
+      );
+
+      icon.classList.toggle(
+        "fa-xmark"
+      );
+
+    }
+
+  });
+
+
+  document
+    .querySelectorAll("#navMenu a")
+    .forEach(link => {
+
+      link.addEventListener("click", () => {
+
+        navMenu.classList.remove("active");
+
+        const icon =
+          menuBtn.querySelector("i");
+
+        if (icon) {
+
+          icon.classList.remove(
+            "fa-xmark"
+          );
+
+          icon.classList.add(
+            "fa-bars"
+          );
+
+        }
+
+      });
+
+    });
+
 }
 
 
-// ============================
-// CHECK EXISTING LOGIN
-// ============================
+/* =========================================
+   COUNTDOWN
+========================================= */
+
+const festivalDate =
+  new Date(
+    "2026-09-06T10:00:00"
+  ).getTime();
+
+
+function updateCountdown() {
+
+  const countdown =
+    festivalDate - Date.now();
+
+  if (countdown <= 0) return;
+
+
+  const days =
+    document.getElementById("days");
+
+  const hours =
+    document.getElementById("hours");
+
+  const minutes =
+    document.getElementById("minutes");
+
+  const seconds =
+    document.getElementById("seconds");
+
+
+  if (
+    !days ||
+    !hours ||
+    !minutes ||
+    !seconds
+  ) {
+    return;
+  }
+
+
+  days.innerText =
+    String(
+      Math.floor(
+        countdown / 86400000
+      )
+    ).padStart(2, "0");
+
+
+  hours.innerText =
+    String(
+      Math.floor(
+        (countdown % 86400000) /
+        3600000
+      )
+    ).padStart(2, "0");
+
+
+  minutes.innerText =
+    String(
+      Math.floor(
+        (countdown % 3600000) /
+        60000
+      )
+    ).padStart(2, "0");
+
+
+  seconds.innerText =
+    String(
+      Math.floor(
+        (countdown % 60000) /
+        1000
+      )
+    ).padStart(2, "0");
+
+}
+
+
+updateCountdown();
+
+setInterval(
+  updateCountdown,
+  1000
+);
+
+
+/* =========================================
+   GALLERY AUTO SLIDE
+========================================= */
+
+const galleryItems =
+  document.querySelectorAll(
+    ".gallery-item"
+  );
+
+
+let currentGallery =
+  0;
+
+
+function showGallerySlide(index) {
+
+  if (!galleryItems.length) return;
+
+
+  galleryItems.forEach(
+    (item, i) => {
+
+      item.style.transition =
+        "opacity 0.6s ease, transform 0.6s ease";
+
+      if (i === index) {
+
+        item.style.opacity = "1";
+        item.style.transform =
+          "scale(1)";
+
+      } else {
+
+        item.style.opacity = "0.75";
+        item.style.transform =
+          "scale(0.97)";
+
+      }
+
+    }
+  );
+
+}
+
+
+if (galleryItems.length > 0) {
+
+  showGallerySlide(0);
+
+
+  setInterval(() => {
+
+    currentGallery++;
+
+    if (
+      currentGallery >=
+      galleryItems.length
+    ) {
+
+      currentGallery = 0;
+
+    }
+
+    showGallerySlide(
+      currentGallery
+    );
+
+  }, 3000);
+
+}
+
+
+/* =========================================
+   GALLERY HOVER EFFECT
+========================================= */
+
+galleryItems.forEach(item => {
+
+  item.addEventListener(
+    "mouseenter",
+    () => {
+
+      item.style.transform =
+        "scale(1.03)";
+
+    }
+  );
+
+
+  item.addEventListener(
+    "mouseleave",
+    () => {
+
+      item.style.transform =
+        "scale(1)";
+
+    }
+  );
+
+});
+
+
+/* =========================================
+   LIGHTBOX
+========================================= */
+
+const lightbox =
+  document.getElementById(
+    "lightbox"
+  );
+
+const lightboxImage =
+  document.getElementById(
+    "lightboxImage"
+  );
+
+const closeLightbox =
+  document.getElementById(
+    "closeLightbox"
+  );
+
+
+galleryItems.forEach(item => {
+
+  item.addEventListener(
+    "click",
+    () => {
+
+      const image =
+        item.querySelector("img");
+
+      if (
+        !image ||
+        !lightbox ||
+        !lightboxImage
+      ) {
+        return;
+      }
+
+
+      lightboxImage.src =
+        image.src;
+
+      lightbox.classList.add(
+        "active"
+      );
+
+      document.body.style.overflow =
+        "hidden";
+
+    }
+  );
+
+});
+
+
+if (closeLightbox) {
+
+  closeLightbox.addEventListener(
+    "click",
+    closeGallery
+  );
+
+}
+
+
+if (lightbox) {
+
+  lightbox.addEventListener(
+    "click",
+    event => {
+
+      if (
+        event.target === lightbox
+      ) {
+
+        closeGallery();
+
+      }
+
+    }
+  );
+
+}
+
+
+function closeGallery() {
+
+  if (!lightbox) return;
+
+  lightbox.classList.remove(
+    "active"
+  );
+
+  document.body.style.overflow =
+    "";
+
+}
+
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key === "Escape"
+    ) {
+
+      closeGallery();
+
+    }
+
+  }
+);
+
+
+/* =========================================
+   UPI COPY
+========================================= */
+
+function copyUPI() {
+
+  const upi =
+    document.getElementById(
+      "upiId"
+    );
+
+  if (!upi) return;
+
+
+  const value =
+    upi.innerText.trim();
+
+
+  if (
+    navigator.clipboard &&
+    window.isSecureContext
+  ) {
+
+    navigator.clipboard
+      .writeText(value)
+      .then(() => {
+
+        alert(
+          "UPI ID कॉपी झाला!"
+        );
+
+      })
+      .catch(() => {
+
+        alert(
+          "UPI ID: " + value
+        );
+
+      });
+
+  } else {
+
+    alert(
+      "UPI ID: " + value
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   BACK TO TOP
+========================================= */
+
+const backTop =
+  document.getElementById(
+    "backTop"
+  );
+
+
+window.addEventListener(
+  "scroll",
+  () => {
+
+    if (!backTop) return;
+
+    backTop.style.display =
+      window.scrollY > 500
+        ? "block"
+        : "none";
+
+  }
+);
+
+
+if (backTop) {
+
+  backTop.addEventListener(
+    "click",
+    () => {
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+  );
+
+}
+
+
+/* =========================================
+   ADMIN API
+========================================= */
+
+const API_URL =
+  "https://ganesh-b.onrender.com";
+
+
+const loginCard =
+  document.getElementById(
+    "loginCard"
+  );
+
+
+const dashboard =
+  document.getElementById(
+    "dashboard"
+  );
+
+
+const loginForm =
+  document.getElementById(
+    "loginForm"
+  );
+
+
+const errorBox =
+  document.getElementById(
+    "error"
+  );
+
+
+const logoutButton =
+  document.getElementById(
+    "logout"
+  );
+
+
+/* =========================================
+   LOGIN
+========================================= */
+
+if (loginForm) {
+
+  loginForm.addEventListener(
+    "submit",
+    async event => {
+
+      event.preventDefault();
+
+
+      const mobile =
+        document
+          .getElementById("mobile")
+          ?.value
+          .trim();
+
+
+      const password =
+        document
+          .getElementById("password")
+          ?.value;
+
+
+      if (!mobile || !password) {
+
+        if (errorBox) {
+
+          errorBox.textContent =
+            "Mobile आणि Password टाका.";
+
+        }
+
+        return;
+
+      }
+
+
+      if (errorBox) {
+
+        errorBox.textContent =
+          "Login होत आहे...";
+
+      }
+
+
+      try {
+
+        const response =
+          await fetch(
+            `${API_URL}/api/login`,
+            {
+
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body:
+                JSON.stringify({
+                  mobile,
+                  password
+                })
+
+            }
+          );
+
+
+        const data =
+          await response.json();
+
+
+        if (!response.ok) {
+
+          if (errorBox) {
+
+            errorBox.textContent =
+              data.message ||
+              "Login failed";
+
+          }
+
+          return;
+
+        }
+
+
+        sessionStorage.setItem(
+          "ganesh_token",
+          data.token
+        );
+
+
+        sessionStorage.setItem(
+          "ganesh_user",
+          JSON.stringify(
+            data.user
+          )
+        );
+
+
+        showDashboard();
+
+
+      } catch (error) {
+
+        console.error(
+          "Login Error:",
+          error
+        );
+
+
+        if (errorBox) {
+
+          errorBox.textContent =
+            "Backend server शी connection होत नाही.";
+
+        }
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================
+   SHOW DASHBOARD
+========================================= */
+
+function showDashboard() {
+
+  if (loginCard) {
+
+    loginCard.hidden = true;
+
+  }
+
+
+  if (dashboard) {
+
+    dashboard.hidden = false;
+
+  }
+
+}
+
+
+/* =========================================
+   CHECK AUTHENTICATION
+========================================= */
 
 async function checkAuthentication() {
 
-    const token =
-        sessionStorage.getItem("ganesh_token");
+  const token =
+    sessionStorage.getItem(
+      "ganesh_token"
+    );
 
-    if (!token) {
-        return;
-    }
 
-    try {
+  if (!token) return;
 
-        const response = await fetch(
-            `${API_URL}/api/me`,
-            {
-                headers: {
-                    Authorization:
-                        `Bearer ${token}`
-                }
-            }
-        );
 
-        if (!response.ok) {
-            sessionStorage.clear();
-            return;
+  try {
+
+    const response =
+      await fetch(
+        `${API_URL}/api/me`,
+        {
+
+          headers: {
+
+            Authorization:
+              `Bearer ${token}`
+
+          }
+
         }
+      );
 
-        const data = await response.json();
 
-        console.log(
-            "Logged in:",
-            data.user
-        );
+    if (!response.ok) {
 
-        showDashboard();
+      sessionStorage.clear();
 
-    } catch (error) {
+      return;
 
-        console.error(error);
-
-        sessionStorage.clear();
     }
+
+
+    const data =
+      await response.json();
+
+
+    console.log(
+      "Logged in:",
+      data.user
+    );
+
+
+    showDashboard();
+
+
+  } catch (error) {
+
+    console.error(
+      "Authentication Error:",
+      error
+    );
+
+
+    sessionStorage.clear();
+
+  }
+
 }
 
 
-// ============================
-// LOGOUT
-// ============================
+/* =========================================
+   LOGOUT
+========================================= */
 
-logoutButton.addEventListener("click", () => {
+if (logoutButton) {
 
-    sessionStorage.removeItem(
+  logoutButton.addEventListener(
+    "click",
+    () => {
+
+      sessionStorage.removeItem(
         "ganesh_token"
-    );
+      );
 
-    sessionStorage.removeItem(
+
+      sessionStorage.removeItem(
         "ganesh_user"
-    );
-
-    dashboard.hidden = true;
-    loginCard.hidden = false;
-
-    document.getElementById("password").value = "";
-
-    errorBox.textContent = "";
-});
+      );
 
 
-// Start authentication check
+      if (dashboard) {
+
+        dashboard.hidden = true;
+
+      }
+
+
+      if (loginCard) {
+
+        loginCard.hidden = false;
+
+      }
+
+
+      const password =
+        document.getElementById(
+          "password"
+        );
+
+
+      if (password) {
+
+        password.value = "";
+
+      }
+
+
+      if (errorBox) {
+
+        errorBox.textContent = "";
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================
+   START AUTH CHECK
+========================================= */
+
 checkAuthentication();
