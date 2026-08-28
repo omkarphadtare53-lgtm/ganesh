@@ -3,852 +3,1529 @@
 
 <head>
 
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta
-  name="description"
-  content="एकोपा गणेश मंडळ - एकता, संस्कृती आणि सेवा"
->
-
-<title>एकोपा गणेश मंडळ</title>
-
-<style>
-
-/* =========================================
-   RESET
-========================================= */
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-:root{
-  --primary:#f05a28;
-  --primary-dark:#c93613;
-  --gold:#f6b73c;
-  --dark:#241006;
-  --brown:#4a1d08;
-  --cream:#fff8ed;
-  --white:#fff;
-  --shadow:0 15px 40px rgba(60,20,0,.15);
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:
-    Arial,
-    "Noto Sans Devanagari",
-    sans-serif;
-
-  background:var(--cream);
-  color:var(--dark);
-  line-height:1.6;
-  overflow-x:hidden;
-}
-
-img{
-  max-width:100%;
-  display:block;
-}
-
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-button{
-  font-family:inherit;
-}
-
-.container{
-  width:min(1150px,92%);
-  margin:auto;
-}
-
-
-/* =========================================
-   HEADER
-========================================= */
-
-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-
-  background:
-    linear-gradient(
-      135deg,
-      #2b0b02,
-      #8a2c0c
-    );
-
-  color:white;
-
-  box-shadow:
-    0 5px 20px #0004;
-}
-
-.navbar{
-  min-height:75px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  gap:20px;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.brand-logo{
-  font-size:38px;
-}
-
-.brand-text h1{
-  font-size:22px;
-  line-height:1.2;
-}
-
-.brand-text small{
-  opacity:.85;
-}
-
-nav{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex-wrap:wrap;
-}
-
-nav a{
-  padding:9px 12px;
-  border-radius:8px;
-  font-weight:bold;
-  transition:.2s;
-}
-
-nav a:hover{
-  background:#ffffff22;
-}
-
-.admin-btn{
-  background:var(--primary);
-  color:white;
-}
-
-
-/* =========================================
-   HERO
-========================================= */
-
-.hero{
-  min-height:600px;
-
-  display:flex;
-  align-items:center;
-
-  text-align:center;
-
-  color:white;
-
-  background:
-    radial-gradient(
-      circle at center,
-      #b94815,
-      #8a2c0c 45%,
-      #2b0b02 100%
-    );
-
-  position:relative;
-  overflow:hidden;
-}
-
-.hero::before{
-  content:"🙏";
-
-  position:absolute;
-
-  font-size:300px;
-
-  opacity:.06;
-
-  left:50%;
-  top:50%;
-
-  transform:
-    translate(-50%,-50%);
-}
-
-.hero-content{
-  position:relative;
-  z-index:2;
-}
-
-.hero-icon{
-  font-size:90px;
-  margin-bottom:10px;
-}
-
-.hero h2{
-  font-size:clamp(35px,7vw,70px);
-  margin-bottom:15px;
-}
-
-.hero p{
-  font-size:21px;
-  opacity:.92;
-  margin-bottom:28px;
-}
-
-.hero-buttons{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-.hero-btn{
-  display:inline-block;
-  padding:14px 24px;
-  border-radius:12px;
-  font-weight:bold;
-}
-
-.primary-btn{
-  background:var(--primary);
-  color:white;
-}
-
-.secondary-btn{
-  background:white;
-  color:#8a2c0c;
-}
-
-
-/* =========================================
-   COMMON SECTION
-========================================= */
-
-.section{
-  padding:70px 0;
-}
-
-.section-title{
-  text-align:center;
-  margin-bottom:40px;
-}
-
-.section-title h2{
-  color:#8a2c0c;
-  font-size:34px;
-  margin-bottom:8px;
-}
-
-.section-title p{
-  color:#765e51;
-}
-
-
-/* =========================================
-   ABOUT
-========================================= */
-
-.about{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
-  align-items:center;
-}
-
-.about-card{
-  background:white;
-  padding:30px;
-  border-radius:20px;
-
-  box-shadow:
-    0 8px 30px #00000012;
-}
-
-.about-card h3{
-  color:var(--primary);
-  margin-bottom:15px;
-  font-size:25px;
-}
-
-.about-highlight{
-  background:
-    linear-gradient(
-      135deg,
-      #ffeeda,
-      #fff5ea
-    );
-
-  padding:35px;
-
-  border-radius:20px;
-
-  text-align:center;
-}
-
-.about-highlight .big{
-  font-size:70px;
-  margin-bottom:10px;
-}
-
-
-/* =========================================
-   PROGRAMS
-========================================= */
-
-#programs{
-  background:#fff3e6;
-}
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="एकोपा गणेश मंडळ - एकता, संस्कृती आणि सेवा"
+  >
+
+  <title>एकोपा गणेश मंडळ</title>
+
+
+  <!-- GOOGLE FONTS -->
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap"
+    rel="stylesheet"
+  >
 
-.program-grid{
-  display:grid;
-  grid-template-columns:
-    repeat(3,1fr);
 
-  gap:20px;
-}
+  <!-- FONT AWESOME -->
 
-.program-card{
-  background:white;
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+
+  <style>
 
-  padding:24px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  border-radius:18px;
+    :root {
+      --primary: #f05a28;
+      --primary-dark: #c93613;
+      --gold: #f6b73c;
+      --dark: #241006;
+      --brown: #4a1d08;
+      --cream: #fff8ed;
+      --white: #fff;
+      --shadow: 0 15px 40px rgba(60,20,0,.15);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Baloo 2", sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .container {
+      width: min(1150px, 92%);
+      margin: auto;
+    }
+
+
+    /* =========================================
+       PRELOADER
+    ========================================= */
+
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #200900;
+      z-index: 99999;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loader {
+      text-align: center;
+      color: #fff;
+    }
+
+    .om {
+      font-size: 75px;
+      color: var(--gold);
+      animation: pulse 1.2s infinite;
+    }
+
+    .loader p {
+      font-size: 20px;
+    }
+
+    @keyframes pulse {
 
-  border-top:
-    5px solid var(--primary);
+      50% {
+        transform: scale(1.15);
+        opacity: .7;
+      }
 
-  box-shadow:
-    0 8px 25px #00000010;
+    }
 
-  transition:
-    transform .2s,
-    box-shadow .2s;
-}
 
-.program-card:hover{
-  transform:translateY(-5px);
+    /* =========================================
+       NAVBAR
+    ========================================= */
 
-  box-shadow:
-    0 15px 35px #00000018;
-}
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
 
-.program-icon{
-  font-size:35px;
-  margin-bottom:10px;
-}
+      transition: .3s;
+      padding: 14px 0;
+    }
 
-.program-card h3{
-  color:#8a2c0c;
-  margin-bottom:10px;
-  font-size:23px;
-}
-
-.program-date,
-.program-time{
-  color:var(--primary);
-  font-weight:bold;
-  margin:5px 0;
-}
+    .navbar.scrolled {
+      background: rgba(47,14,3,.96);
 
-.program-description{
-  color:#765e51;
-  margin-top:10px;
-}
+      box-shadow:
+        0 5px 25px rgba(0,0,0,.2);
+    }
 
-.loading{
-  text-align:center;
-  padding:30px;
-  color:#765e51;
-  grid-column:1/-1;
-}
+    .nav-container {
+      width: min(1200px,94%);
+      margin: auto;
 
-.empty{
-  text-align:center;
-  padding:35px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-  background:white;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+    }
 
-  border-radius:18px;
+    .logo-icon {
+      font-size: 35px;
+    }
 
-  grid-column:1/-1;
+    .logo strong {
+      display: block;
+      font-size: 25px;
+      line-height: 22px;
+    }
 
-  color:#765e51;
-}
+    .logo small {
+      font-size: 13px;
+      color: var(--gold);
+    }
 
+    nav {
+      display: flex;
+      gap: 25px;
+    }
 
-/* =========================================
-   FINANCE
-========================================= */
+    nav a {
+      color: #fff;
+      font-size: 17px;
+      font-weight: 600;
+      position: relative;
+    }
 
-.finance-section{
-  background:white;
-}
+    nav a::after {
+      content: "";
 
-.finance-grid{
-  display:grid;
-  grid-template-columns:
-    repeat(3,1fr);
+      position: absolute;
+      left: 0;
+      bottom: -6px;
 
-  gap:20px;
-}
+      width: 0;
+      height: 2px;
 
-.finance-card{
-  padding:30px;
+      background: var(--gold);
 
-  text-align:center;
+      transition: .3s;
+    }
 
-  border-radius:20px;
-}
+    nav a:hover::after {
+      width: 100%;
+    }
 
-.finance-card strong{
-  display:block;
+    .menu-btn {
+      display: none;
 
-  font-size:32px;
+      border: 0;
+      background: transparent;
+      color: #fff;
 
-  margin-bottom:5px;
-}
+      font-size: 25px;
 
-.finance-green{
-  background:#d9f8e5;
-  color:#16834b;
-}
+      cursor: pointer;
+    }
 
-.finance-red{
-  background:#ffe1df;
-  color:#c93613;
-}
 
-.finance-blue{
-  background:#e3efff;
-  color:#225c9b;
-}
+    /* =========================================
+       HERO
+    ========================================= */
 
-.finance-note{
-  text-align:center;
-  color:#765e51;
-  margin-top:20px;
-  font-size:14px;
-}
+    .hero {
+      min-height: 100vh;
 
+      position: relative;
 
-/* =========================================
-   DONATION
-========================================= */
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-.donation-box{
-  background:
-    linear-gradient(
-      135deg,
-      #2b0b02,
-      #8a2c0c
-    );
+      text-align: center;
 
-  color:white;
+      color: #fff;
 
-  padding:45px;
+      background:
+        linear-gradient(
+          rgba(50,12,0,.55),
+          rgba(50,12,0,.82)
+        ),
+        url("assets/ganpati.jpg")
+        center/cover no-repeat;
 
-  border-radius:25px;
+      overflow: hidden;
+    }
 
-  text-align:center;
-}
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
 
-.donation-box h2{
-  font-size:32px;
-  margin-bottom:10px;
-}
+      background:
+        radial-gradient(
+          circle at center,
+          transparent 10%,
+          rgba(20,0,0,.55) 100%
+        );
+    }
 
-.donation-box p{
-  opacity:.9;
-  margin-bottom:20px;
-}
+    .hero-content {
+      position: relative;
+      z-index: 2;
 
-.upi-box{
-  display:inline-block;
+      width: 90%;
 
-  background:white;
+      animation:
+        heroIn 1.3s ease;
+    }
 
-  color:#35170b;
+    @keyframes heroIn {
 
-  padding:18px 25px;
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
 
-  border-radius:15px;
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
-  margin:10px;
-}
+    }
 
+    .ganesh-symbol {
+      font-size: 70px;
+      margin-bottom: 5px;
 
-/* =========================================
-   GALLERY
-========================================= */
+      filter:
+        drop-shadow(
+          0 5px 10px rgba(0,0,0,.5)
+        );
+    }
 
-#gallery{
-  background:#fff3e6;
-}
+    .welcome {
+      font-family:
+        "Tiro Devanagari Marathi",
+        serif;
 
-.gallery-wrapper{
-  position:relative;
-  overflow:hidden;
-  width:100%;
-  border-radius:20px;
-}
+      color: var(--gold);
 
-.gallery-slider{
-  display:flex;
-  gap:15px;
+      font-size: 22px;
+    }
 
-  overflow-x:auto;
-  scroll-behavior:smooth;
+    .hero h1 {
+      font-family:
+        "Tiro Devanagari Marathi",
+        serif;
 
-  scrollbar-width:none;
+      font-size:
+        clamp(45px,8vw,90px);
 
-  padding:5px;
-}
+      line-height: 1.15;
 
-.gallery-slider::-webkit-scrollbar{
-  display:none;
-}
+      margin: 10px 0;
 
-.gallery-item{
-  flex:0 0 270px;
+      text-shadow:
+        0 5px 20px rgba(0,0,0,.5);
+    }
 
-  height:200px;
+    .hero h2 {
+      font-size:
+        clamp(28px,5vw,48px);
+    }
 
-  position:relative;
+    .hero h2 span {
+      color: var(--gold);
+    }
 
-  background:
-    linear-gradient(
-      135deg,
-      #ffeeda,
-      #f8d0b5
-    );
+    .hero-text {
+      font-size: 21px;
+      letter-spacing: 3px;
+      margin-top: 10px;
+    }
 
-  border-radius:16px;
+    .hero-buttons {
+      margin-top: 30px;
 
-  overflow:hidden;
+      display: flex;
+      justify-content: center;
 
-  cursor:pointer;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
 
-  box-shadow:
-    0 8px 20px #00000012;
-}
+    .btn {
+      padding: 13px 28px;
 
-.gallery-item img{
-  width:100%;
-  height:100%;
+      border-radius: 50px;
 
-  object-fit:cover;
+      font-size: 18px;
+      font-weight: 700;
 
-  transition:
-    transform .5s;
-}
+      transition: .3s;
+    }
 
-.gallery-item:hover img{
-  transform:scale(1.08);
-}
+    .primary-btn {
+      background: var(--primary);
+      color: #fff;
+    }
 
-.gallery-placeholder{
-  width:100%;
-  height:100%;
+    .primary-btn:hover {
+      transform: translateY(-4px);
+      background: var(--primary-dark);
+    }
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+    .secondary-btn {
+      border: 2px solid #fff;
+      color: #fff;
+    }
 
-  text-align:center;
+    .secondary-btn:hover {
+      background: #fff;
+      color: var(--brown);
+    }
 
-  color:#8a2c0c;
+    .scroll-down {
+      position: absolute;
+      bottom: 25px;
 
-  font-size:45px;
-}
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-.gallery-overlay{
-  position:absolute;
-  inset:0;
+      gap: 5px;
 
-  background:
-    linear-gradient(
-      transparent,
-      rgba(0,0,0,.65)
-    );
+      animation: bounce 1.5s infinite;
+    }
 
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
+    .scroll-down span {
+      font-size: 12px;
+    }
 
-  padding:15px;
+    @keyframes bounce {
 
-  color:white;
+      50% {
+        transform: translateY(8px);
+      }
 
-  opacity:0;
+    }
 
-  transition:.3s;
-}
+    .floating {
+      position: absolute;
+      z-index: 1;
 
-.gallery-item:hover .gallery-overlay{
-  opacity:1;
-}
+      font-size: 30px;
 
+      animation:
+        float 5s infinite ease-in-out;
+    }
 
-/* Gallery arrows */
+    .floating-1 {
+      top: 20%;
+      left: 8%;
+    }
 
-.gallery-btn{
-  position:absolute;
+    .floating-2 {
+      top: 35%;
+      right: 8%;
+      animation-delay: 1s;
+    }
 
-  top:50%;
+    .floating-3 {
+      bottom: 20%;
+      left: 15%;
+      animation-delay: 2s;
+    }
 
-  transform:translateY(-50%);
+    @keyframes float {
 
-  width:42px;
-  height:42px;
+      50% {
+        transform:
+          translateY(-25px)
+          rotate(10deg);
+      }
 
-  border:0;
+    }
 
-  border-radius:50%;
 
-  background:rgba(255,255,255,.9);
+    /* =========================================
+       COMMON SECTION
+    ========================================= */
 
-  color:#8a2c0c;
+    .section {
+      padding: 90px 0;
+    }
 
-  font-size:24px;
+    .section-heading {
+      text-align: center;
+      margin-bottom: 50px;
+    }
 
-  cursor:pointer;
+    .small-title {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 18px;
+    }
 
-  z-index:5;
+    .section-heading h2 {
+      font-family:
+        "Tiro Devanagari Marathi",
+        serif;
 
-  box-shadow:
-    0 5px 15px #0003;
-}
+      font-size:
+        clamp(30px,5vw,48px);
 
-.gallery-prev{
-  left:10px;
-}
+      margin: 4px 0;
+    }
 
-.gallery-next{
-  right:10px;
-}
+    .section-heading p {
+      font-size: 17px;
+      color: #765e51;
+    }
 
+    .heading-line {
+      width: 80px;
+      height: 4px;
 
-/* =========================================
-   NOTICE
-========================================= */
+      background: var(--primary);
 
-.notice{
-  background:#fff8dc;
+      margin: 12px auto;
 
-  border-left:
-    5px solid var(--primary);
+      border-radius: 5px;
+    }
 
-  padding:18px;
 
-  border-radius:12px;
+    /* =========================================
+       ABOUT
+    ========================================= */
 
-  margin-bottom:12px;
-}
+    .about {
+      background: #fff;
+    }
 
-.notice strong{
-  color:#8a2c0c;
-}
+    .about-grid {
+      display: grid;
 
+      grid-template-columns:
+        1fr 1fr;
 
-/* =========================================
-   CONTACT
-========================================= */
+      gap: 60px;
 
-.contact-grid{
-  display:grid;
+      align-items: center;
+    }
 
-  grid-template-columns:
-    repeat(3,1fr);
+    .about-image {
+      position: relative;
+    }
 
-  gap:20px;
-}
+    .about-image img {
+      width: 100%;
+      height: 520px;
 
-.contact-card{
-  background:white;
+      object-fit: cover;
 
-  padding:25px;
+      border-radius: 25px;
 
-  border-radius:18px;
+      box-shadow: var(--shadow);
+    }
 
-  text-align:center;
+    .image-badge {
+      position: absolute;
 
-  box-shadow:
-    0 8px 25px #00000010;
-}
+      bottom: 25px;
+      right: 25px;
 
-.contact-icon{
-  font-size:40px;
-  margin-bottom:10px;
-}
+      background: var(--primary);
+      color: #fff;
 
-.contact-card h3{
-  color:#8a2c0c;
-  margin-bottom:5px;
-}
+      padding: 15px 22px;
 
+      border-radius: 15px;
 
-/* =========================================
-   FOOTER
-========================================= */
+      text-align: center;
 
-footer{
-  background:#35170b;
-  color:white;
+      box-shadow: var(--shadow);
+    }
 
-  padding:30px 0;
+    .image-badge strong {
+      display: block;
+      font-size: 28px;
+    }
 
-  text-align:center;
-}
+    .image-badge span {
+      font-size: 14px;
+    }
 
-footer p{
-  margin:5px;
-  opacity:.9;
-}
+    .about-label {
+      color: var(--primary);
+      font-weight: 700;
+    }
 
+    .about-content h3 {
+      font-size: 38px;
 
-/* =========================================
-   LIGHTBOX
-========================================= */
+      font-family:
+        "Tiro Devanagari Marathi",
+        serif;
 
-.lightbox{
-  position:fixed;
+      margin: 10px 0;
+    }
 
-  inset:0;
+    .about-content > p {
+      font-size: 18px;
+      line-height: 1.8;
 
-  background:rgba(0,0,0,.92);
+      color: #70594c;
 
-  z-index:9999;
+      margin-bottom: 15px;
+    }
 
-  display:none;
+    .features {
+      display: grid;
 
-  align-items:center;
-  justify-content:center;
+      grid-template-columns:
+        1fr 1fr;
 
-  padding:20px;
-}
+      gap: 15px;
 
-.lightbox.active{
-  display:flex;
-}
+      margin-top: 25px;
+    }
 
-.lightbox img{
-  max-width:92%;
-  max-height:85vh;
+    .feature {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
 
-  border-radius:12px;
-}
+    .feature-icon {
+      width: 48px;
+      height: 48px;
 
-.close-lightbox{
-  position:absolute;
+      background: #fff0df;
 
-  top:20px;
-  right:25px;
+      display: grid;
+      place-items: center;
 
-  border:0;
+      border-radius: 50%;
 
-  background:transparent;
+      font-size: 22px;
+    }
 
-  color:white;
+    .feature h4 {
+      font-size: 18px;
+    }
 
-  font-size:38px;
+    .feature p {
+      font-size: 14px;
+      color: #876f60;
+    }
 
-  cursor:pointer;
-}
 
+    /* =========================================
+       COUNTDOWN
+    ========================================= */
 
-/* =========================================
-   MOBILE
-========================================= */
+    .countdown-section {
+      padding: 55px 0;
 
-@media(max-width:800px){
+      background:
+        linear-gradient(
+          135deg,
+          #421305,
+          #8c280c
+        );
 
-  .navbar{
-    flex-direction:column;
-    padding:15px 0;
-  }
+      color: #fff;
 
-  nav{
-    justify-content:center;
-  }
+      text-align: center;
+    }
 
-  .hero{
-    min-height:500px;
-  }
+    .countdown-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-  .about,
-  .program-grid,
-  .finance-grid,
-  .contact-grid{
-    grid-template-columns:1fr;
-  }
+      gap: 15px;
+    }
 
-  .section{
-    padding:50px 0;
-  }
+    .countdown-title h2 {
+      font-size: 30px;
+    }
 
-  .hero h2{
-    font-size:40px;
-  }
+    .countdown {
+      display: flex;
 
-  .hero p{
-    font-size:18px;
-  }
+      justify-content: center;
 
-  .donation-box{
-    padding:30px 20px;
-  }
+      gap: 20px;
 
-  .gallery-item{
-    flex:0 0 230px;
-    height:170px;
-  }
+      margin-top: 25px;
+    }
 
-}
+    .time-box {
+      min-width: 110px;
 
+      padding: 15px;
 
-/* =========================================
-   SMALL MOBILE
-========================================= */
+      background:
+        rgba(255,255,255,.12);
 
-@media(max-width:500px){
+      border:
+        1px solid
+        rgba(255,255,255,.2);
 
-  .brand-text h1{
-    font-size:19px;
-  }
+      border-radius: 15px;
 
-  nav{
-    gap:3px;
-  }
+      backdrop-filter: blur(8px);
+    }
 
-  nav a{
-    padding:7px 8px;
-    font-size:14px;
-  }
+    .time-box strong {
+      display: block;
 
-  .gallery-item{
-    flex:0 0 210px;
-    height:155px;
-  }
+      font-size: 40px;
 
-}
+      color: var(--gold);
+    }
 
-</style>
+    .time-box span {
+      font-size: 15px;
+    }
+
+
+    /* =========================================
+       EVENTS
+    ========================================= */
+
+    .events {
+      background: #fff9f1;
+    }
+
+    .event-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2,1fr);
+
+      gap: 20px;
+    }
+
+    .event-card {
+      background: #fff;
+
+      border-radius: 18px;
+
+      padding: 22px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 20px;
+
+      box-shadow:
+        0 8px 25px
+        rgba(70,20,0,.08);
+
+      transition: .3s;
+
+      border-left:
+        5px solid var(--primary);
+    }
+
+    .event-card:hover {
+      transform: translateY(-5px);
+
+      box-shadow: var(--shadow);
+    }
+
+    .event-date {
+      background: var(--primary);
+      color: #fff;
+
+      min-width: 75px;
+      height: 80px;
+
+      border-radius: 12px;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+    }
+
+    .event-date strong {
+      font-size: 28px;
+      line-height: 25px;
+    }
+
+    .event-date span {
+      font-size: 13px;
+    }
+
+    .event-icon {
+      font-size: 38px;
+    }
+
+    .event-info h3 {
+      font-size: 23px;
+    }
+
+    .event-info p {
+      color: #786458;
+    }
+
+    .event-time {
+      display: inline-block;
+
+      margin-top: 7px;
+
+      color: var(--primary);
+    }
+
+
+    /* =========================================
+       AARTI
+    ========================================= */
+
+    .aarti-section {
+      padding: 90px 0;
+
+      background:
+        linear-gradient(
+          rgba(70,20,0,.8),
+          rgba(70,20,0,.9)
+        ),
+        url("assets/ganpati.jpg")
+        center/cover fixed;
+
+      color: #fff;
+
+      text-align: center;
+    }
+
+    .aarti-box {
+      max-width: 700px;
+
+      margin: auto;
+
+      padding: 45px 25px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.25);
+
+      border-radius: 25px;
+
+      background:
+        rgba(255,255,255,.08);
+
+      backdrop-filter: blur(5px);
+    }
+
+    .aarti-icon {
+      font-size: 55px;
+    }
+
+    .aarti-box > span {
+      color: var(--gold);
+      font-size: 20px;
+    }
+
+    .aarti-box h2 {
+      margin: 15px 0;
+
+      font-family:
+        "Tiro Devanagari Marathi",
+        serif;
+
+      font-size: 30px;
+    }
+
+    .aarti-box p {
+      font-size: 19px;
+      line-height: 1.8;
+    }
+
+    .aarti-line {
+      width: 100px;
+      height: 2px;
+
+      background: var(--gold);
+
+      margin: 20px auto;
+    }
+
+    .aarti-box strong {
+      font-size: 20px;
+      color: var(--gold);
+    }
+
+
+    /* =========================================
+       GALLERY
+    ========================================= */
+
+    .gallery {
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .gallery-slider {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+
+      gap: 10px;
+    }
+
+    .gallery-track-wrapper {
+      width: 100%;
+
+      overflow: hidden;
+
+      border-radius: 20px;
+    }
+
+    .gallery-track {
+      display: flex;
+
+      transition:
+        transform .6s ease;
+    }
+
+    .gallery-item {
+      min-width: 100%;
+
+      height: 300px;
+
+      position: relative;
+
+      overflow: hidden;
+
+      border-radius: 20px;
+
+      cursor: pointer;
+
+      background: #f7dfce;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      transition:
+        transform .5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+
+      display: grid;
+      place-items: center;
+
+      background:
+        rgba(0,0,0,.25);
+
+      color: #fff;
+
+      font-size: 35px;
+
+      opacity: 0;
+
+      transition: .3s;
+    }
+
+    .gallery-item:hover
+    .gallery-overlay {
+      opacity: 1;
+    }
+
+
+    /* GALLERY ARROWS */
+
+    .gallery-arrow {
+      flex-shrink: 0;
+
+      width: 45px;
+      height: 45px;
+
+      border: 0;
+
+      border-radius: 50%;
+
+      background: var(--primary);
+
+      color: #fff;
+
+      font-size: 20px;
+      font-weight: bold;
+
+      cursor: pointer;
+
+      z-index: 5;
+
+      transition: .3s;
+    }
+
+    .gallery-arrow:hover {
+      background: var(--primary-dark);
+
+      transform: scale(1.08);
+    }
+
+
+    /* GALLERY DOTS */
+
+    .gallery-dots {
+      display: flex;
+
+      justify-content: center;
+
+      gap: 8px;
+
+      margin-top: 18px;
+    }
+
+    .gallery-dot {
+      width: 9px;
+      height: 9px;
+
+      border: 0;
+
+      border-radius: 50%;
+
+      background: #d8b8a5;
+
+      cursor: pointer;
+    }
+
+    .gallery-dot.active {
+      background: var(--primary);
+
+      transform: scale(1.3);
+    }
+
+
+    /* =========================================
+       DONATION
+    ========================================= */
+
+    .donation {
+      background: #fff4e5;
+    }
+
+    .donation-wrapper {
+      display: grid;
+
+      grid-template-columns:
+        1.2fr .8fr;
+
+      gap: 35px;
+
+      align-items: center;
+
+      background: #fff;
+
+      padding: 40px;
+
+      border-radius: 25px;
+
+      box-shadow: var(--shadow);
+    }
+
+    .donation-icon {
+      font-size: 55px;
+    }
+
+    .donation-text h3 {
+      font-family:
+        "Tiro Devanagari Marathi",
+        serif;
+
+      font-size: 34px;
+
+      margin: 10px 0;
+    }
+
+    .donation-text > p {
+      font-size: 18px;
+
+      color: #70594c;
+
+      line-height: 1.7;
+    }
+
+    .upi-info {
+      margin-top: 20px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 12px;
+
+      flex-wrap: wrap;
+    }
+
+    .upi-info span {
+      color: #80685b;
+    }
+
+    .upi-info strong {
+      color: var(--primary);
+    }
+
+    .upi-info button {
+      border: 0;
+
+      background: #fff0df;
+
+      padding: 7px 14px;
+
+      border-radius: 20px;
+
+      cursor: pointer;
+    }
+
+    .qr-box {
+      text-align: center;
+
+      background: #fff8ef;
+
+      padding: 25px;
+
+      border-radius: 20px;
+    }
+
+    .qr-title {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .qr-box img {
+      width: 220px;
+      height: 220px;
+
+      object-fit: contain;
+
+      margin: 15px auto;
+    }
+
+    .qr-box p {
+      color: #786458;
+    }
+
+    .upi-apps {
+      display: flex;
+
+      justify-content: center;
+
+      gap: 8px;
+
+      margin-top: 12px;
+    }
+
+    .upi-apps span {
+      background: #fff;
+
+      padding: 5px 12px;
+
+      border-radius: 20px;
+
+      font-size: 13px;
+    }
+
+
+    /* =========================================
+       CONTACT
+    ========================================= */
+
+    .contact {
+      background: #fff;
+    }
+
+    .contact-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 20px;
+    }
+
+    .contact-card {
+      padding: 35px 20px;
+
+      text-align: center;
+
+      border-radius: 20px;
+
+      background: #fff9f1;
+
+      transition: .3s;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .contact-icon {
+      width: 65px;
+      height: 65px;
+
+      display: grid;
+      place-items: center;
+
+      margin: auto;
+
+      border-radius: 50%;
+
+      background: var(--primary);
+
+      color: #fff;
+
+      font-size: 25px;
+    }
+
+    .contact-card h3 {
+      margin-top: 15px;
+      font-size: 22px;
+    }
+
+    .contact-card p {
+      margin: 8px 0;
+      color: #735f54;
+    }
+
+    .contact-card a {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .social-links {
+      margin-top: 45px;
+
+      display: flex;
+
+      justify-content: center;
+
+      gap: 12px;
+    }
+
+    .social-links a {
+      width: 48px;
+      height: 48px;
+
+      border-radius: 50%;
+
+      background: var(--primary);
+
+      color: #fff;
+
+      display: grid;
+      place-items: center;
+
+      transition: .3s;
+    }
+
+    .social-links a:hover {
+      transform: translateY(-5px);
+
+      background: var(--brown);
+    }
+
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+
+    footer {
+      background: #260b02;
+      color: #fff;
+      text-align: center;
+    }
+
+    .footer-top {
+      padding: 50px 20px;
+    }
+
+    .footer-logo {
+      font-size: 50px;
+    }
+
+    .footer-top h2 {
+      font-family:
+        "Tiro Devanagari Marathi",
+        serif;
+
+      font-size: 30px;
+
+      color: var(--gold);
+    }
+
+    .footer-top p {
+      margin-top: 8px;
+      color: #e5cbb9;
+    }
+
+    .footer-bottom {
+      padding: 18px;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.1);
+
+      display: flex;
+
+      justify-content: space-between;
+
+      width: min(1100px,90%);
+
+      margin: auto;
+
+      color: #bda99c;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================================
+       LIGHTBOX
+    ========================================= */
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+
+      background:
+        rgba(0,0,0,.92);
+
+      z-index: 9999;
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 30px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 85vh;
+
+      border-radius: 10px;
+    }
+
+    .close-lightbox {
+      position: absolute;
+
+      top: 25px;
+      right: 30px;
+
+      border: 0;
+
+      background: transparent;
+
+      color: #fff;
+
+      font-size: 35px;
+
+      cursor: pointer;
+    }
+
+
+    /* =========================================
+       BACK TO TOP
+    ========================================= */
+
+    #backTop {
+      position: fixed;
+
+      right: 20px;
+      bottom: 20px;
+
+      width: 45px;
+      height: 45px;
+
+      border: 0;
+
+      border-radius: 50%;
+
+      background: var(--primary);
+
+      color: #fff;
+
+      cursor: pointer;
+
+      display: none;
+
+      z-index: 500;
+    }
+
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media(max-width:900px) {
+
+      nav {
+        position: absolute;
+
+        top: 75px;
+        left: 4%;
+
+        width: 92%;
+
+        background: #3b1205;
+
+        display: none;
+
+        flex-direction: column;
+
+        padding: 20px;
+
+        border-radius: 15px;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .event-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .donation-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+    @media(max-width:600px) {
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .logo strong {
+        font-size: 21px;
+      }
+
+      .hero h1 {
+        font-size: 45px;
+      }
+
+      .hero h2 {
+        font-size: 28px;
+      }
+
+      .hero-text {
+        font-size: 16px;
+        letter-spacing: 1px;
+      }
+
+      .about-image img {
+        height: 400px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .countdown {
+        gap: 7px;
+      }
+
+      .time-box {
+        min-width: 70px;
+        padding: 10px 5px;
+      }
+
+      .time-box strong {
+        font-size: 27px;
+      }
+
+      .time-box span {
+        font-size: 12px;
+      }
+
+      .countdown-title h2 {
+        font-size: 22px;
+      }
+
+      .event-card {
+        padding: 15px;
+        gap: 10px;
+      }
+
+      .event-date {
+        min-width: 65px;
+        height: 70px;
+      }
+
+      .event-icon {
+        font-size: 28px;
+      }
+
+      .event-info h3 {
+        font-size: 19px;
+      }
+
+      .event-info p {
+        font-size: 14px;
+      }
+
+
+      /* GALLERY MOBILE */
+
+      .gallery-slider {
+        gap: 5px;
+      }
+
+      .gallery-item {
+        height: 230px;
+      }
+
+      .gallery-arrow {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+      }
+
+
+      .donation-wrapper {
+        padding: 22px;
+      }
+
+      .donation-text h3 {
+        font-size: 27px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 5px;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -857,70 +1534,105 @@ footer p{
 
 
 <!-- =========================================
-     HEADER
+     PRELOADER
 ========================================= -->
 
-<header>
+<div id="preloader">
 
-<div class="container navbar">
+  <div class="loader">
 
-<a href="#home" class="brand">
+    <div class="om">
+      ॐ
+    </div>
 
-<div class="brand-logo">
-🙏
-</div>
+    <p>
+      एकोपा गणेश मंडळ
+    </p>
 
-<div class="brand-text">
-
-<h1>
-एकोपा गणेश मंडळ
-</h1>
-
-<small>
-एकता • संस्कृती • सेवा
-</small>
+  </div>
 
 </div>
 
-</a>
 
+<!-- =========================================
+     NAVBAR
+========================================= -->
 
-<nav>
-
-<a href="#home">
-मुख्यपृष्ठ
-</a>
-
-<a href="#about">
-मंडळाविषयी
-</a>
-
-<a href="#programs">
-कार्यक्रम
-</a>
-
-<a href="#gallery">
-Gallery
-</a>
-
-<a href="#finance">
-आर्थिक स्थिती
-</a>
-
-<a href="#contact">
-संपर्क
-</a>
-
-<a
-href="admin.html"
-class="admin-btn"
+<header
+  class="navbar"
+  id="navbar"
 >
-Admin
-</a>
 
-</nav>
+  <div class="nav-container">
 
-</div>
+    <a
+      href="#home"
+      class="logo"
+    >
+
+      <div class="logo-icon">
+        🙏
+      </div>
+
+      <div>
+
+        <strong>
+          एकोपा गणेश मंडळ
+        </strong>
+
+        <small>
+          एकता • संस्कृती • सेवा
+        </small>
+
+      </div>
+
+    </a>
+
+
+    <button
+      class="menu-btn"
+      id="menuBtn"
+      type="button"
+    >
+
+      <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+
+    <nav id="navMenu">
+
+      <a href="#home">
+        मुख्यपृष्ठ
+      </a>
+
+      <a href="#about">
+        मंडळाविषयी
+      </a>
+
+      <a href="#programs">
+        कार्यक्रम
+      </a>
+
+      <a href="#gallery">
+        Gallery
+      </a>
+
+      <a href="#donation">
+        देणगी
+      </a>
+
+      <a href="#contact">
+        संपर्क
+      </a>
+
+      <a href="admin.html">
+        Admin
+      </a>
+
+    </nav>
+
+  </div>
 
 </header>
 
@@ -930,44 +1642,79 @@ Admin
 ========================================= -->
 
 <section
-class="hero"
-id="home"
+  class="hero"
+  id="home"
 >
 
-<div class="container hero-content">
+  <div class="hero-overlay"></div>
 
-<div class="hero-icon">
-🙏
-</div>
 
-<h2>
-गणपती बाप्पा मोरया!
-</h2>
+  <div class="floating floating-1">
+    🪔
+  </div>
 
-<p>
-एकोपा गणेश मंडळात आपले
-हार्दिक स्वागत आहे.
-</p>
+  <div class="floating floating-2">
+    🌺
+  </div>
 
-<div class="hero-buttons">
+  <div class="floating floating-3">
+    🙏
+  </div>
 
-<a
-href="#programs"
-class="hero-btn primary-btn"
->
-📅 कार्यक्रम पहा
-</a>
 
-<a
-href="#donation"
-class="hero-btn secondary-btn"
->
-❤️ देणगी द्या
-</a>
+  <div class="hero-content">
 
-</div>
+    <div class="ganesh-symbol">
+      🙏
+    </div>
 
-</div>
+    <div class="welcome">
+      हार्दिक स्वागत
+    </div>
+
+    <h1>
+      एकोपा गणेश मंडळ
+    </h1>
+
+    <h2>
+      गणपती <span>बाप्पा मोरया!</span>
+    </h2>
+
+    <p class="hero-text">
+      एकता • संस्कृती • सेवा
+    </p>
+
+
+    <div class="hero-buttons">
+
+      <a
+        href="#programs"
+        class="btn primary-btn"
+      >
+        📅 कार्यक्रम पहा
+      </a>
+
+      <a
+        href="#gallery"
+        class="btn secondary-btn"
+      >
+        🖼️ Gallery पहा
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="scroll-down">
+
+    <i class="fa-solid fa-chevron-down"></i>
+
+    <span>
+      खाली पहा
+    </span>
+
+  </div>
 
 </section>
 
@@ -977,74 +1724,259 @@ class="hero-btn secondary-btn"
 ========================================= -->
 
 <section
-class="section"
-id="about"
+  class="section about"
+  id="about"
 >
 
-<div class="container">
+  <div class="container">
 
-<div class="section-title">
+    <div class="section-heading">
 
-<h2>
-🙏 मंडळाविषयी
-</h2>
+      <div class="small-title">
+        🙏 आमच्याविषयी
+      </div>
 
-<p>
-आपल्या सर्वांच्या सहभागातून
-गणेशोत्सवाचा आनंद
-</p>
+      <h2>
+        एकोपा गणेश मंडळ
+      </h2>
 
-</div>
+      <p>
+        एकता, संस्कृती आणि सामाजिक बांधिलकी
+      </p>
 
+      <div class="heading-line"></div>
 
-<div class="about">
-
-<div class="about-card">
-
-<h3>
-एकोपा गणेश मंडळ
-</h3>
-
-<p>
-एकता, संस्कृती आणि सामाजिक
-बांधिलकी जपत गणेशोत्सव
-साजरा करण्यासाठी
-एकोपा गणेश मंडळ कार्यरत आहे.
-</p>
-
-<br>
-
-<p>
-विविध धार्मिक, सांस्कृतिक आणि
-सामाजिक कार्यक्रमांच्या माध्यमातून
-समाजातील सर्वांना एकत्र आणणे
-हा आमचा मुख्य उद्देश आहे.
-</p>
-
-</div>
+    </div>
 
 
-<div class="about-highlight">
+    <div class="about-grid">
 
-<div class="big">
-🪔
-</div>
 
-<h3>
-एकता • संस्कृती • सेवा
-</h3>
+      <div class="about-image">
 
-<p>
-गणेशोत्सव हा केवळ उत्सव नाही,
-तर आपल्या सर्वांना जोडणारा
-एक सुंदर संस्कार आहे.
-</p>
+        <img
+          src="assets/ganpati.jpg"
+          alt="गणपती बाप्पा"
+        >
 
-</div>
+        <div class="image-badge">
 
-</div>
+          <strong>
+            🙏
+          </strong>
 
-</div>
+          <span>
+            गणपती बाप्पा मोरया
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="about-content">
+
+        <div class="about-label">
+          आमची ओळख
+        </div>
+
+        <h3>
+          एकतेतून उत्सव,
+          सेवेतून संस्कार
+        </h3>
+
+        <p>
+          एकोपा गणेश मंडळ हे
+          एकता, संस्कृती आणि सामाजिक
+          बांधिलकी जपत गणेशोत्सव
+          साजरा करण्यासाठी कार्यरत आहे.
+        </p>
+
+        <p>
+          विविध धार्मिक, सांस्कृतिक
+          आणि सामाजिक उपक्रमांच्या
+          माध्यमातून समाजातील सर्वांना
+          एकत्र आणणे हा आमचा उद्देश आहे.
+        </p>
+
+
+        <div class="features">
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              🤝
+            </div>
+
+            <div>
+
+              <h4>
+                एकता
+              </h4>
+
+              <p>
+                सर्वांना एकत्र आणणे
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              🪔
+            </div>
+
+            <div>
+
+              <h4>
+                संस्कृती
+              </h4>
+
+              <p>
+                परंपरांचे जतन
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              ❤️
+            </div>
+
+            <div>
+
+              <h4>
+                सेवा
+              </h4>
+
+              <p>
+                समाजासाठी योगदान
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              🙏
+            </div>
+
+            <div>
+
+              <h4>
+                भक्ती
+              </h4>
+
+              <p>
+                बाप्पाच्या चरणी सेवा
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================
+     COUNTDOWN
+========================================= -->
+
+<section class="countdown-section">
+
+  <div class="container">
+
+    <div class="countdown-title">
+
+      <span>
+        🙏
+      </span>
+
+      <h2>
+        गणेशोत्सवासाठी वेळ बाकी
+      </h2>
+
+      <span>
+        🪔
+      </span>
+
+    </div>
+
+
+    <div class="countdown">
+
+      <div class="time-box">
+
+        <strong id="days">
+          00
+        </strong>
+
+        <span>
+          दिवस
+        </span>
+
+      </div>
+
+
+      <div class="time-box">
+
+        <strong id="hours">
+          00
+        </strong>
+
+        <span>
+          तास
+        </span>
+
+      </div>
+
+
+      <div class="time-box">
+
+        <strong id="minutes">
+          00
+        </strong>
+
+        <span>
+          मिनिटे
+        </span>
+
+      </div>
+
+
+      <div class="time-box">
+
+        <strong id="seconds">
+          00
+        </strong>
+
+        <span>
+          सेकंद
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -1054,230 +1986,114 @@ id="about"
 ========================================= -->
 
 <section
-class="section"
-id="programs"
+  class="section events"
+  id="programs"
 >
 
-<div class="container">
+  <div class="container">
 
-<div class="section-title">
+    <div class="section-heading">
 
-<h2>
-📅 आगामी कार्यक्रम
-</h2>
+      <div class="small-title">
+        📅 कार्यक्रम
+      </div>
 
-<p>
-Admin Panel मधून प्रकाशित केलेले
-कार्यक्रम येथे दिसतील.
-</p>
+      <h2>
+        आगामी कार्यक्रम
+      </h2>
 
-</div>
+      <p>
+        Admin Panel मधून प्रकाशित केलेले कार्यक्रम
+      </p>
+
+      <div class="heading-line"></div>
+
+    </div>
 
 
-<div
-class="program-grid"
-id="programList"
->
+    <div
+      class="event-grid"
+      id="programList"
+    >
 
-<div class="loading">
-कार्यक्रम Loading...
-</div>
+      <div class="event-card">
 
-</div>
+        <div class="event-date">
 
-</div>
+          <strong>
+            ...
+          </strong>
+
+          <span>
+            Loading
+          </span>
+
+        </div>
+
+        <div class="event-icon">
+          🙏
+        </div>
+
+        <div class="event-info">
+
+          <h3>
+            कार्यक्रम Loading...
+          </h3>
+
+          <p>
+            कृपया थोडा वेळ थांबा.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
 
 <!-- =========================================
-     FINANCE
+     AARTI
 ========================================= -->
 
-<section
-class="section finance-section"
-id="finance"
->
+<section class="aarti-section">
 
-<div class="container">
+  <div class="container">
 
-<div class="section-title">
+    <div class="aarti-box">
 
-<h2>
-💰 मंडळाची आर्थिक स्थिती
-</h2>
+      <div class="aarti-icon">
+        🪔
+      </div>
 
-<p>
-पारदर्शकता आणि विश्वासासाठी
-</p>
+      <span>
+        श्री गणेश आरती
+      </span>
 
-</div>
+      <h2>
+        सुखकर्ता दुःखहर्ता
+      </h2>
 
+      <div class="aarti-line"></div>
 
-<div class="finance-grid">
+      <p>
+        जय देव जय देव जय मंगलमूर्ती
+        <br>
+        दर्शनमात्रे मनकामना पुरती
+      </p>
 
+      <div class="aarti-line"></div>
 
-<div
-class="finance-card finance-green"
->
+      <strong>
+        गणपती बाप्पा मोरया!
+      </strong>
 
-<strong id="publicDonation">
-₹0
-</strong>
+    </div>
 
-एकूण जमा
-
-</div>
-
-
-<div
-class="finance-card finance-red"
->
-
-<strong id="publicExpense">
-₹0
-</strong>
-
-एकूण खर्च
-
-</div>
-
-
-<div
-class="finance-card finance-blue"
->
-
-<strong id="publicBalance">
-₹0
-</strong>
-
-शिल्लक निधी
-
-</div>
-
-</div>
-
-
-<p class="finance-note">
-* ही माहिती मंडळाच्या नोंदीनुसार
-दर्शविली जाते.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- =========================================
-     DONATION
-========================================= -->
-
-<section
-class="section"
-id="donation"
->
-
-<div class="container">
-
-<div class="donation-box">
-
-<h2>
-❤️ मंडळाला देणगी द्या
-</h2>
-
-<p>
-आपल्या छोट्याशा योगदानातून
-गणेशोत्सव अधिक सुंदर बनवूया.
-</p>
-
-
-<div class="upi-box">
-
-<strong>
-UPI
-</strong>
-
-<br>
-
-<span>
-तुमची UPI ID येथे टाका
-</span>
-
-</div>
-
-
-<div class="upi-box">
-
-<strong>
-📱 QR Code
-</strong>
-
-<br>
-
-<span>
-QR Code येथे ठेवता येईल
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================
-     NOTICE
-========================================= -->
-
-<section
-class="section"
-id="notice"
->
-
-<div class="container">
-
-<div class="section-title">
-
-<h2>
-📢 सूचना
-</h2>
-
-<p>
-मंडळाच्या महत्त्वाच्या सूचना
-</p>
-
-</div>
-
-
-<div class="notice">
-
-<strong>
-🔔 गणपती बाप्पा मोरया!
-</strong>
-
-<p>
-गणेशोत्सवातील सर्व कार्यक्रमांना
-वेळेवर उपस्थित राहावे.
-</p>
-
-</div>
-
-
-<div class="notice">
-
-<strong>
-🙏 सर्वांचे स्वागत आहे
-</strong>
-
-<p>
-आपल्या सहकार्याबद्दल मनःपूर्वक धन्यवाद.
-</p>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
@@ -1287,106 +2103,232 @@ id="notice"
 ========================================= -->
 
 <section
-class="section"
-id="gallery"
+  class="section gallery"
+  id="gallery"
 >
 
-<div class="container">
+  <div class="container">
 
-<div class="section-title">
+    <div class="section-heading">
 
-<h2>
-🖼️ Gallery
-</h2>
+      <div class="small-title">
+        🖼️ आमच्या आठवणी
+      </div>
 
-<p>
-गणेशोत्सवाच्या काही आठवणी
-</p>
+      <h2>
+        Gallery
+      </h2>
 
-</div>
+      <p>
+        गणेशोत्सवातील सुंदर क्षण
+      </p>
+
+      <div class="heading-line"></div>
+
+    </div>
 
 
-<div class="gallery-wrapper">
+    <div class="gallery-slider">
 
-<button
-class="gallery-btn gallery-prev"
-id="galleryPrev"
+
+      <button
+        class="gallery-arrow gallery-prev"
+        id="galleryPrev"
+        type="button"
+        aria-label="Previous photo"
+      >
+        ❮
+      </button>
+
+
+      <div class="gallery-track-wrapper">
+
+        <div
+          class="gallery-track"
+          id="galleryTrack"
+        >
+
+
+          <!-- PHOTO 1 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="assets/gallery1.jpg"
+              alt="गणेशोत्सव फोटो 1"
+            >
+
+            <div class="gallery-overlay">
+              🔍
+            </div>
+
+          </div>
+
+
+          <!-- PHOTO 2 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="assets/gallery2.jpg"
+              alt="गणेशोत्सव फोटो 2"
+            >
+
+            <div class="gallery-overlay">
+              🔍
+            </div>
+
+          </div>
+
+
+          <!-- PHOTO 3 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="assets/gallery3.jpg"
+              alt="गणेशोत्सव फोटो 3"
+            >
+
+            <div class="gallery-overlay">
+              🔍
+            </div>
+
+          </div>
+
+
+          <!-- PHOTO 4 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="assets/gallery4.jpg"
+              alt="गणेशोत्सव फोटो 4"
+            >
+
+            <div class="gallery-overlay">
+              🔍
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="gallery-arrow gallery-next"
+        id="galleryNext"
+        type="button"
+        aria-label="Next photo"
+      >
+        ❯
+      </button>
+
+    </div>
+
+
+    <div
+      class="gallery-dots"
+      id="galleryDots"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================
+     DONATION
+========================================= -->
+
+<section
+  class="section donation"
+  id="donation"
 >
-‹
-</button>
+
+  <div class="container">
+
+    <div class="donation-wrapper">
 
 
-<div
-class="gallery-slider"
-id="gallerySlider"
->
+      <div class="donation-text">
+
+        <div class="donation-icon">
+          ❤️
+        </div>
+
+        <h3>
+          मंडळाला देणगी द्या
+        </h3>
+
+        <p>
+          आपल्या छोट्याशा योगदानातून
+          गणेशोत्सव अधिक सुंदर आणि
+          समाजोपयोगी बनवूया.
+        </p>
 
 
-<div class="gallery-item">
+        <div class="upi-info">
 
-<div class="gallery-placeholder">
-🙏
-</div>
+          <span>
+            UPI ID:
+          </span>
 
-<div class="gallery-overlay">
-🙏
-</div>
+          <strong id="upiId">
+            तुमची UPI ID
+          </strong>
 
-</div>
+          <button
+            type="button"
+            onclick="copyUPI()"
+          >
+            Copy
+          </button>
 
+        </div>
 
-<div class="gallery-item">
-
-<div class="gallery-placeholder">
-🪔
-</div>
-
-<div class="gallery-overlay">
-🪔
-</div>
-
-</div>
+      </div>
 
 
-<div class="gallery-item">
+      <div class="qr-box">
 
-<div class="gallery-placeholder">
-🌺
-</div>
+        <div class="qr-title">
+          📱 QR Code
+        </div>
 
-<div class="gallery-overlay">
-🌺
-</div>
+        <img
+          src="assets/qr.png"
+          alt="UPI QR Code"
+        >
 
-</div>
+        <p>
+          QR Code Scan करून देणगी द्या
+        </p>
 
+        <div class="upi-apps">
 
-<div class="gallery-item">
+          <span>
+            Google Pay
+          </span>
 
-<div class="gallery-placeholder">
-🎉
-</div>
+          <span>
+            PhonePe
+          </span>
 
-<div class="gallery-overlay">
-🎉
-</div>
+          <span>
+            Paytm
+          </span>
 
-</div>
+        </div>
 
+      </div>
 
-</div>
+    </div>
 
-
-<button
-class="gallery-btn gallery-next"
-id="galleryNext"
->
-›
-</button>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
@@ -1396,82 +2338,109 @@ id="galleryNext"
 ========================================= -->
 
 <section
-class="section"
-id="contact"
+  class="section contact"
+  id="contact"
 >
 
-<div class="container">
+  <div class="container">
 
-<div class="section-title">
+    <div class="section-heading">
 
-<h2>
-📞 संपर्क
-</h2>
+      <div class="small-title">
+        📞 संपर्क
+      </div>
 
-<p>
-आमच्याशी संपर्क साधा
-</p>
+      <h2>
+        आमच्याशी संपर्क साधा
+      </h2>
 
-</div>
+      <p>
+        एकोपा गणेश मंडळ
+      </p>
 
+      <div class="heading-line"></div>
 
-<div class="contact-grid">
-
-
-<div class="contact-card">
-
-<div class="contact-icon">
-📱
-</div>
-
-<h3>
-Mobile
-</h3>
-
-<p>
-8830537590
-</p>
-
-</div>
+    </div>
 
 
-<div class="contact-card">
-
-<div class="contact-icon">
-📍
-</div>
-
-<h3>
-पत्ता
-</h3>
-
-<p>
-एकोपा गणेश मंडळ
-</p>
-
-</div>
+    <div class="contact-grid">
 
 
-<div class="contact-card">
+      <div class="contact-card">
 
-<div class="contact-icon">
-📧
-</div>
+        <div class="contact-icon">
+          📱
+        </div>
 
-<h3>
-Email
-</h3>
+        <h3>
+          Mobile
+        </h3>
 
-<p>
-तुमचा Email येथे टाका
-</p>
+        <p>
+          8830537590
+        </p>
 
-</div>
+        <a href="tel:8830537590">
+          कॉल करा
+        </a>
+
+      </div>
 
 
-</div>
+      <div class="contact-card">
 
-</div>
+        <div class="contact-icon">
+          📍
+        </div>
+
+        <h3>
+          पत्ता
+        </h3>
+
+        <p>
+          एकोपा गणेश मंडळ
+        </p>
+
+      </div>
+
+
+      <div class="contact-card">
+
+        <div class="contact-icon">
+          📧
+        </div>
+
+        <h3>
+          Email
+        </h3>
+
+        <p>
+          तुमचा Email येथे टाका
+        </p>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="social-links">
+
+      <a href="#" aria-label="Facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+
+      <a href="#" aria-label="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+
+      <a href="#" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -1482,21 +2451,38 @@ Email
 
 <footer>
 
-<div class="container">
+  <div class="footer-top">
 
-<p>
-🙏 गणपती बाप्पा मोरया! 🙏
-</p>
+    <div class="footer-logo">
+      🙏
+    </div>
 
-<p>
-© 2026 एकोपा गणेश मंडळ
-</p>
+    <h2>
+      एकोपा गणेश मंडळ
+    </h2>
 
-<p>
-सर्व हक्क राखीव
-</p>
+    <p>
+      एकता • संस्कृती • सेवा
+    </p>
 
-</div>
+    <p>
+      गणपती बाप्पा मोरया!
+    </p>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    <span>
+      © 2026 एकोपा गणेश मंडळ
+    </span>
+
+    <span>
+      सर्व हक्क राखीव
+    </span>
+
+  </div>
 
 </footer>
 
@@ -1506,24 +2492,38 @@ Email
 ========================================= -->
 
 <div
-class="lightbox"
-id="lightbox"
+  class="lightbox"
+  id="lightbox"
 >
 
-<button
-class="close-lightbox"
-id="closeLightbox"
->
-×
-</button>
+  <button
+    class="close-lightbox"
+    id="closeLightbox"
+    type="button"
+  >
+    ×
+  </button>
 
-<img
-id="lightboxImage"
-src=""
-alt="Gallery Photo"
->
+  <img
+    id="lightboxImage"
+    src=""
+    alt="Gallery Photo"
+  >
 
 </div>
+
+
+<!-- =========================================
+     BACK TO TOP
+========================================= -->
+
+<button
+  id="backTop"
+  type="button"
+  aria-label="Back to top"
+>
+  ↑
+</button>
 
 
 <!-- =========================================
@@ -1531,6 +2531,655 @@ alt="Gallery Photo"
 ========================================= -->
 
 <script>
+
+
+/* =========================================
+   PRELOADER
+========================================= */
+
+window.addEventListener(
+  "load",
+  () => {
+
+    const preloader =
+      document.getElementById(
+        "preloader"
+      );
+
+    if (!preloader) return;
+
+    setTimeout(
+      () => {
+
+        preloader.style.opacity = "0";
+
+        setTimeout(
+          () => {
+
+            preloader.style.display =
+              "none";
+
+          },
+          500
+        );
+
+      },
+      700
+    );
+
+  }
+);
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+const navbar =
+  document.getElementById(
+    "navbar"
+  );
+
+
+window.addEventListener(
+  "scroll",
+  () => {
+
+    navbar.classList.toggle(
+      "scrolled",
+      window.scrollY > 50
+    );
+
+  }
+);
+
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+const menuBtn =
+  document.getElementById(
+    "menuBtn"
+  );
+
+const navMenu =
+  document.getElementById(
+    "navMenu"
+  );
+
+
+if (menuBtn && navMenu) {
+
+  menuBtn.addEventListener(
+    "click",
+    () => {
+
+      navMenu.classList.toggle(
+        "active"
+      );
+
+      const icon =
+        menuBtn.querySelector("i");
+
+      if (icon) {
+
+        icon.classList.toggle(
+          "fa-bars"
+        );
+
+        icon.classList.toggle(
+          "fa-xmark"
+        );
+
+      }
+
+    }
+  );
+
+
+  document
+    .querySelectorAll(
+      "#navMenu a"
+    )
+    .forEach(
+      link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            navMenu.classList.remove(
+              "active"
+            );
+
+            const icon =
+              menuBtn.querySelector("i");
+
+            if (icon) {
+
+              icon.classList.remove(
+                "fa-xmark"
+              );
+
+              icon.classList.add(
+                "fa-bars"
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+/* =========================================
+   COUNTDOWN
+========================================= */
+
+const festivalDate =
+  new Date(
+    "2026-09-06T10:00:00"
+  ).getTime();
+
+
+function updateCountdown() {
+
+  const difference =
+    festivalDate - Date.now();
+
+
+  if (difference <= 0) {
+
+    document.getElementById("days")
+      .innerText = "00";
+
+    document.getElementById("hours")
+      .innerText = "00";
+
+    document.getElementById("minutes")
+      .innerText = "00";
+
+    document.getElementById("seconds")
+      .innerText = "00";
+
+    return;
+
+  }
+
+
+  document.getElementById("days")
+    .innerText =
+    String(
+      Math.floor(
+        difference / 86400000
+      )
+    ).padStart(2,"0");
+
+
+  document.getElementById("hours")
+    .innerText =
+    String(
+      Math.floor(
+        difference % 86400000 /
+        3600000
+      )
+    ).padStart(2,"0");
+
+
+  document.getElementById("minutes")
+    .innerText =
+    String(
+      Math.floor(
+        difference % 3600000 /
+        60000
+      )
+    ).padStart(2,"0");
+
+
+  document.getElementById("seconds")
+    .innerText =
+    String(
+      Math.floor(
+        difference % 60000 /
+        1000
+      )
+    ).padStart(2,"0");
+
+}
+
+
+updateCountdown();
+
+setInterval(
+  updateCountdown,
+  1000
+);
+
+
+/* =========================================
+   GALLERY SLIDER
+========================================= */
+
+const galleryTrack =
+  document.getElementById(
+    "galleryTrack"
+  );
+
+const galleryItems =
+  document.querySelectorAll(
+    ".gallery-item"
+  );
+
+const galleryPrev =
+  document.getElementById(
+    "galleryPrev"
+  );
+
+const galleryNext =
+  document.getElementById(
+    "galleryNext"
+  );
+
+const galleryDots =
+  document.getElementById(
+    "galleryDots"
+  );
+
+
+let galleryIndex = 0;
+
+
+/* CREATE DOTS */
+
+galleryItems.forEach(
+  (item, index) => {
+
+    const dot =
+      document.createElement(
+        "button"
+      );
+
+    dot.className =
+      "gallery-dot";
+
+    dot.type = "button";
+
+    dot.setAttribute(
+      "aria-label",
+      `Photo ${index + 1}`
+    );
+
+
+    dot.addEventListener(
+      "click",
+      () => {
+
+        galleryIndex = index;
+
+        updateGallery();
+
+        resetGalleryAutoSlide();
+
+      }
+    );
+
+
+    galleryDots.appendChild(
+      dot
+    );
+
+  }
+);
+
+
+const galleryDotItems =
+  document.querySelectorAll(
+    ".gallery-dot"
+  );
+
+
+/* UPDATE GALLERY */
+
+function updateGallery() {
+
+  if (
+    !galleryTrack ||
+    galleryItems.length === 0
+  ) {
+    return;
+  }
+
+
+  galleryTrack.style.transform =
+    `translateX(-${galleryIndex * 100}%)`;
+
+
+  galleryDotItems.forEach(
+    (dot,index) => {
+
+      dot.classList.toggle(
+        "active",
+        index === galleryIndex
+      );
+
+    }
+  );
+
+}
+
+
+/* NEXT */
+
+function nextGallery() {
+
+  galleryIndex++;
+
+  if (
+    galleryIndex >=
+    galleryItems.length
+  ) {
+
+    galleryIndex = 0;
+
+  }
+
+  updateGallery();
+
+}
+
+
+/* PREVIOUS */
+
+function previousGallery() {
+
+  galleryIndex--;
+
+  if (galleryIndex < 0) {
+
+    galleryIndex =
+      galleryItems.length - 1;
+
+  }
+
+  updateGallery();
+
+}
+
+
+/* BUTTON EVENTS */
+
+if (galleryNext) {
+
+  galleryNext.addEventListener(
+    "click",
+    () => {
+
+      nextGallery();
+
+      resetGalleryAutoSlide();
+
+    }
+  );
+
+}
+
+
+if (galleryPrev) {
+
+  galleryPrev.addEventListener(
+    "click",
+    () => {
+
+      previousGallery();
+
+      resetGalleryAutoSlide();
+
+    }
+  );
+
+}
+
+
+/* =========================================
+   AUTO SLIDE
+========================================= */
+
+let galleryTimer =
+  setInterval(
+    nextGallery,
+    3500
+  );
+
+
+function resetGalleryAutoSlide() {
+
+  clearInterval(
+    galleryTimer
+  );
+
+  galleryTimer =
+    setInterval(
+      nextGallery,
+      3500
+    );
+
+}
+
+
+updateGallery();
+
+
+/* =========================================
+   GALLERY LIGHTBOX
+========================================= */
+
+const lightbox =
+  document.getElementById(
+    "lightbox"
+  );
+
+const lightboxImage =
+  document.getElementById(
+    "lightboxImage"
+  );
+
+
+galleryItems.forEach(
+  item => {
+
+    item.addEventListener(
+      "click",
+      () => {
+
+        const image =
+          item.querySelector(
+            "img"
+          );
+
+
+        if (
+          !image ||
+          !lightbox ||
+          !lightboxImage
+        ) {
+          return;
+        }
+
+
+        lightboxImage.src =
+          image.src;
+
+        lightboxImage.alt =
+          image.alt;
+
+        lightbox.classList.add(
+          "active"
+        );
+
+      }
+    );
+
+  }
+);
+
+
+/* CLOSE LIGHTBOX */
+
+const closeLightbox =
+  document.getElementById(
+    "closeLightbox"
+  );
+
+
+if (closeLightbox) {
+
+  closeLightbox.addEventListener(
+    "click",
+    () => {
+
+      lightbox.classList.remove(
+        "active"
+      );
+
+    }
+  );
+
+}
+
+
+if (lightbox) {
+
+  lightbox.addEventListener(
+    "click",
+    event => {
+
+      if (
+        event.target ===
+        lightbox
+      ) {
+
+        lightbox.classList.remove(
+          "active"
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* ESCAPE KEY */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key === "Escape" &&
+      lightbox
+    ) {
+
+      lightbox.classList.remove(
+        "active"
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================
+   COPY UPI
+========================================= */
+
+function copyUPI() {
+
+  const upi =
+    document.getElementById(
+      "upiId"
+    );
+
+
+  if (!upi) return;
+
+
+  const value =
+    upi.innerText.trim();
+
+
+  navigator.clipboard
+    .writeText(value)
+    .then(
+      () => {
+
+        alert(
+          "UPI ID कॉपी झाला!"
+        );
+
+      }
+    )
+    .catch(
+      () => {
+
+        alert(
+          "UPI ID: " + value
+        );
+
+      }
+    );
+
+}
+
+
+/* =========================================
+   BACK TO TOP
+========================================= */
+
+const backTop =
+  document.getElementById(
+    "backTop"
+  );
+
+
+window.addEventListener(
+  "scroll",
+  () => {
+
+    if (!backTop) return;
+
+    backTop.style.display =
+      window.scrollY > 500
+        ? "block"
+        : "none";
+
+  }
+);
+
+
+if (backTop) {
+
+  backTop.addEventListener(
+    "click",
+    () => {
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+  );
+
+}
+
 
 /* =========================================
    API
@@ -1541,10 +3190,10 @@ const API_URL =
 
 
 /* =========================================
-   SAFE HTML
+   ESCAPE HTML
 ========================================= */
 
-function escapeHTML(value){
+function escapeHTML(value) {
 
   return String(value ?? "")
     .replaceAll("&","&amp;")
@@ -1560,22 +3209,18 @@ function escapeHTML(value){
    LOAD PROGRAMS
 ========================================= */
 
-async function loadPrograms(){
+async function loadPrograms() {
 
   const list =
-    document.getElementById("programList");
-
-  if(!list) return;
-
-
-  list.innerHTML = `
-    <div class="loading">
-      कार्यक्रम Loading...
-    </div>
-  `;
+    document.getElementById(
+      "programList"
+    );
 
 
-  try{
+  if (!list) return;
+
+
+  try {
 
     const response =
       await fetch(
@@ -1583,7 +3228,7 @@ async function loadPrograms(){
       );
 
 
-    if(!response.ok){
+    if (!response.ok) {
 
       throw new Error(
         "Programs API failed"
@@ -1592,46 +3237,50 @@ async function loadPrograms(){
     }
 
 
-    const data =
+    const result =
       await response.json();
 
 
-    console.log(
-      "Programs API Response:",
-      data
-    );
-
-
     /*
-      तुमच्या Backend response:
-
-      {
-        success: true,
-        programs: [...]
-      }
-
-      म्हणून data.programs वापरायचे.
+      Backend कधी direct array
+      तर कधी { programs: [] }
+      return करू शकतो.
     */
 
     const programs =
-      Array.isArray(data.programs)
-        ? data.programs
-        : [];
+      Array.isArray(result)
+        ? result
+        : Array.isArray(result.programs)
+          ? result.programs
+          : [];
 
 
-    if(programs.length === 0){
+    if (
+      programs.length === 0
+    ) {
 
       list.innerHTML = `
 
-        <div class="empty">
+        <div
+          class="event-card"
+          style="grid-column:1/-1"
+        >
 
-          📅 सध्या कोणतेही
-          कार्यक्रम उपलब्ध नाहीत.
+          <div class="event-icon">
+            📅
+          </div>
 
-          <br><br>
+          <div class="event-info">
 
-          Admin Panel मधून
-          नवीन कार्यक्रम Add करा.
+            <h3>
+              सध्या कोणतेही कार्यक्रम उपलब्ध नाहीत.
+            </h3>
+
+            <p>
+              लवकरच नवीन कार्यक्रम येथे प्रकाशित केले जातील.
+            </p>
+
+          </div>
 
         </div>
 
@@ -1648,27 +3297,38 @@ async function loadPrograms(){
     programs.forEach(
       program => {
 
-        const card =
-          document.createElement(
-            "div"
+        const date =
+          new Date(
+            program.program_date
           );
 
 
-        card.className =
-          "program-card";
+        const day =
+          Number.isNaN(
+            date.getTime()
+          )
+            ? ""
+            : String(
+                date.getDate()
+              ).padStart(2,"0");
+
+
+        const month =
+          Number.isNaN(
+            date.getTime()
+          )
+            ? ""
+            : date.toLocaleDateString(
+                "mr-IN",
+                {
+                  month: "short"
+                }
+              );
 
 
         const title =
           escapeHTML(
             program.title
-          );
-
-
-        const date =
-          escapeHTML(
-            formatDate(
-              program.program_date
-            )
           );
 
 
@@ -1684,50 +3344,76 @@ async function loadPrograms(){
           );
 
 
+        const card =
+          document.createElement(
+            "div"
+          );
+
+
+        card.className =
+          "event-card";
+
+
         card.innerHTML = `
 
-          <div class="program-icon">
+          <div class="event-date">
+
+            <strong>
+              ${day}
+            </strong>
+
+            <span>
+              ${month}
+            </span>
+
+          </div>
+
+
+          <div class="event-icon">
             🙏
           </div>
 
-          <h3>
-            ${title}
-          </h3>
 
-          <div class="program-date">
-            📅 ${date}
+          <div class="event-info">
+
+            <h3>
+              ${title}
+            </h3>
+
+            ${
+              description
+                ? `
+                  <p>
+                    ${description}
+                  </p>
+                `
+                : ""
+            }
+
+            ${
+              time
+                ? `
+                  <span class="event-time">
+                    ⏰ ${time}
+                  </span>
+                `
+                : ""
+            }
+
           </div>
-
-          ${
-            time
-              ? `
-                <div class="program-time">
-                  ⏰ ${time}
-                </div>
-              `
-              : ""
-          }
-
-          ${
-            description
-              ? `
-                <p class="program-description">
-                  ${description}
-                </p>
-              `
-              : ""
-          }
 
         `;
 
 
-        list.appendChild(card);
+        list.appendChild(
+          card
+        );
 
       }
     );
 
 
-  }catch(error){
+  } catch (error) {
 
     console.error(
       "Programs Error:",
@@ -1737,14 +3423,26 @@ async function loadPrograms(){
 
     list.innerHTML = `
 
-      <div class="empty">
+      <div
+        class="event-card"
+        style="grid-column:1/-1"
+      >
 
-        ⚠️ कार्यक्रम load करता आले नाहीत.
+        <div class="event-icon">
+          ⚠️
+        </div>
 
-        <br><br>
+        <div class="event-info">
 
-        Backend server connection
-        तपासा.
+          <h3>
+            कार्यक्रम Load करता आले नाहीत.
+          </h3>
+
+          <p>
+            कृपया थोड्या वेळाने पुन्हा प्रयत्न करा.
+          </p>
+
+        </div>
 
       </div>
 
@@ -1756,388 +3454,13 @@ async function loadPrograms(){
 
 
 /* =========================================
-   DATE FORMAT
-========================================= */
-
-function formatDate(dateValue){
-
-  if(!dateValue){
-    return "";
-  }
-
-
-  const date =
-    new Date(dateValue);
-
-
-  if(isNaN(date.getTime())){
-    return dateValue;
-  }
-
-
-  return date.toLocaleDateString(
-    "mr-IN",
-    {
-      day:"numeric",
-      month:"long",
-      year:"numeric"
-    }
-  );
-
-}
-
-
-/* =========================================
-   LOAD FINANCE
-========================================= */
-
-async function loadFinance(){
-
-  try{
-
-    const response =
-      await fetch(
-        `${API_URL}/api/finance/summary`
-      );
-
-
-    if(!response.ok){
-
-      throw new Error(
-        "Finance API failed"
-      );
-
-    }
-
-
-    const data =
-      await response.json();
-
-
-    const donation =
-      Number(
-        data.total_donations ??
-        data.totalDonation ??
-        0
-      );
-
-
-    const expense =
-      Number(
-        data.total_expenses ??
-        data.totalExpense ??
-        0
-      );
-
-
-    const balance =
-      Number(
-        data.balance ??
-        donation - expense
-      );
-
-
-    document.getElementById(
-      "publicDonation"
-    ).textContent =
-      formatMoney(donation);
-
-
-    document.getElementById(
-      "publicExpense"
-    ).textContent =
-      formatMoney(expense);
-
-
-    document.getElementById(
-      "publicBalance"
-    ).textContent =
-      formatMoney(balance);
-
-
-  }catch(error){
-
-    console.error(
-      "Finance Error:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================================
-   MONEY
-========================================= */
-
-function formatMoney(amount){
-
-  return new Intl.NumberFormat(
-    "en-IN",
-    {
-      style:"currency",
-      currency:"INR",
-      maximumFractionDigits:0
-    }
-  ).format(
-    Number(amount) || 0
-  );
-
-}
-
-
-/* =========================================
-   GALLERY SLIDER
-========================================= */
-
-const gallerySlider =
-  document.getElementById(
-    "gallerySlider"
-  );
-
-const galleryNext =
-  document.getElementById(
-    "galleryNext"
-  );
-
-const galleryPrev =
-  document.getElementById(
-    "galleryPrev"
-  );
-
-
-if(gallerySlider){
-
-  galleryNext.addEventListener(
-    "click",
-    () => {
-
-      gallerySlider.scrollBy({
-        left:290,
-        behavior:"smooth"
-      });
-
-    }
-  );
-
-
-  galleryPrev.addEventListener(
-    "click",
-    () => {
-
-      gallerySlider.scrollBy({
-        left:-290,
-        behavior:"smooth"
-      });
-
-    }
-  );
-
-}
-
-
-/* =========================================
-   AUTO SLIDE
-========================================= */
-
-let galleryAutoSlide =
-  setInterval(
-    () => {
-
-      if(!gallerySlider) return;
-
-
-      const maxScroll =
-        gallerySlider.scrollWidth -
-        gallerySlider.clientWidth;
-
-
-      if(
-        gallerySlider.scrollLeft >=
-        maxScroll - 10
-      ){
-
-        gallerySlider.scrollTo({
-          left:0,
-          behavior:"smooth"
-        });
-
-      }else{
-
-        gallerySlider.scrollBy({
-          left:225,
-          behavior:"smooth"
-        });
-
-      }
-
-    },
-    3000
-  );
-
-
-if(gallerySlider){
-
-  gallerySlider.addEventListener(
-    "mouseenter",
-    () => {
-      clearInterval(
-        galleryAutoSlide
-      );
-    }
-  );
-
-
-  gallerySlider.addEventListener(
-    "mouseleave",
-    () => {
-
-      galleryAutoSlide =
-        setInterval(
-          () => {
-
-            const maxScroll =
-              gallerySlider.scrollWidth -
-              gallerySlider.clientWidth;
-
-
-            if(
-              gallerySlider.scrollLeft >=
-              maxScroll - 10
-            ){
-
-              gallerySlider.scrollTo({
-                left:0,
-                behavior:"smooth"
-              });
-
-            }else{
-
-              gallerySlider.scrollBy({
-                left:225,
-                behavior:"smooth"
-              });
-
-            }
-
-          },
-          3000
-        );
-
-    }
-  );
-
-}
-
-
-/* =========================================
-   LIGHTBOX
-========================================= */
-
-const lightbox =
-  document.getElementById(
-    "lightbox"
-  );
-
-const lightboxImage =
-  document.getElementById(
-    "lightboxImage"
-  );
-
-
-document.querySelectorAll(
-  ".gallery-item"
-).forEach(
-  item => {
-
-    item.addEventListener(
-      "click",
-      () => {
-
-        const image =
-          item.querySelector(
-            "img"
-          );
-
-
-        if(!image) return;
-
-
-        lightboxImage.src =
-          image.src;
-
-
-        lightbox.classList.add(
-          "active"
-        );
-
-      }
-    );
-
-  }
-);
-
-
-document.getElementById(
-  "closeLightbox"
-).addEventListener(
-  "click",
-  () => {
-
-    lightbox.classList.remove(
-      "active"
-    );
-
-  }
-);
-
-
-lightbox.addEventListener(
-  "click",
-  event => {
-
-    if(
-      event.target === lightbox
-    ){
-
-      lightbox.classList.remove(
-        "active"
-      );
-
-    }
-
-  }
-);
-
-
-document.addEventListener(
-  "keydown",
-  event => {
-
-    if(
-      event.key === "Escape"
-    ){
-
-      lightbox.classList.remove(
-        "active"
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================
-   START
+   START PROGRAMS
 ========================================= */
 
 loadPrograms();
 
-loadFinance();
-
 </script>
+
 
 </body>
 
