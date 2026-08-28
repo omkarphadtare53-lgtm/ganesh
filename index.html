@@ -3,655 +3,852 @@
 
 <head>
 
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta
-    name="description"
-    content="एकोपा गणेश मंडळ - एकता, संस्कृती आणि सेवा"
-  >
-
-  <title>एकोपा गणेश मंडळ</title>
-
-  <style>
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family:
-        Arial,
-        "Noto Sans Devanagari",
-        sans-serif;
-
-      background: #fff8f0;
-      color: #35170b;
-      line-height: 1.6;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(1150px, 92%);
-      margin: auto;
-    }
-
-
-    /* =========================================
-       HEADER
-    ========================================= */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-
-      background:
-        linear-gradient(
-          135deg,
-          #2b0b02,
-          #8a2c0c
-        );
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="description"
+  content="एकोपा गणेश मंडळ - एकता, संस्कृती आणि सेवा"
+>
+
+<title>एकोपा गणेश मंडळ</title>
+
+<style>
+
+/* =========================================
+   RESET
+========================================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --primary:#f05a28;
+  --primary-dark:#c93613;
+  --gold:#f6b73c;
+  --dark:#241006;
+  --brown:#4a1d08;
+  --cream:#fff8ed;
+  --white:#fff;
+  --shadow:0 15px 40px rgba(60,20,0,.15);
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:
+    Arial,
+    "Noto Sans Devanagari",
+    sans-serif;
+
+  background:var(--cream);
+  color:var(--dark);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button{
+  font-family:inherit;
+}
+
+.container{
+  width:min(1150px,92%);
+  margin:auto;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2b0b02,
+      #8a2c0c
+    );
+
+  color:white;
+
+  box-shadow:
+    0 5px 20px #0004;
+}
+
+.navbar{
+  min-height:75px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-logo{
+  font-size:38px;
+}
+
+.brand-text h1{
+  font-size:22px;
+  line-height:1.2;
+}
+
+.brand-text small{
+  opacity:.85;
+}
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+nav a{
+  padding:9px 12px;
+  border-radius:8px;
+  font-weight:bold;
+  transition:.2s;
+}
+
+nav a:hover{
+  background:#ffffff22;
+}
+
+.admin-btn{
+  background:var(--primary);
+  color:white;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero{
+  min-height:600px;
+
+  display:flex;
+  align-items:center;
+
+  text-align:center;
+
+  color:white;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #b94815,
+      #8a2c0c 45%,
+      #2b0b02 100%
+    );
+
+  position:relative;
+  overflow:hidden;
+}
+
+.hero::before{
+  content:"🙏";
+
+  position:absolute;
+
+  font-size:300px;
+
+  opacity:.06;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-50%);
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+}
+
+.hero-icon{
+  font-size:90px;
+  margin-bottom:10px;
+}
+
+.hero h2{
+  font-size:clamp(35px,7vw,70px);
+  margin-bottom:15px;
+}
+
+.hero p{
+  font-size:21px;
+  opacity:.92;
+  margin-bottom:28px;
+}
+
+.hero-buttons{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.hero-btn{
+  display:inline-block;
+  padding:14px 24px;
+  border-radius:12px;
+  font-weight:bold;
+}
+
+.primary-btn{
+  background:var(--primary);
+  color:white;
+}
+
+.secondary-btn{
+  background:white;
+  color:#8a2c0c;
+}
+
+
+/* =========================================
+   COMMON SECTION
+========================================= */
+
+.section{
+  padding:70px 0;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.section-title h2{
+  color:#8a2c0c;
+  font-size:34px;
+  margin-bottom:8px;
+}
+
+.section-title p{
+  color:#765e51;
+}
+
+
+/* =========================================
+   ABOUT
+========================================= */
+
+.about{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+  align-items:center;
+}
+
+.about-card{
+  background:white;
+  padding:30px;
+  border-radius:20px;
+
+  box-shadow:
+    0 8px 30px #00000012;
+}
+
+.about-card h3{
+  color:var(--primary);
+  margin-bottom:15px;
+  font-size:25px;
+}
+
+.about-highlight{
+  background:
+    linear-gradient(
+      135deg,
+      #ffeeda,
+      #fff5ea
+    );
+
+  padding:35px;
+
+  border-radius:20px;
+
+  text-align:center;
+}
+
+.about-highlight .big{
+  font-size:70px;
+  margin-bottom:10px;
+}
+
+
+/* =========================================
+   PROGRAMS
+========================================= */
+
+#programs{
+  background:#fff3e6;
+}
 
-      color: white;
+.program-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(3,1fr);
 
-      box-shadow:
-        0 5px 20px #0004;
-    }
-
-    .navbar {
-      min-height: 75px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-logo {
-      font-size: 38px;
-    }
-
-    .brand-text h1 {
-      font-size: 22px;
-      line-height: 1.2;
-    }
-
-    .brand-text small {
-      opacity: .85;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      padding: 9px 12px;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: .2s;
-    }
-
-    nav a:hover {
-      background: #ffffff22;
-    }
-
-    .admin-btn {
-      background: #f05a28;
-      color: white;
-    }
-
-
-    /* =========================================
-       HERO
-    ========================================= */
-
-    .hero {
-      min-height: 600px;
-
-      display: flex;
-      align-items: center;
-
-      text-align: center;
-
-      color: white;
-
-      background:
-        radial-gradient(
-          circle at center,
-          #b94815,
-          #8a2c0c 45%,
-          #2b0b02 100%
-        );
-
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "🙏";
-
-      position: absolute;
-
-      font-size: 300px;
-
-      opacity: .06;
-
-      left: 50%;
-      top: 50%;
-
-      transform:
-        translate(-50%, -50%);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-icon {
-      font-size: 90px;
-      margin-bottom: 10px;
-    }
-
-    .hero h2 {
-      font-size: clamp(35px, 7vw, 70px);
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      font-size: 21px;
-      opacity: .92;
-      margin-bottom: 28px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .hero-btn {
-      display: inline-block;
-      padding: 14px 24px;
-      border-radius: 12px;
-      font-weight: bold;
-    }
-
-    .primary-btn {
-      background: #f05a28;
-      color: white;
-    }
-
-    .secondary-btn {
-      background: white;
-      color: #8a2c0c;
-    }
-
-
-    /* =========================================
-       COMMON SECTION
-    ========================================= */
-
-    .section {
-      padding: 70px 0;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+  gap:20px;
+}
 
-    .section-title h2 {
-      color: #8a2c0c;
-      font-size: 34px;
-      margin-bottom: 8px;
-    }
-
-    .section-title p {
-      color: #765e51;
-    }
-
-
-    /* =========================================
-       ABOUT
-    ========================================= */
-
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      align-items: center;
-    }
-
-    .about-card {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-
-      box-shadow:
-        0 8px 30px #00000012;
-    }
-
-    .about-card h3 {
-      color: #f05a28;
-      margin-bottom: 15px;
-      font-size: 25px;
-    }
-
-    .about-highlight {
-      background:
-        linear-gradient(
-          135deg,
-          #ffeeda,
-          #fff5ea
-        );
-
-      padding: 35px;
+.program-card{
+  background:white;
 
-      border-radius: 20px;
-
-      text-align: center;
-    }
+  padding:24px;
 
-    .about-highlight .big {
-      font-size: 70px;
-      margin-bottom: 10px;
-    }
-
-
-    /* =========================================
-       PROGRAMS
-    ========================================= */
+  border-radius:18px;
 
-    #programs {
-      background: #fff3e6;
-    }
+  border-top:
+    5px solid var(--primary);
 
-    .program-grid {
-      display: grid;
-      grid-template-columns:
-        repeat(3, 1fr);
+  box-shadow:
+    0 8px 25px #00000010;
 
-      gap: 20px;
-    }
+  transition:
+    transform .2s,
+    box-shadow .2s;
+}
 
-    .program-card {
-      background: white;
+.program-card:hover{
+  transform:translateY(-5px);
 
-      padding: 24px;
+  box-shadow:
+    0 15px 35px #00000018;
+}
 
-      border-radius: 18px;
+.program-icon{
+  font-size:35px;
+  margin-bottom:10px;
+}
 
-      border-top:
-        5px solid #f05a28;
+.program-card h3{
+  color:#8a2c0c;
+  margin-bottom:10px;
+  font-size:23px;
+}
+
+.program-date,
+.program-time{
+  color:var(--primary);
+  font-weight:bold;
+  margin:5px 0;
+}
 
-      box-shadow:
-        0 8px 25px #00000010;
+.program-description{
+  color:#765e51;
+  margin-top:10px;
+}
 
-      transition:
-        transform .2s,
-        box-shadow .2s;
-    }
+.loading{
+  text-align:center;
+  padding:30px;
+  color:#765e51;
+  grid-column:1/-1;
+}
 
-    .program-card:hover {
-      transform: translateY(-5px);
+.empty{
+  text-align:center;
+  padding:35px;
 
-      box-shadow:
-        0 15px 35px #00000018;
-    }
+  background:white;
 
-    .program-icon {
-      font-size: 35px;
-      margin-bottom: 10px;
-    }
+  border-radius:18px;
 
-    .program-card h3 {
-      color: #8a2c0c;
-      margin-bottom: 10px;
-    }
+  grid-column:1/-1;
 
-    .program-date,
-    .program-time {
-      color: #f05a28;
-      font-weight: bold;
-      margin: 5px 0;
-    }
+  color:#765e51;
+}
 
-    .program-description {
-      color: #765e51;
-      margin-top: 10px;
-    }
 
-    .loading {
-      text-align: center;
-      padding: 30px;
-      color: #765e51;
-      grid-column: 1 / -1;
-    }
+/* =========================================
+   FINANCE
+========================================= */
 
-    .empty {
-      text-align: center;
-      padding: 35px;
+.finance-section{
+  background:white;
+}
 
-      background: white;
+.finance-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(3,1fr);
 
-      border-radius: 18px;
+  gap:20px;
+}
 
-      grid-column: 1 / -1;
+.finance-card{
+  padding:30px;
 
-      color: #765e51;
-    }
+  text-align:center;
 
+  border-radius:20px;
+}
 
-    /* =========================================
-       FINANCE
-    ========================================= */
+.finance-card strong{
+  display:block;
 
-    .finance-section {
-      background: white;
-    }
+  font-size:32px;
 
-    .finance-grid {
-      display: grid;
-      grid-template-columns:
-        repeat(3, 1fr);
+  margin-bottom:5px;
+}
 
-      gap: 20px;
-    }
+.finance-green{
+  background:#d9f8e5;
+  color:#16834b;
+}
 
-    .finance-card {
-      padding: 30px;
+.finance-red{
+  background:#ffe1df;
+  color:#c93613;
+}
 
-      text-align: center;
+.finance-blue{
+  background:#e3efff;
+  color:#225c9b;
+}
 
-      border-radius: 20px;
-    }
+.finance-note{
+  text-align:center;
+  color:#765e51;
+  margin-top:20px;
+  font-size:14px;
+}
 
-    .finance-card strong {
-      display: block;
 
-      font-size: 32px;
+/* =========================================
+   DONATION
+========================================= */
 
-      margin-bottom: 5px;
-    }
+.donation-box{
+  background:
+    linear-gradient(
+      135deg,
+      #2b0b02,
+      #8a2c0c
+    );
 
-    .finance-green {
-      background: #d9f8e5;
-      color: #16834b;
-    }
+  color:white;
 
-    .finance-red {
-      background: #ffe1df;
-      color: #c93613;
-    }
+  padding:45px;
 
-    .finance-blue {
-      background: #e3efff;
-      color: #225c9b;
-    }
+  border-radius:25px;
 
-    .finance-note {
-      text-align: center;
+  text-align:center;
+}
 
-      color: #765e51;
+.donation-box h2{
+  font-size:32px;
+  margin-bottom:10px;
+}
 
-      margin-top: 20px;
+.donation-box p{
+  opacity:.9;
+  margin-bottom:20px;
+}
 
-      font-size: 14px;
-    }
+.upi-box{
+  display:inline-block;
 
+  background:white;
 
-    /* =========================================
-       DONATION
-    ========================================= */
+  color:#35170b;
 
-    .donation-box {
-      background:
-        linear-gradient(
-          135deg,
-          #2b0b02,
-          #8a2c0c
-        );
+  padding:18px 25px;
 
-      color: white;
+  border-radius:15px;
 
-      padding: 45px;
+  margin:10px;
+}
 
-      border-radius: 25px;
 
-      text-align: center;
-    }
+/* =========================================
+   GALLERY
+========================================= */
 
-    .donation-box h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
+#gallery{
+  background:#fff3e6;
+}
 
-    .donation-box p {
-      opacity: .9;
-      margin-bottom: 20px;
-    }
+.gallery-wrapper{
+  position:relative;
+  overflow:hidden;
+  width:100%;
+  border-radius:20px;
+}
 
-    .upi-box {
-      display: inline-block;
+.gallery-slider{
+  display:flex;
+  gap:15px;
 
-      background: white;
+  overflow-x:auto;
+  scroll-behavior:smooth;
 
-      color: #35170b;
+  scrollbar-width:none;
 
-      padding: 18px 25px;
+  padding:5px;
+}
 
-      border-radius: 15px;
+.gallery-slider::-webkit-scrollbar{
+  display:none;
+}
 
-      margin: 10px;
-    }
+.gallery-item{
+  flex:0 0 270px;
 
+  height:200px;
 
-    /* =========================================
-       GALLERY
-    ========================================= */
+  position:relative;
 
-    #gallery {
-      background: #fff3e6;
-    }
+  background:
+    linear-gradient(
+      135deg,
+      #ffeeda,
+      #f8d0b5
+    );
 
-    .gallery-grid {
-      display: grid;
+  border-radius:16px;
 
-      grid-template-columns:
-        repeat(3, 1fr);
+  overflow:hidden;
 
-      gap: 18px;
-    }
+  cursor:pointer;
 
-    .gallery-item {
-      height: 240px;
+  box-shadow:
+    0 8px 20px #00000012;
+}
 
-      background:
-        linear-gradient(
-          135deg,
-          #ffeeda,
-          #f8d0b5
-        );
+.gallery-item img{
+  width:100%;
+  height:100%;
 
-      border-radius: 18px;
+  object-fit:cover;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  transition:
+    transform .5s;
+}
 
-      overflow: hidden;
-    }
+.gallery-item:hover img{
+  transform:scale(1.08);
+}
 
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
+.gallery-placeholder{
+  width:100%;
+  height:100%;
 
-      object-fit: cover;
-    }
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-    .gallery-placeholder {
-      text-align: center;
-      color: #8a2c0c;
-      font-size: 50px;
-    }
+  text-align:center;
 
+  color:#8a2c0c;
 
-    /* =========================================
-       NOTICE
-    ========================================= */
+  font-size:45px;
+}
 
-    .notice {
-      background: #fff8dc;
+.gallery-overlay{
+  position:absolute;
+  inset:0;
 
-      border-left:
-        5px solid #f05a28;
+  background:
+    linear-gradient(
+      transparent,
+      rgba(0,0,0,.65)
+    );
 
-      padding: 18px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
 
-      border-radius: 12px;
+  padding:15px;
 
-      margin-bottom: 12px;
-    }
+  color:white;
 
-    .notice strong {
-      color: #8a2c0c;
-    }
+  opacity:0;
 
+  transition:.3s;
+}
 
-    /* =========================================
-       CONTACT
-    ========================================= */
+.gallery-item:hover .gallery-overlay{
+  opacity:1;
+}
 
-    .contact-grid {
-      display: grid;
 
-      grid-template-columns:
-        repeat(3, 1fr);
+/* Gallery arrows */
 
-      gap: 20px;
-    }
+.gallery-btn{
+  position:absolute;
 
-    .contact-card {
-      background: white;
+  top:50%;
 
-      padding: 25px;
+  transform:translateY(-50%);
 
-      border-radius: 18px;
+  width:42px;
+  height:42px;
 
-      text-align: center;
+  border:0;
 
-      box-shadow:
-        0 8px 25px #00000010;
-    }
+  border-radius:50%;
 
-    .contact-icon {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
+  background:rgba(255,255,255,.9);
 
-    .contact-card h3 {
-      color: #8a2c0c;
-      margin-bottom: 5px;
-    }
+  color:#8a2c0c;
 
+  font-size:24px;
 
-    /* =========================================
-       FOOTER
-    ========================================= */
+  cursor:pointer;
 
-    footer {
-      background: #35170b;
-      color: white;
+  z-index:5;
 
-      padding: 30px 0;
+  box-shadow:
+    0 5px 15px #0003;
+}
 
-      text-align: center;
-    }
+.gallery-prev{
+  left:10px;
+}
 
-    footer p {
-      margin: 5px;
-      opacity: .9;
-    }
+.gallery-next{
+  right:10px;
+}
 
 
-    /* =========================================
-       MOBILE
-    ========================================= */
+/* =========================================
+   NOTICE
+========================================= */
 
-    @media(max-width: 800px) {
+.notice{
+  background:#fff8dc;
 
-      .navbar {
-        flex-direction: column;
-        padding: 15px 0;
-      }
+  border-left:
+    5px solid var(--primary);
 
-      nav {
-        justify-content: center;
-      }
+  padding:18px;
 
-      .hero {
-        min-height: 500px;
-      }
+  border-radius:12px;
 
-      .about,
-      .program-grid,
-      .finance-grid,
-      .gallery-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
+  margin-bottom:12px;
+}
 
-      .section {
-        padding: 50px 0;
-      }
+.notice strong{
+  color:#8a2c0c;
+}
 
-      .hero h2 {
-        font-size: 40px;
-      }
 
-      .hero p {
-        font-size: 18px;
-      }
+/* =========================================
+   CONTACT
+========================================= */
 
-      .donation-box {
-        padding: 30px 20px;
-      }
+.contact-grid{
+  display:grid;
 
-    }
+  grid-template-columns:
+    repeat(3,1fr);
 
-  </style>
+  gap:20px;
+}
+
+.contact-card{
+  background:white;
+
+  padding:25px;
+
+  border-radius:18px;
+
+  text-align:center;
+
+  box-shadow:
+    0 8px 25px #00000010;
+}
+
+.contact-icon{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.contact-card h3{
+  color:#8a2c0c;
+  margin-bottom:5px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer{
+  background:#35170b;
+  color:white;
+
+  padding:30px 0;
+
+  text-align:center;
+}
+
+footer p{
+  margin:5px;
+  opacity:.9;
+}
+
+
+/* =========================================
+   LIGHTBOX
+========================================= */
+
+.lightbox{
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.92);
+
+  z-index:9999;
+
+  display:none;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+}
+
+.lightbox.active{
+  display:flex;
+}
+
+.lightbox img{
+  max-width:92%;
+  max-height:85vh;
+
+  border-radius:12px;
+}
+
+.close-lightbox{
+  position:absolute;
+
+  top:20px;
+  right:25px;
+
+  border:0;
+
+  background:transparent;
+
+  color:white;
+
+  font-size:38px;
+
+  cursor:pointer;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:800px){
+
+  .navbar{
+    flex-direction:column;
+    padding:15px 0;
+  }
+
+  nav{
+    justify-content:center;
+  }
+
+  .hero{
+    min-height:500px;
+  }
+
+  .about,
+  .program-grid,
+  .finance-grid,
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  .section{
+    padding:50px 0;
+  }
+
+  .hero h2{
+    font-size:40px;
+  }
+
+  .hero p{
+    font-size:18px;
+  }
+
+  .donation-box{
+    padding:30px 20px;
+  }
+
+  .gallery-item{
+    flex:0 0 230px;
+    height:170px;
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media(max-width:500px){
+
+  .brand-text h1{
+    font-size:19px;
+  }
+
+  nav{
+    gap:3px;
+  }
+
+  nav a{
+    padding:7px 8px;
+    font-size:14px;
+  }
+
+  .gallery-item{
+    flex:0 0 210px;
+    height:155px;
+  }
+
+}
+
+</style>
 
 </head>
 
@@ -660,72 +857,72 @@
 
 
 <!-- =========================================
-     NAVIGATION
+     HEADER
 ========================================= -->
 
 <header>
 
-  <div class="container navbar">
+<div class="container navbar">
 
-    <a
-      href="#home"
-      class="brand"
-    >
+<a href="#home" class="brand">
 
-      <div class="brand-logo">
-        🙏
-      </div>
+<div class="brand-logo">
+🙏
+</div>
 
-      <div class="brand-text">
+<div class="brand-text">
 
-        <h1>
-          एकोपा गणेश मंडळ
-        </h1>
+<h1>
+एकोपा गणेश मंडळ
+</h1>
 
-        <small>
-          एकता • संस्कृती • सेवा
-        </small>
+<small>
+एकता • संस्कृती • सेवा
+</small>
 
-      </div>
+</div>
 
-    </a>
+</a>
 
 
-    <nav>
+<nav>
 
-      <a href="#home">
-        मुख्यपृष्ठ
-      </a>
+<a href="#home">
+मुख्यपृष्ठ
+</a>
 
-      <a href="#about">
-        मंडळाविषयी
-      </a>
+<a href="#about">
+मंडळाविषयी
+</a>
 
-      <a href="#programs">
-        कार्यक्रम
-      </a>
+<a href="#programs">
+कार्यक्रम
+</a>
 
-      <a href="#gallery">
-        Gallery
-      </a>
+<a href="#gallery">
+Gallery
+</a>
 
-      <a href="#contact">
-        संपर्क
-      </a>
+<a href="#finance">
+आर्थिक स्थिती
+</a>
 
-      <a
-        href="admin.html"
-        class="admin-btn"
-      >
-        Admin
-      </a>
+<a href="#contact">
+संपर्क
+</a>
 
-    </nav>
+<a
+href="admin.html"
+class="admin-btn"
+>
+Admin
+</a>
 
-  </div>
+</nav>
+
+</div>
 
 </header>
-
 
 
 <!-- =========================================
@@ -733,47 +930,46 @@
 ========================================= -->
 
 <section
-  class="hero"
-  id="home"
+class="hero"
+id="home"
 >
 
-  <div class="container hero-content">
+<div class="container hero-content">
 
-    <div class="hero-icon">
-      🙏
-    </div>
+<div class="hero-icon">
+🙏
+</div>
 
-    <h2>
-      गणपती बाप्पा मोरया!
-    </h2>
+<h2>
+गणपती बाप्पा मोरया!
+</h2>
 
-    <p>
-      एकोपा गणेश मंडळात आपले
-      हार्दिक स्वागत आहे.
-    </p>
+<p>
+एकोपा गणेश मंडळात आपले
+हार्दिक स्वागत आहे.
+</p>
 
-    <div class="hero-buttons">
+<div class="hero-buttons">
 
-      <a
-        href="#programs"
-        class="hero-btn primary-btn"
-      >
-        📅 कार्यक्रम पहा
-      </a>
+<a
+href="#programs"
+class="hero-btn primary-btn"
+>
+📅 कार्यक्रम पहा
+</a>
 
-      <a
-        href="#donation"
-        class="hero-btn secondary-btn"
-      >
-        ❤️ देणगी द्या
-      </a>
+<a
+href="#donation"
+class="hero-btn secondary-btn"
+>
+❤️ देणगी द्या
+</a>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
 </section>
-
 
 
 <!-- =========================================
@@ -781,77 +977,76 @@
 ========================================= -->
 
 <section
-  class="section"
-  id="about"
+class="section"
+id="about"
 >
 
-  <div class="container">
+<div class="container">
 
-    <div class="section-title">
+<div class="section-title">
 
-      <h2>
-        🙏 मंडळाविषयी
-      </h2>
+<h2>
+🙏 मंडळाविषयी
+</h2>
 
-      <p>
-        आपल्या सर्वांच्या सहभागातून
-        गणेशोत्सवाचा आनंद
-      </p>
+<p>
+आपल्या सर्वांच्या सहभागातून
+गणेशोत्सवाचा आनंद
+</p>
 
-    </div>
-
-
-    <div class="about">
-
-      <div class="about-card">
-
-        <h3>
-          एकोपा गणेश मंडळ
-        </h3>
-
-        <p>
-          एकता, संस्कृती आणि सामाजिक
-          बांधिलकी जपत गणेशोत्सव
-          साजरा करण्यासाठी
-          एकोपा गणेश मंडळ कार्यरत आहे.
-        </p>
-
-        <br>
-
-        <p>
-          विविध धार्मिक, सांस्कृतिक आणि
-          सामाजिक कार्यक्रमांच्या माध्यमातून
-          समाजातील सर्वांना एकत्र आणणे
-          हा आमचा मुख्य उद्देश आहे.
-        </p>
-
-      </div>
+</div>
 
 
-      <div class="about-highlight">
+<div class="about">
 
-        <div class="big">
-          🪔
-        </div>
+<div class="about-card">
 
-        <h3>
-          एकता • संस्कृती • सेवा
-        </h3>
+<h3>
+एकोपा गणेश मंडळ
+</h3>
 
-        <p>
-          गणेशोत्सव हा केवळ उत्सव नाही,
-          तर आपल्या सर्वांना जोडणारा
-          एक सुंदर संस्कार आहे.
-        </p>
+<p>
+एकता, संस्कृती आणि सामाजिक
+बांधिलकी जपत गणेशोत्सव
+साजरा करण्यासाठी
+एकोपा गणेश मंडळ कार्यरत आहे.
+</p>
 
-      </div>
+<br>
 
-    </div>
+<p>
+विविध धार्मिक, सांस्कृतिक आणि
+सामाजिक कार्यक्रमांच्या माध्यमातून
+समाजातील सर्वांना एकत्र आणणे
+हा आमचा मुख्य उद्देश आहे.
+</p>
 
-  </div>
+</div>
+
+
+<div class="about-highlight">
+
+<div class="big">
+🪔
+</div>
+
+<h3>
+एकता • संस्कृती • सेवा
+</h3>
+
+<p>
+गणेशोत्सव हा केवळ उत्सव नाही,
+तर आपल्या सर्वांना जोडणारा
+एक सुंदर संस्कार आहे.
+</p>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
-
 
 
 <!-- =========================================
@@ -859,41 +1054,40 @@
 ========================================= -->
 
 <section
-  class="section"
-  id="programs"
+class="section"
+id="programs"
 >
 
-  <div class="container">
+<div class="container">
 
-    <div class="section-title">
+<div class="section-title">
 
-      <h2>
-        📅 आगामी कार्यक्रम
-      </h2>
+<h2>
+📅 आगामी कार्यक्रम
+</h2>
 
-      <p>
-        Admin Panel मधून प्रकाशित केलेले
-        कार्यक्रम येथे दिसतील.
-      </p>
+<p>
+Admin Panel मधून प्रकाशित केलेले
+कार्यक्रम येथे दिसतील.
+</p>
 
-    </div>
+</div>
 
 
-    <div
-      class="program-grid"
-      id="programList"
-    >
+<div
+class="program-grid"
+id="programList"
+>
 
-      <div class="loading">
-        कार्यक्रम Loading...
-      </div>
+<div class="loading">
+कार्यक्रम Loading...
+</div>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
 </section>
-
 
 
 <!-- =========================================
@@ -901,77 +1095,77 @@
 ========================================= -->
 
 <section
-  class="section finance-section"
-  id="finance"
+class="section finance-section"
+id="finance"
 >
 
-  <div class="container">
+<div class="container">
 
-    <div class="section-title">
+<div class="section-title">
 
-      <h2>
-        💰 मंडळाची आर्थिक स्थिती
-      </h2>
+<h2>
+💰 मंडळाची आर्थिक स्थिती
+</h2>
 
-      <p>
-        पारदर्शकता आणि विश्वासासाठी
-      </p>
+<p>
+पारदर्शकता आणि विश्वासासाठी
+</p>
 
-    </div>
-
-
-    <div class="finance-grid">
-
-      <div
-        class="finance-card finance-green"
-      >
-
-        <strong id="publicDonation">
-          ₹0
-        </strong>
-
-        एकूण जमा
-
-      </div>
+</div>
 
 
-      <div
-        class="finance-card finance-red"
-      >
-
-        <strong id="publicExpense">
-          ₹0
-        </strong>
-
-        एकूण खर्च
-
-      </div>
+<div class="finance-grid">
 
 
-      <div
-        class="finance-card finance-blue"
-      >
+<div
+class="finance-card finance-green"
+>
 
-        <strong id="publicBalance">
-          ₹0
-        </strong>
+<strong id="publicDonation">
+₹0
+</strong>
 
-        शिल्लक निधी
+एकूण जमा
 
-      </div>
-
-    </div>
+</div>
 
 
-    <p class="finance-note">
-      * ही माहिती मंडळाच्या नोंदीनुसार
-      दर्शविली जाते.
-    </p>
+<div
+class="finance-card finance-red"
+>
 
-  </div>
+<strong id="publicExpense">
+₹0
+</strong>
+
+एकूण खर्च
+
+</div>
+
+
+<div
+class="finance-card finance-blue"
+>
+
+<strong id="publicBalance">
+₹0
+</strong>
+
+शिल्लक निधी
+
+</div>
+
+</div>
+
+
+<p class="finance-note">
+* ही माहिती मंडळाच्या नोंदीनुसार
+दर्शविली जाते.
+</p>
+
+</div>
 
 </section>
-
 
 
 <!-- =========================================
@@ -979,59 +1173,58 @@
 ========================================= -->
 
 <section
-  class="section"
-  id="donation"
+class="section"
+id="donation"
 >
 
-  <div class="container">
+<div class="container">
 
-    <div class="donation-box">
+<div class="donation-box">
 
-      <h2>
-        ❤️ मंडळाला देणगी द्या
-      </h2>
+<h2>
+❤️ मंडळाला देणगी द्या
+</h2>
 
-      <p>
-        आपल्या छोट्याशा योगदानातून
-        गणेशोत्सव अधिक सुंदर बनवूया.
-      </p>
-
-
-      <div class="upi-box">
-
-        <strong>
-          UPI
-        </strong>
-
-        <br>
-
-        <span>
-          तुमची UPI ID येथे टाका
-        </span>
-
-      </div>
+<p>
+आपल्या छोट्याशा योगदानातून
+गणेशोत्सव अधिक सुंदर बनवूया.
+</p>
 
 
-      <div class="upi-box">
+<div class="upi-box">
 
-        <strong>
-          📱 QR Code
-        </strong>
+<strong>
+UPI
+</strong>
 
-        <br>
+<br>
 
-        <span>
-          QR Code येथे ठेवता येईल
-        </span>
+<span>
+तुमची UPI ID येथे टाका
+</span>
 
-      </div>
+</div>
 
-    </div>
 
-  </div>
+<div class="upi-box">
+
+<strong>
+📱 QR Code
+</strong>
+
+<br>
+
+<span>
+QR Code येथे ठेवता येईल
+</span>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
-
 
 
 <!-- =========================================
@@ -1039,125 +1232,163 @@
 ========================================= -->
 
 <section
-  class="section"
-  id="notice"
+class="section"
+id="notice"
 >
 
-  <div class="container">
+<div class="container">
 
-    <div class="section-title">
+<div class="section-title">
 
-      <h2>
-        📢 सूचना
-      </h2>
+<h2>
+📢 सूचना
+</h2>
 
-      <p>
-        मंडळाच्या महत्त्वाच्या सूचना
-      </p>
+<p>
+मंडळाच्या महत्त्वाच्या सूचना
+</p>
 
-    </div>
-
-
-    <div class="notice">
-
-      <strong>
-        🔔 गणपती बाप्पा मोरया!
-      </strong>
-
-      <p>
-        गणेशोत्सवातील सर्व कार्यक्रमांना
-        वेळेवर उपस्थित राहावे.
-      </p>
-
-    </div>
+</div>
 
 
-    <div class="notice">
+<div class="notice">
 
-      <strong>
-        🙏 सर्वांचे स्वागत आहे
-      </strong>
+<strong>
+🔔 गणपती बाप्पा मोरया!
+</strong>
 
-      <p>
-        आपल्या सहकार्याबद्दल मनःपूर्वक धन्यवाद.
-      </p>
+<p>
+गणेशोत्सवातील सर्व कार्यक्रमांना
+वेळेवर उपस्थित राहावे.
+</p>
 
-    </div>
-
-  </div>
-
-</section>
+</div>
 
 
+<div class="notice">
 
-<!-- =========================================
-     GALLERY
-========================================= -->
+<strong>
+🙏 सर्वांचे स्वागत आहे
+</strong>
 
-<!-- =========================================
-     GALLERY
-========================================= -->
+<p>
+आपल्या सहकार्याबद्दल मनःपूर्वक धन्यवाद.
+</p>
 
-<!-- =========================================
-     GALLERY
-========================================= -->
+</div>
 
-<section class="section gallery" id="gallery">
-
-  <div class="container">
-
-    <div class="section-heading">
-      <div class="small-title">आठवणी</div>
-
-      <h2>🖼️ Gallery</h2>
-
-      <p>गणेशोत्सवाच्या सुंदर आठवणी</p>
-
-      <div class="heading-line"></div>
-    </div>
-
-    <div class="gallery-grid">
-
-      <div class="gallery-item">
-        <img src="assets/gallery1.jpg" alt="गणेशोत्सव फोटो 1">
-        <div class="gallery-overlay">🔍</div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="assets/gallery2.jpg" alt="गणेशोत्सव फोटो 2">
-        <div class="gallery-overlay">🔍</div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="assets/gallery3.jpg" alt="गणेशोत्सव फोटो 3">
-        <div class="gallery-overlay">🔍</div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="assets/gallery4.jpg" alt="गणेशोत्सव फोटो 4">
-        <div class="gallery-overlay">🔍</div>
-      </div>
-     <div class="gallery-item">
-        <img src="assets/gallery5.jpg" alt="गणेशोत्सव फोटो 4">
-        <div class="gallery-overlay">🔍</div>
-      </div>
-       <div class="gallery-item">
-        <img src="assets/ekopa.jpg" alt="गणेशोत्सव फोटो 4">
-        <div class="gallery-overlay">🔍</div>
-      </div>
-    </div>
-
-  </div>
+</div>
 
 </section>
+
+
 <!-- =========================================
-     GALLERY LIGHTBOX
+     GALLERY
 ========================================= -->
 
+<section
+class="section"
+id="gallery"
+>
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+🖼️ Gallery
+</h2>
+
+<p>
+गणेशोत्सवाच्या काही आठवणी
+</p>
+
+</div>
 
 
+<div class="gallery-wrapper">
+
+<button
+class="gallery-btn gallery-prev"
+id="galleryPrev"
+>
+‹
+</button>
 
 
+<div
+class="gallery-slider"
+id="gallerySlider"
+>
+
+
+<div class="gallery-item">
+
+<div class="gallery-placeholder">
+🙏
+</div>
+
+<div class="gallery-overlay">
+🙏
+</div>
+
+</div>
+
+
+<div class="gallery-item">
+
+<div class="gallery-placeholder">
+🪔
+</div>
+
+<div class="gallery-overlay">
+🪔
+</div>
+
+</div>
+
+
+<div class="gallery-item">
+
+<div class="gallery-placeholder">
+🌺
+</div>
+
+<div class="gallery-overlay">
+🌺
+</div>
+
+</div>
+
+
+<div class="gallery-item">
+
+<div class="gallery-placeholder">
+🎉
+</div>
+
+<div class="gallery-overlay">
+🎉
+</div>
+
+</div>
+
+
+</div>
+
+
+<button
+class="gallery-btn gallery-next"
+id="galleryNext"
+>
+›
+</button>
+
+</div>
+
+</div>
+
+</section>
 
 
 <!-- =========================================
@@ -1165,85 +1396,84 @@
 ========================================= -->
 
 <section
-  class="section"
-  id="contact"
+class="section"
+id="contact"
 >
 
-  <div class="container">
+<div class="container">
 
-    <div class="section-title">
+<div class="section-title">
 
-      <h2>
-        📞 संपर्क
-      </h2>
+<h2>
+📞 संपर्क
+</h2>
 
-      <p>
-        आमच्याशी संपर्क साधा
-      </p>
+<p>
+आमच्याशी संपर्क साधा
+</p>
 
-    </div>
-
-
-    <div class="contact-grid">
+</div>
 
 
-      <div class="contact-card">
-
-        <div class="contact-icon">
-          📱
-        </div>
-
-        <h3>
-          Mobile
-        </h3>
-
-        <p>
-          8830537590
-        </p>
-
-      </div>
+<div class="contact-grid">
 
 
-      <div class="contact-card">
+<div class="contact-card">
 
-        <div class="contact-icon">
-          📍
-        </div>
+<div class="contact-icon">
+📱
+</div>
 
-        <h3>
-          पत्ता
-        </h3>
+<h3>
+Mobile
+</h3>
 
-        <p>
-          एकोपा गणेश मंडळ कालगाव 
-        </p>
+<p>
+8830537590
+</p>
 
-      </div>
-
-
-      <div class="contact-card">
-
-        <div class="contact-icon">
-          📧
-        </div>
-
-        <h3>
-          Email
-        </h3>
-
-        <p>
-          ekopa87@gmail.com
-        </p>
-
-      </div>
+</div>
 
 
-    </div>
+<div class="contact-card">
 
-  </div>
+<div class="contact-icon">
+📍
+</div>
+
+<h3>
+पत्ता
+</h3>
+
+<p>
+एकोपा गणेश मंडळ
+</p>
+
+</div>
+
+
+<div class="contact-card">
+
+<div class="contact-icon">
+📧
+</div>
+
+<h3>
+Email
+</h3>
+
+<p>
+तुमचा Email येथे टाका
+</p>
+
+</div>
+
+
+</div>
+
+</div>
 
 </section>
-
 
 
 <!-- =========================================
@@ -1252,340 +1482,662 @@
 
 <footer>
 
-  <div class="container">
+<div class="container">
 
-    <p>
-      🙏 गणपती बाप्पा मोरया! 🙏
-    </p>
+<p>
+🙏 गणपती बाप्पा मोरया! 🙏
+</p>
 
-    <p>
-      © 2026 एकोपा गणेश मंडळ
-    </p>
+<p>
+© 2026 एकोपा गणेश मंडळ
+</p>
 
-    <p>
-      सर्व हक्क राखीव
-    </p>
+<p>
+सर्व हक्क राखीव
+</p>
 
-  </div>
+</div>
 
 </footer>
 
 
+<!-- =========================================
+     LIGHTBOX
+========================================= -->
+
+<div
+class="lightbox"
+id="lightbox"
+>
+
+<button
+class="close-lightbox"
+id="closeLightbox"
+>
+×
+</button>
+
+<img
+id="lightboxImage"
+src=""
+alt="Gallery Photo"
+>
+
+</div>
+
 
 <!-- =========================================
-     PUBLIC WEBSITE JAVASCRIPT
+     JAVASCRIPT
 ========================================= -->
 
 <script>
 
-  const API_URL =
-    "https://ganesh-b.onrender.com";
+/* =========================================
+   API
+========================================= */
+
+const API_URL =
+  "https://ganesh-b.onrender.com";
 
 
-  /* =========================================
-     SAFE HTML
-  ========================================= */
+/* =========================================
+   SAFE HTML
+========================================= */
 
-  function escapeHTML(value) {
+function escapeHTML(value){
 
-    return String(value ?? "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
-  }
+}
 
 
-  /* =========================================
-     LOAD PROGRAMS
-  ========================================= */
+/* =========================================
+   LOAD PROGRAMS
+========================================= */
 
-  async function loadPrograms() {
+async function loadPrograms(){
 
-    const list =
-      document.getElementById(
-        "programList"
+  const list =
+    document.getElementById("programList");
+
+  if(!list) return;
+
+
+  list.innerHTML = `
+    <div class="loading">
+      कार्यक्रम Loading...
+    </div>
+  `;
+
+
+  try{
+
+    const response =
+      await fetch(
+        `${API_URL}/api/programs`
       );
 
-    try {
 
-      const response =
-        await fetch(
-          `${API_URL}/api/programs`
-        );
+    if(!response.ok){
+
+      throw new Error(
+        "Programs API failed"
+      );
+
+    }
 
 
-      if (!response.ok) {
+    const data =
+      await response.json();
 
-        throw new Error(
-          "Programs API failed"
-        );
 
+    console.log(
+      "Programs API Response:",
+      data
+    );
+
+
+    /*
+      तुमच्या Backend response:
+
+      {
+        success: true,
+        programs: [...]
       }
 
+      म्हणून data.programs वापरायचे.
+    */
 
-      const programs =
-        await response.json();
-
-
-      if (
-        !Array.isArray(programs) ||
-        programs.length === 0
-      ) {
-
-        list.innerHTML = `
-
-          <div class="empty">
-
-            📅 सध्या कोणतेही
-            कार्यक्रम उपलब्ध नाहीत.
-
-            <br><br>
-
-            लवकरच नवीन कार्यक्रम
-            येथे प्रकाशित केले जातील.
-
-          </div>
-
-        `;
-
-        return;
-
-      }
+    const programs =
+      Array.isArray(data.programs)
+        ? data.programs
+        : [];
 
 
-      list.innerHTML = "";
-
-
-      programs.forEach(
-        program => {
-
-          const card =
-            document.createElement(
-              "div"
-            );
-
-          card.className =
-            "program-card";
-
-
-          const title =
-            escapeHTML(
-              program.title
-            );
-
-
-          const date =
-            escapeHTML(
-              program.program_date
-            );
-
-
-          const time =
-            escapeHTML(
-              program.program_time
-            );
-
-
-          const description =
-            escapeHTML(
-              program.description
-            );
-
-
-          card.innerHTML = `
-
-            <div class="program-icon">
-              🙏
-            </div>
-
-            <h3>
-              ${title}
-            </h3>
-
-            <div class="program-date">
-              📅 ${date}
-            </div>
-
-            ${
-              time
-                ? `
-                  <div class="program-time">
-                    ⏰ ${time}
-                  </div>
-                `
-                : ""
-            }
-
-            ${
-              description
-                ? `
-                  <p class="program-description">
-                    ${description}
-                  </p>
-                `
-                : ""
-            }
-
-          `;
-
-
-          list.appendChild(
-            card
-          );
-
-        }
-      );
-
-
-    } catch (error) {
-
-      console.error(
-        "Programs Error:",
-        error
-      );
-
+    if(programs.length === 0){
 
       list.innerHTML = `
 
         <div class="empty">
 
-          ⚠️ कार्यक्रम सध्या
-          load करता आले नाहीत.
+          📅 सध्या कोणतेही
+          कार्यक्रम उपलब्ध नाहीत.
 
           <br><br>
 
-          कृपया थोड्या वेळाने पुन्हा प्रयत्न करा.
+          Admin Panel मधून
+          नवीन कार्यक्रम Add करा.
 
         </div>
 
       `;
 
+      return;
+
     }
+
+
+    list.innerHTML = "";
+
+
+    programs.forEach(
+      program => {
+
+        const card =
+          document.createElement(
+            "div"
+          );
+
+
+        card.className =
+          "program-card";
+
+
+        const title =
+          escapeHTML(
+            program.title
+          );
+
+
+        const date =
+          escapeHTML(
+            formatDate(
+              program.program_date
+            )
+          );
+
+
+        const time =
+          escapeHTML(
+            program.program_time
+          );
+
+
+        const description =
+          escapeHTML(
+            program.description
+          );
+
+
+        card.innerHTML = `
+
+          <div class="program-icon">
+            🙏
+          </div>
+
+          <h3>
+            ${title}
+          </h3>
+
+          <div class="program-date">
+            📅 ${date}
+          </div>
+
+          ${
+            time
+              ? `
+                <div class="program-time">
+                  ⏰ ${time}
+                </div>
+              `
+              : ""
+          }
+
+          ${
+            description
+              ? `
+                <p class="program-description">
+                  ${description}
+                </p>
+              `
+              : ""
+          }
+
+        `;
+
+
+        list.appendChild(card);
+
+      }
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Programs Error:",
+      error
+    );
+
+
+    list.innerHTML = `
+
+      <div class="empty">
+
+        ⚠️ कार्यक्रम load करता आले नाहीत.
+
+        <br><br>
+
+        Backend server connection
+        तपासा.
+
+      </div>
+
+    `;
 
   }
 
+}
 
 
-  /* =========================================
-     LOAD FINANCE
-  ========================================= */
+/* =========================================
+   DATE FORMAT
+========================================= */
 
-  async function loadFinance() {
+function formatDate(dateValue){
 
-    try {
-
-      const response =
-        await fetch(
-          `${API_URL}/api/finance/summary`
-        );
+  if(!dateValue){
+    return "";
+  }
 
 
-      if (!response.ok) {
-
-        throw new Error(
-          "Finance API failed"
-        );
-
-      }
+  const date =
+    new Date(dateValue);
 
 
-      const data =
-        await response.json();
+  if(isNaN(date.getTime())){
+    return dateValue;
+  }
 
 
-      const donation =
-        Number(
-          data.total_donations ??
-          data.totalDonation ??
-          0
-        );
+  return date.toLocaleDateString(
+    "mr-IN",
+    {
+      day:"numeric",
+      month:"long",
+      year:"numeric"
+    }
+  );
+
+}
 
 
-      const expense =
-        Number(
-          data.total_expenses ??
-          data.totalExpense ??
-          0
-        );
+/* =========================================
+   LOAD FINANCE
+========================================= */
 
+async function loadFinance(){
 
-      const balance =
-        Number(
-          data.balance ??
-          donation - expense
-        );
+  try{
 
-
-      document.getElementById(
-        "publicDonation"
-      ).textContent =
-        formatMoney(donation);
-
-
-      document.getElementById(
-        "publicExpense"
-      ).textContent =
-        formatMoney(expense);
-
-
-      document.getElementById(
-        "publicBalance"
-      ).textContent =
-        formatMoney(balance);
-
-
-    } catch (error) {
-
-      console.error(
-        "Finance Error:",
-        error
+    const response =
+      await fetch(
+        `${API_URL}/api/finance/summary`
       );
 
-      /*
-       * API unavailable असल्यास
-       * public website चालूच राहील.
-       */
+
+    if(!response.ok){
+
+      throw new Error(
+        "Finance API failed"
+      );
 
     }
 
-  }
+
+    const data =
+      await response.json();
 
 
+    const donation =
+      Number(
+        data.total_donations ??
+        data.totalDonation ??
+        0
+      );
 
-  /* =========================================
-     MONEY FORMAT
-  ========================================= */
 
-  function formatMoney(amount) {
+    const expense =
+      Number(
+        data.total_expenses ??
+        data.totalExpense ??
+        0
+      );
 
-    return new Intl.NumberFormat(
-      "en-IN",
-      {
-        style: "currency",
-        currency: "INR",
-        maximumFractionDigits: 0
-      }
-    ).format(
-      Number(amount) || 0
+
+    const balance =
+      Number(
+        data.balance ??
+        donation - expense
+      );
+
+
+    document.getElementById(
+      "publicDonation"
+    ).textContent =
+      formatMoney(donation);
+
+
+    document.getElementById(
+      "publicExpense"
+    ).textContent =
+      formatMoney(expense);
+
+
+    document.getElementById(
+      "publicBalance"
+    ).textContent =
+      formatMoney(balance);
+
+
+  }catch(error){
+
+    console.error(
+      "Finance Error:",
+      error
     );
 
   }
 
+}
 
 
-  /* =========================================
-     START
-  ========================================= */
+/* =========================================
+   MONEY
+========================================= */
 
-  loadPrograms();
+function formatMoney(amount){
 
-  loadFinance();
+  return new Intl.NumberFormat(
+    "en-IN",
+    {
+      style:"currency",
+      currency:"INR",
+      maximumFractionDigits:0
+    }
+  ).format(
+    Number(amount) || 0
+  );
+
+}
+
+
+/* =========================================
+   GALLERY SLIDER
+========================================= */
+
+const gallerySlider =
+  document.getElementById(
+    "gallerySlider"
+  );
+
+const galleryNext =
+  document.getElementById(
+    "galleryNext"
+  );
+
+const galleryPrev =
+  document.getElementById(
+    "galleryPrev"
+  );
+
+
+if(gallerySlider){
+
+  galleryNext.addEventListener(
+    "click",
+    () => {
+
+      gallerySlider.scrollBy({
+        left:290,
+        behavior:"smooth"
+      });
+
+    }
+  );
+
+
+  galleryPrev.addEventListener(
+    "click",
+    () => {
+
+      gallerySlider.scrollBy({
+        left:-290,
+        behavior:"smooth"
+      });
+
+    }
+  );
+
+}
+
+
+/* =========================================
+   AUTO SLIDE
+========================================= */
+
+let galleryAutoSlide =
+  setInterval(
+    () => {
+
+      if(!gallerySlider) return;
+
+
+      const maxScroll =
+        gallerySlider.scrollWidth -
+        gallerySlider.clientWidth;
+
+
+      if(
+        gallerySlider.scrollLeft >=
+        maxScroll - 10
+      ){
+
+        gallerySlider.scrollTo({
+          left:0,
+          behavior:"smooth"
+        });
+
+      }else{
+
+        gallerySlider.scrollBy({
+          left:225,
+          behavior:"smooth"
+        });
+
+      }
+
+    },
+    3000
+  );
+
+
+if(gallerySlider){
+
+  gallerySlider.addEventListener(
+    "mouseenter",
+    () => {
+      clearInterval(
+        galleryAutoSlide
+      );
+    }
+  );
+
+
+  gallerySlider.addEventListener(
+    "mouseleave",
+    () => {
+
+      galleryAutoSlide =
+        setInterval(
+          () => {
+
+            const maxScroll =
+              gallerySlider.scrollWidth -
+              gallerySlider.clientWidth;
+
+
+            if(
+              gallerySlider.scrollLeft >=
+              maxScroll - 10
+            ){
+
+              gallerySlider.scrollTo({
+                left:0,
+                behavior:"smooth"
+              });
+
+            }else{
+
+              gallerySlider.scrollBy({
+                left:225,
+                behavior:"smooth"
+              });
+
+            }
+
+          },
+          3000
+        );
+
+    }
+  );
+
+}
+
+
+/* =========================================
+   LIGHTBOX
+========================================= */
+
+const lightbox =
+  document.getElementById(
+    "lightbox"
+  );
+
+const lightboxImage =
+  document.getElementById(
+    "lightboxImage"
+  );
+
+
+document.querySelectorAll(
+  ".gallery-item"
+).forEach(
+  item => {
+
+    item.addEventListener(
+      "click",
+      () => {
+
+        const image =
+          item.querySelector(
+            "img"
+          );
+
+
+        if(!image) return;
+
+
+        lightboxImage.src =
+          image.src;
+
+
+        lightbox.classList.add(
+          "active"
+        );
+
+      }
+    );
+
+  }
+);
+
+
+document.getElementById(
+  "closeLightbox"
+).addEventListener(
+  "click",
+  () => {
+
+    lightbox.classList.remove(
+      "active"
+    );
+
+  }
+);
+
+
+lightbox.addEventListener(
+  "click",
+  event => {
+
+    if(
+      event.target === lightbox
+    ){
+
+      lightbox.classList.remove(
+        "active"
+      );
+
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(
+      event.key === "Escape"
+    ){
+
+      lightbox.classList.remove(
+        "active"
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================
+   START
+========================================= */
+
+loadPrograms();
+
+loadFinance();
 
 </script>
-
 
 </body>
 
