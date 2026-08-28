@@ -28,6 +28,10 @@
 
   <style>
 
+    /* =====================================
+       RESET
+    ===================================== */
+
     * {
       margin: 0;
       padding: 0;
@@ -36,11 +40,14 @@
 
 
     :root {
+
       --primary: #f05a28;
       --primary-dark: #c93613;
       --gold: #f6b73c;
+
       --dark: #241006;
       --brown: #4a1d08;
+
       --cream: #fff8ed;
       --white: #ffffff;
 
@@ -55,39 +62,58 @@
 
 
     body {
+
       font-family:
         "Baloo 2",
         sans-serif;
 
-      background: var(--cream);
+      background:
+        var(--cream);
 
-      color: var(--dark);
+      color:
+        var(--dark);
 
-      overflow-x: hidden;
+      overflow-x:
+        hidden;
     }
 
 
     img {
-      max-width: 100%;
-      display: block;
+
+      max-width:
+        100%;
+
+      display:
+        block;
     }
 
 
     a {
-      text-decoration: none;
-      color: inherit;
+
+      text-decoration:
+        none;
+
+      color:
+        inherit;
     }
 
 
     button {
-      font-family: inherit;
+
+      font-family:
+        inherit;
     }
 
 
     .container {
-      width: min(1150px, 92%);
-      margin: auto;
+
+      width:
+        min(1150px,92%);
+
+      margin:
+        auto;
     }
+
 
 
     /* =====================================
@@ -96,33 +122,49 @@
 
     #preloader {
 
-      position: fixed;
+      position:
+        fixed;
 
-      inset: 0;
+      inset:
+        0;
 
-      background: #200900;
+      background:
+        #200900;
 
-      z-index: 99999;
+      z-index:
+        99999;
 
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
+      align-items:
+        center;
 
-      justify-content: center;
+      justify-content:
+        center;
 
-      transition: opacity .5s ease;
+      transition:
+        opacity .5s ease;
     }
 
 
     .loader {
-      text-align: center;
-      color: white;
+
+      text-align:
+        center;
+
+      color:
+        white;
     }
 
 
     .om {
-      font-size: 70px;
-      color: var(--gold);
+
+      font-size:
+        70px;
+
+      color:
+        var(--gold);
 
       animation:
         pulse 1.2s infinite;
@@ -130,18 +172,24 @@
 
 
     .loader p {
-      font-size: 20px;
+
+      font-size:
+        20px;
     }
 
 
     @keyframes pulse {
 
       50% {
-        transform: scale(1.15);
-        opacity: .7;
-      }
 
+        transform:
+          scale(1.15);
+
+        opacity:
+          .7;
+      }
     }
+
 
 
     /* =====================================
@@ -150,19 +198,26 @@
 
     .navbar {
 
-      position: fixed;
+      position:
+        fixed;
 
-      top: 0;
+      top:
+        0;
 
-      left: 0;
+      left:
+        0;
 
-      width: 100%;
+      width:
+        100%;
 
-      z-index: 1000;
+      z-index:
+        1000;
 
-      padding: 12px 0;
+      padding:
+        12px 0;
 
-      transition: .3s;
+      transition:
+        .3s;
     }
 
 
@@ -178,114 +233,154 @@
 
     .nav-container {
 
-      width: min(1200px,94%);
+      width:
+        min(1200px,94%);
 
-      margin: auto;
+      margin:
+        auto;
 
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
+      align-items:
+        center;
 
-      justify-content: space-between;
+      justify-content:
+        space-between;
     }
 
 
     .logo {
 
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
+      align-items:
+        center;
 
-      gap: 10px;
+      gap:
+        10px;
 
-      color: white;
+      color:
+        white;
     }
 
 
     .logo-icon {
-      font-size: 34px;
+
+      font-size:
+        34px;
     }
 
 
     .logo strong {
 
-      display: block;
+      display:
+        block;
 
-      font-size: 23px;
+      font-size:
+        23px;
 
-      line-height: 22px;
+      line-height:
+        22px;
     }
 
 
     .logo small {
 
-      font-size: 12px;
+      font-size:
+        12px;
 
-      color: var(--gold);
+      color:
+        var(--gold);
     }
 
 
     nav {
 
-      display: flex;
+      display:
+        flex;
 
-      gap: 22px;
+      gap:
+        22px;
 
-      align-items: center;
+      align-items:
+        center;
     }
 
 
     nav a {
 
-      color: white;
+      color:
+        white;
 
-      font-size: 16px;
+      font-size:
+        16px;
 
-      font-weight: 600;
+      font-weight:
+        600;
 
-      position: relative;
+      position:
+        relative;
     }
 
 
     nav a::after {
 
-      content: "";
+      content:
+        "";
 
-      position: absolute;
+      position:
+        absolute;
 
-      left: 0;
+      left:
+        0;
 
-      bottom: -5px;
+      bottom:
+        -5px;
 
-      width: 0;
+      width:
+        0;
 
-      height: 2px;
+      height:
+        2px;
 
-      background: var(--gold);
+      background:
+        var(--gold);
 
-      transition: .3s;
+      transition:
+        .3s;
     }
 
 
     nav a:hover::after {
-      width: 100%;
+
+      width:
+        100%;
     }
 
 
     .menu-btn {
 
-      display: none;
+      display:
+        none;
 
-      border: 0;
+      border:
+        0;
 
-      background: transparent;
+      background:
+        transparent;
 
-      color: white;
+      color:
+        white;
 
-      font-size: 26px;
+      font-size:
+        26px;
 
-      cursor: pointer;
+      cursor:
+        pointer;
     }
+
 
 
     /* =====================================
@@ -294,29 +389,38 @@
 
     .hero {
 
-      height: 680px;
+      min-height:
+        680px;
 
-      min-height: 680px;
+      height:
+        680px;
 
-      position: relative;
+      position:
+        relative;
 
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
+      align-items:
+        center;
 
-      justify-content: center;
+      justify-content:
+        center;
 
-      text-align: center;
+      text-align:
+        center;
 
-      color: white;
+      color:
+        white;
 
-      overflow: hidden;
+      overflow:
+        hidden;
 
       background:
 
         linear-gradient(
-          rgba(35,8,0,.38),
-          rgba(35,8,0,.68)
+          rgba(35,8,0,.40),
+          rgba(35,8,0,.72)
         ),
 
         url("./assets/ganpati.jpg")
@@ -329,32 +433,41 @@
 
     .hero::after {
 
-      content: "";
+      content:
+        "";
 
-      position: absolute;
+      position:
+        absolute;
 
-      inset: 0;
+      inset:
+        0;
 
       background:
+
         radial-gradient(
           circle at center,
           transparent 15%,
-          rgba(20,0,0,.35) 100%
+          rgba(20,0,0,.40) 100%
         );
 
-      pointer-events: none;
+      pointer-events:
+        none;
     }
 
 
     .hero-content {
 
-      position: relative;
+      position:
+        relative;
 
-      z-index: 2;
+      z-index:
+        2;
 
-      width: 90%;
+      width:
+        90%;
 
-      max-width: 850px;
+      max-width:
+        850px;
 
       animation:
         heroIn 1s ease;
@@ -364,23 +477,32 @@
     @keyframes heroIn {
 
       from {
-        opacity: 0;
-        transform: translateY(30px);
+
+        opacity:
+          0;
+
+        transform:
+          translateY(30px);
       }
 
       to {
-        opacity: 1;
-        transform: translateY(0);
-      }
 
+        opacity:
+          1;
+
+        transform:
+          translateY(0);
+      }
     }
 
 
     .ganesh-symbol {
 
-      font-size: 62px;
+      font-size:
+        62px;
 
-      margin-bottom: 5px;
+      margin-bottom:
+        5px;
 
       filter:
         drop-shadow(
@@ -391,9 +513,11 @@
 
     .welcome {
 
-      color: var(--gold);
+      color:
+        var(--gold);
 
-      font-size: 20px;
+      font-size:
+        20px;
 
       font-family:
         "Tiro Devanagari Marathi",
@@ -410,9 +534,11 @@
       font-size:
         clamp(42px,7vw,75px);
 
-      line-height: 1.15;
+      line-height:
+        1.15;
 
-      margin: 8px 0;
+      margin:
+        8px 0;
 
       text-shadow:
         0 5px 20px rgba(0,0,0,.55);
@@ -427,45 +553,60 @@
 
 
     .hero h2 span {
-      color: var(--gold);
+
+      color:
+        var(--gold);
     }
 
 
     .hero-text {
 
-      font-size: 19px;
+      font-size:
+        19px;
 
-      letter-spacing: 2px;
+      letter-spacing:
+        2px;
 
-      margin-top: 8px;
+      margin-top:
+        8px;
     }
 
 
     .hero-buttons {
 
-      margin-top: 25px;
+      margin-top:
+        25px;
 
-      display: flex;
+      display:
+        flex;
 
-      justify-content: center;
+      justify-content:
+        center;
 
-      gap: 12px;
+      gap:
+        12px;
 
-      flex-wrap: wrap;
+      flex-wrap:
+        wrap;
     }
 
 
     .btn {
 
-      padding: 11px 25px;
+      padding:
+        11px 25px;
 
-      border-radius: 50px;
+      border-radius:
+        50px;
 
-      font-size: 17px;
+      font-size:
+        17px;
 
-      font-weight: 700;
+      font-weight:
+        700;
 
-      transition: .3s;
+      transition:
+        .3s;
     }
 
 
@@ -474,7 +615,8 @@
       background:
         var(--primary);
 
-      color: white;
+      color:
+        white;
     }
 
 
@@ -493,33 +635,43 @@
       border:
         2px solid white;
 
-      color: white;
+      color:
+        white;
     }
 
 
     .secondary-btn:hover {
 
-      background: white;
+      background:
+        white;
 
-      color: var(--brown);
+      color:
+        var(--brown);
     }
 
 
     .scroll-down {
 
-      position: absolute;
+      position:
+        absolute;
 
-      bottom: 20px;
+      bottom:
+        20px;
 
-      display: flex;
+      display:
+        flex;
 
-      flex-direction: column;
+      flex-direction:
+        column;
 
-      align-items: center;
+      align-items:
+        center;
 
-      gap: 3px;
+      gap:
+        3px;
 
-      z-index: 3;
+      z-index:
+        3;
 
       animation:
         bounce 1.5s infinite;
@@ -527,44 +679,54 @@
 
 
     .scroll-down span {
-      font-size: 12px;
+
+      font-size:
+        12px;
     }
 
 
     @keyframes bounce {
 
       50% {
-        transform: translateY(7px);
-      }
 
+        transform:
+          translateY(7px);
+      }
     }
 
 
+
     /* =====================================
-       COMMON
+       COMMON SECTIONS
     ===================================== */
 
     .section {
 
-      padding: 75px 0;
+      padding:
+        75px 0;
     }
 
 
     .section-heading {
 
-      text-align: center;
+      text-align:
+        center;
 
-      margin-bottom: 40px;
+      margin-bottom:
+        40px;
     }
 
 
     .small-title {
 
-      color: var(--primary);
+      color:
+        var(--primary);
 
-      font-weight: 700;
+      font-weight:
+        700;
 
-      font-size: 17px;
+      font-size:
+        17px;
     }
 
 
@@ -577,31 +739,39 @@
       font-size:
         clamp(30px,5vw,45px);
 
-      margin: 4px 0;
+      margin:
+        4px 0;
     }
 
 
     .section-heading p {
 
-      font-size: 16px;
+      font-size:
+        16px;
 
-      color: #765e51;
+      color:
+        #765e51;
     }
 
 
     .heading-line {
 
-      width: 70px;
+      width:
+        70px;
 
-      height: 4px;
+      height:
+        4px;
 
       background:
         var(--primary);
 
-      margin: 10px auto;
+      margin:
+        10px auto;
 
-      border-radius: 5px;
+      border-radius:
+        5px;
     }
+
 
 
     /* =====================================
@@ -609,37 +779,48 @@
     ===================================== */
 
     .about {
-      background: white;
+
+      background:
+        white;
     }
 
 
     .about-grid {
 
-      display: grid;
+      display:
+        grid;
 
       grid-template-columns:
         1fr 1fr;
 
-      gap: 45px;
+      gap:
+        45px;
 
-      align-items: center;
+      align-items:
+        center;
     }
 
 
     .about-image {
-      position: relative;
+
+      position:
+        relative;
     }
 
 
     .about-image img {
 
-      width: 100%;
+      width:
+        100%;
 
-      height: 450px;
+      height:
+        450px;
 
-      object-fit: cover;
+      object-fit:
+        cover;
 
-      border-radius: 22px;
+      border-radius:
+        22px;
 
       box-shadow:
         var(--shadow);
@@ -648,43 +829,56 @@
 
     .image-badge {
 
-      position: absolute;
+      position:
+        absolute;
 
-      bottom: 20px;
+      bottom:
+        20px;
 
-      right: 20px;
+      right:
+        20px;
 
       background:
         var(--primary);
 
-      color: white;
+      color:
+        white;
 
-      padding: 12px 18px;
+      padding:
+        12px 18px;
 
-      border-radius: 13px;
+      border-radius:
+        13px;
 
-      text-align: center;
+      text-align:
+        center;
     }
 
 
     .image-badge strong {
 
-      display: block;
+      display:
+        block;
 
-      font-size: 25px;
+      font-size:
+        25px;
     }
 
 
     .image-badge span {
-      font-size: 13px;
+
+      font-size:
+        13px;
     }
 
 
     .about-label {
 
-      color: var(--primary);
+      color:
+        var(--primary);
 
-      font-weight: 700;
+      font-weight:
+        700;
     }
 
 
@@ -694,76 +888,100 @@
         "Tiro Devanagari Marathi",
         serif;
 
-      font-size: 34px;
+      font-size:
+        34px;
 
-      margin: 8px 0;
+      margin:
+        8px 0;
     }
 
 
     .about-content > p {
 
-      font-size: 17px;
+      font-size:
+        17px;
 
-      line-height: 1.8;
+      line-height:
+        1.8;
 
-      color: #70594c;
+      color:
+        #70594c;
 
-      margin-bottom: 12px;
+      margin-bottom:
+        12px;
     }
 
 
     .features {
 
-      display: grid;
+      display:
+        grid;
 
       grid-template-columns:
         1fr 1fr;
 
-      gap: 14px;
+      gap:
+        14px;
 
-      margin-top: 20px;
+      margin-top:
+        20px;
     }
 
 
     .feature {
 
-      display: flex;
+      display:
+        flex;
 
-      gap: 10px;
+      gap:
+        10px;
 
-      align-items: center;
+      align-items:
+        center;
     }
 
 
     .feature-icon {
 
-      width: 45px;
+      width:
+        45px;
 
-      height: 45px;
+      height:
+        45px;
 
-      background: #fff0df;
+      background:
+        #fff0df;
 
-      display: grid;
+      display:
+        grid;
 
-      place-items: center;
+      place-items:
+        center;
 
-      border-radius: 50%;
+      border-radius:
+        50%;
 
-      font-size: 21px;
+      font-size:
+        21px;
     }
 
 
     .feature h4 {
-      font-size: 17px;
+
+      font-size:
+        17px;
     }
 
 
     .feature p {
 
-      font-size: 13px;
+      font-size:
+        13px;
 
-      color: #876f60;
+      color:
+        #876f60;
     }
+
 
 
     /* =====================================
@@ -772,7 +990,8 @@
 
     .countdown-section {
 
-      padding: 45px 0;
+      padding:
+        45px 0;
 
       background:
         linear-gradient(
@@ -781,46 +1000,60 @@
           #8c280c
         );
 
-      color: white;
+      color:
+        white;
 
-      text-align: center;
+      text-align:
+        center;
     }
 
 
     .countdown-title {
 
-      display: flex;
+      display:
+        flex;
 
-      justify-content: center;
+      justify-content:
+        center;
 
-      align-items: center;
+      align-items:
+        center;
 
-      gap: 12px;
+      gap:
+        12px;
     }
 
 
     .countdown-title h2 {
-      font-size: 27px;
+
+      font-size:
+        27px;
     }
 
 
     .countdown {
 
-      display: flex;
+      display:
+        flex;
 
-      justify-content: center;
+      justify-content:
+        center;
 
-      gap: 15px;
+      gap:
+        15px;
 
-      margin-top: 20px;
+      margin-top:
+        20px;
     }
 
 
     .time-box {
 
-      min-width: 95px;
+      min-width:
+        95px;
 
-      padding: 12px;
+      padding:
+        12px;
 
       background:
         rgba(255,255,255,.12);
@@ -828,7 +1061,8 @@
       border:
         1px solid rgba(255,255,255,.2);
 
-      border-radius: 14px;
+      border-radius:
+        14px;
 
       backdrop-filter:
         blur(8px);
@@ -837,17 +1071,23 @@
 
     .time-box strong {
 
-      display: block;
+      display:
+        block;
 
-      font-size: 34px;
+      font-size:
+        34px;
 
-      color: var(--gold);
+      color:
+        var(--gold);
     }
 
 
     .time-box span {
-      font-size: 14px;
+
+      font-size:
+        14px;
     }
+
 
 
     /* =====================================
@@ -855,34 +1095,44 @@
     ===================================== */
 
     .events {
-      background: #fff9f1;
+
+      background:
+        #fff9f1;
     }
 
 
     .event-grid {
 
-      display: grid;
+      display:
+        grid;
 
       grid-template-columns:
         repeat(2,1fr);
 
-      gap: 18px;
+      gap:
+        18px;
     }
 
 
     .event-card {
 
-      background: white;
+      background:
+        white;
 
-      border-radius: 17px;
+      border-radius:
+        17px;
 
-      padding: 20px;
+      padding:
+        20px;
 
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
+      align-items:
+        center;
 
-      gap: 17px;
+      gap:
+        17px;
 
       box-shadow:
         0 8px 25px rgba(70,20,0,.08);
@@ -890,7 +1140,8 @@
       border-left:
         5px solid var(--primary);
 
-      transition: .3s;
+      transition:
+        .3s;
     }
 
 
@@ -909,72 +1160,101 @@
       background:
         var(--primary);
 
-      color: white;
+      color:
+        white;
 
-      min-width: 72px;
+      min-width:
+        72px;
 
-      height: 75px;
+      height:
+        75px;
 
-      border-radius: 11px;
+      border-radius:
+        11px;
 
-      display: flex;
+      display:
+        flex;
 
-      flex-direction: column;
+      flex-direction:
+        column;
 
-      align-items: center;
+      align-items:
+        center;
 
-      justify-content: center;
+      justify-content:
+        center;
+
+      text-align:
+        center;
     }
 
 
     .event-date strong {
 
-      font-size: 25px;
+      font-size:
+        20px;
 
-      line-height: 25px;
+      line-height:
+        23px;
     }
 
 
     .event-date span {
-      font-size: 12px;
+
+      font-size:
+        12px;
     }
 
 
     .event-icon {
-      font-size: 34px;
+
+      font-size:
+        34px;
     }
 
 
     .event-info h3 {
-      font-size: 21px;
+
+      font-size:
+        21px;
     }
 
 
     .event-info p {
-      color: #786458;
+
+      color:
+        #786458;
     }
 
 
     .event-time {
 
-      display: inline-block;
+      display:
+        inline-block;
 
-      margin-top: 5px;
+      margin-top:
+        5px;
 
-      color: var(--primary);
+      color:
+        var(--primary);
     }
 
 
     .loading {
 
-      grid-column: 1/-1;
+      grid-column:
+        1/-1;
 
-      text-align: center;
+      text-align:
+        center;
 
-      padding: 30px;
+      padding:
+        30px;
 
-      color: #765e51;
+      color:
+        #765e51;
     }
+
 
 
     /* =====================================
@@ -983,7 +1263,8 @@
 
     .aarti-section {
 
-      padding: 75px 0;
+      padding:
+        75px 0;
 
       background:
 
@@ -996,24 +1277,30 @@
 
         center/cover fixed;
 
-      color: white;
+      color:
+        white;
 
-      text-align: center;
+      text-align:
+        center;
     }
 
 
     .aarti-box {
 
-      max-width: 680px;
+      max-width:
+        680px;
 
-      margin: auto;
+      margin:
+        auto;
 
-      padding: 38px 22px;
+      padding:
+        38px 22px;
 
       border:
         1px solid rgba(255,255,255,.25);
 
-      border-radius: 22px;
+      border-radius:
+        22px;
 
       background:
         rgba(255,255,255,.08);
@@ -1024,245 +1311,483 @@
 
 
     .aarti-icon {
-      font-size: 50px;
+
+      font-size:
+        50px;
     }
 
 
     .aarti-box > span {
 
-      color: var(--gold);
+      color:
+        var(--gold);
 
-      font-size: 19px;
+      font-size:
+        19px;
     }
 
 
     .aarti-box h2 {
 
-      margin: 12px 0;
+      margin:
+        12px 0;
 
       font-family:
         "Tiro Devanagari Marathi",
         serif;
 
-      font-size: 28px;
+      font-size:
+        28px;
     }
 
 
     .aarti-box p {
 
-      font-size: 17px;
+      font-size:
+        17px;
 
-      line-height: 1.8;
+      line-height:
+        1.8;
     }
 
 
     .aarti-line {
 
-      width: 90px;
+      width:
+        90px;
 
-      height: 2px;
+      height:
+        2px;
 
       background:
         var(--gold);
 
-      margin: 18px auto;
+      margin:
+        18px auto;
     }
 
 
     .aarti-box strong {
 
-      font-size: 19px;
+      font-size:
+        19px;
 
-      color: var(--gold);
+      color:
+        var(--gold);
     }
 
 
+
     /* =====================================
-       GALLERY
+       GALLERY - NEW
     ===================================== */
 
     .gallery {
-      background: white;
+
+      background:
+        white;
     }
 
 
     .gallery-wrapper {
 
-      position: relative;
+      position:
+        relative;
 
-      width: 100%;
+      width:
+        100%;
 
-      max-width: 950px;
+      max-width:
+        1050px;
 
-      margin: auto;
+      margin:
+        auto;
 
-      overflow: hidden;
+      overflow:
+        hidden;
 
-      border-radius: 20px;
+      border-radius:
+        24px;
 
-      background: #fff7ee;
+      background:
+        #20120d;
 
-      padding: 12px;
+      padding:
+        10px;
 
       box-shadow:
-        0 10px 30px rgba(60,20,0,.10);
+        0 15px 45px rgba(60,20,0,.16);
     }
 
+
+    /*
+      IMPORTANT:
+
+      इथे fixed height नाही.
+
+      त्यामुळे फोटो 4:3,
+      16:9, portrait,
+      square काहीही असला तरी
+      crop होणार नाही.
+    */
 
     .gallery-slider {
 
-      position: relative;
+      position:
+        relative;
 
-      width: 100%;
+      width:
+        100%;
 
-      height: 420px;
+      height:
+        min(68vh,650px);
 
-      overflow: hidden;
+      min-height:
+        350px;
 
-      border-radius: 15px;
+      overflow:
+        hidden;
 
-      background: #fff7ee;
+      border-radius:
+        18px;
+
+      background:
+        #21130d;
     }
 
 
+    /*
+      प्रत्येक slide
+    */
+
     .gallery-item {
 
-      position: absolute;
+      position:
+        absolute;
 
-      inset: 0;
+      inset:
+        0;
 
-      width: 100%;
+      width:
+        100%;
 
-      height: 100%;
+      height:
+        100%;
 
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
+      align-items:
+        center;
 
-      justify-content: center;
+      justify-content:
+        center;
 
-      opacity: 0;
+      opacity:
+        0;
 
-      visibility: hidden;
+      visibility:
+        hidden;
 
-      transform: scale(.98);
+      transform:
+        scale(.985);
 
       transition:
         opacity .7s ease,
         transform .7s ease,
         visibility .7s ease;
+
+      cursor:
+        zoom-in;
+
+      overflow:
+        hidden;
     }
 
 
     .gallery-item.active {
 
-      opacity: 1;
+      opacity:
+        1;
 
-      visibility: visible;
+      visibility:
+        visible;
 
-      transform: scale(1);
+      transform:
+        scale(1);
 
-      z-index: 2;
+      z-index:
+        2;
     }
 
 
-    .gallery-item img {
+    /*
+      BLURRED BACKGROUND
 
-      width: 100%;
+      फोटो crop न करता screen
+      भरल्यासारखा look देण्यासाठी.
+    */
 
-      height: 100%;
+    .gallery-item::before {
 
-      /*
-       * contain मुळे फोटो कट होणार नाही.
-       */
-      object-fit: contain;
+      content:
+        "";
 
-      background: #fff7ee;
+      position:
+        absolute;
 
-      border-radius: 12px;
+      inset:
+        -35px;
+
+      background-image:
+        var(--slide-bg);
+
+      background-position:
+        center;
+
+      background-size:
+        cover;
+
+      filter:
+        blur(28px);
+
+      transform:
+        scale(1.12);
+
+      opacity:
+        .55;
+
+      z-index:
+        0;
     }
 
 
-    .gallery-overlay {
+    /*
+      Dark overlay
+    */
 
-      position: absolute;
+    .gallery-item::after {
 
-      inset: 0;
+      content:
+        "";
 
-      display: flex;
+      position:
+        absolute;
 
-      align-items: center;
-
-      justify-content: center;
+      inset:
+        0;
 
       background:
         rgba(0,0,0,.18);
 
-      color: white;
+      z-index:
+        1;
 
-      font-size: 35px;
+      pointer-events:
+        none;
+    }
 
-      opacity: 0;
 
-      transition: .3s;
+    /*
+      MAIN PHOTO
 
-      cursor: pointer;
+      contain = ZERO CROPPING
+    */
+
+    .gallery-item img {
+
+      position:
+        relative;
+
+      z-index:
+        2;
+
+      width:
+        auto;
+
+      height:
+        auto;
+
+      max-width:
+        100%;
+
+      max-height:
+        100%;
+
+      object-fit:
+        contain;
+
+      object-position:
+        center;
+
+      border-radius:
+        10px;
+
+      box-shadow:
+        0 10px 35px rgba(0,0,0,.35);
+
+      user-select:
+        none;
+
+      -webkit-user-drag:
+        none;
+
+      transition:
+        transform .5s ease;
+    }
+
+
+    /*
+      फोटोवर mouse ने गेल्यावर
+      हलका zoom
+    */
+
+    .gallery-item:hover img {
+
+      transform:
+        scale(1.015);
+    }
+
+
+    /*
+      SEARCH ICON
+    */
+
+    .gallery-overlay {
+
+      position:
+        absolute;
+
+      right:
+        20px;
+
+      bottom:
+        20px;
+
+      width:
+        48px;
+
+      height:
+        48px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      background:
+        rgba(0,0,0,.55);
+
+      backdrop-filter:
+        blur(5px);
+
+      color:
+        white;
+
+      font-size:
+        22px;
+
+      border-radius:
+        50%;
+
+      z-index:
+        5;
+
+      opacity:
+        .75;
+
+      transition:
+        .3s;
+
+      pointer-events:
+        none;
     }
 
 
     .gallery-item:hover
     .gallery-overlay {
 
-      opacity: 1;
+      opacity:
+        1;
+
+      transform:
+        scale(1.08);
     }
 
 
-    /* GALLERY ARROWS */
+
+    /* =====================================
+       GALLERY ARROWS
+    ===================================== */
 
     .gallery-prev,
     .gallery-next {
 
-      position: absolute;
+      position:
+        absolute;
 
-      top: 50%;
+      top:
+        50%;
 
       transform:
         translateY(-50%);
 
-      width: 48px;
+      width:
+        52px;
 
-      height: 48px;
+      height:
+        52px;
 
-      border: 0;
+      border:
+        0;
 
-      border-radius: 50%;
+      border-radius:
+        50%;
 
       background:
-        rgba(240,90,40,.92);
+        rgba(240,90,40,.94);
 
-      color: white;
+      color:
+        white;
 
-      font-size: 28px;
+      font-size:
+        34px;
 
-      cursor: pointer;
+      line-height:
+        1;
 
-      z-index: 10;
+      cursor:
+        pointer;
 
-      display: grid;
+      z-index:
+        20;
 
-      place-items: center;
+      display:
+        grid;
 
-      transition: .25s;
+      place-items:
+        center;
+
+      transition:
+        .25s;
+
+      box-shadow:
+        0 5px 20px rgba(0,0,0,.25);
     }
 
 
     .gallery-prev {
-      left: 18px;
+
+      left:
+        18px;
     }
 
 
     .gallery-next {
-      right: 18px;
+
+      right:
+        18px;
     }
 
 
@@ -1277,37 +1802,52 @@
     }
 
 
-    /* DOTS */
+
+    /* =====================================
+       GALLERY DOTS
+    ===================================== */
 
     .gallery-dots {
 
-      display: flex;
+      display:
+        flex;
 
-      justify-content: center;
+      justify-content:
+        center;
 
-      align-items: center;
+      align-items:
+        center;
 
-      gap: 8px;
+      gap:
+        8px;
 
-      margin-top: 15px;
+      margin-top:
+        15px;
     }
 
 
     .gallery-dot {
 
-      width: 11px;
+      width:
+        11px;
 
-      height: 11px;
+      height:
+        11px;
 
-      border: 0;
+      border:
+        0;
 
-      border-radius: 50%;
+      border-radius:
+        50%;
 
-      background: #e1c4ae;
+      background:
+        #e1c4ae;
 
-      cursor: pointer;
+      cursor:
+        pointer;
 
-      transition: .3s;
+      transition:
+        .3s;
     }
 
 
@@ -1317,8 +1857,9 @@
         var(--primary);
 
       transform:
-        scale(1.2);
+        scale(1.25);
     }
+
 
 
     /* =====================================
@@ -1334,20 +1875,26 @@
 
     .donation-wrapper {
 
-      display: grid;
+      display:
+        grid;
 
       grid-template-columns:
         1.2fr .8fr;
 
-      gap: 30px;
+      gap:
+        30px;
 
-      align-items: center;
+      align-items:
+        center;
 
-      background: white;
+      background:
+        white;
 
-      padding: 35px;
+      padding:
+        35px;
 
-      border-radius: 22px;
+      border-radius:
+        22px;
 
       box-shadow:
         var(--shadow);
@@ -1355,7 +1902,9 @@
 
 
     .donation-icon {
-      font-size: 50px;
+
+      font-size:
+        50px;
     }
 
 
@@ -1365,49 +1914,64 @@
         "Tiro Devanagari Marathi",
         serif;
 
-      font-size: 32px;
+      font-size:
+        32px;
 
-      margin: 8px 0;
+      margin:
+        8px 0;
     }
 
 
     .donation-text > p {
 
-      font-size: 17px;
+      font-size:
+        17px;
 
-      color: #70594c;
+      color:
+        #70594c;
 
-      line-height: 1.7;
+      line-height:
+        1.7;
     }
 
 
     .upi-info {
 
-      margin-top: 18px;
+      margin-top:
+        18px;
 
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
+      align-items:
+        center;
 
-      gap: 10px;
+      gap:
+        10px;
 
-      flex-wrap: wrap;
+      flex-wrap:
+        wrap;
     }
 
 
     .upi-info span {
-      color: #80685b;
+
+      color:
+        #80685b;
     }
 
 
     .upi-info strong {
-      color: var(--primary);
+
+      color:
+        var(--primary);
     }
 
 
     .upi-info button {
 
-      border: 0;
+      border:
+        0;
 
       background:
         #fff0df;
@@ -1415,48 +1979,62 @@
       padding:
         6px 13px;
 
-      border-radius: 20px;
+      border-radius:
+        20px;
 
-      cursor: pointer;
+      cursor:
+        pointer;
     }
 
 
     .qr-box {
 
-      text-align: center;
+      text-align:
+        center;
 
       background:
         #fff8ef;
 
-      padding: 22px;
+      padding:
+        22px;
 
-      border-radius: 18px;
+      border-radius:
+        18px;
     }
 
 
     .qr-title {
 
-      font-size: 19px;
+      font-size:
+        19px;
 
-      font-weight: 700;
+      font-weight:
+        700;
     }
 
 
     .qr-box img {
 
-      width: 190px;
+      width:
+        190px;
 
-      height: 190px;
+      height:
+        190px;
 
-      object-fit: contain;
+      object-fit:
+        contain;
 
-      margin: 12px auto;
+      margin:
+        12px auto;
     }
 
 
     .qr-box p {
-      color: #786458;
+
+      color:
+        #786458;
     }
+
 
 
     /* =====================================
@@ -1465,75 +2043,95 @@
 
     .finance {
 
-      background: white;
+      background:
+        white;
     }
 
 
     .finance-grid {
 
-      display: grid;
+      display:
+        grid;
 
       grid-template-columns:
         repeat(3,1fr);
 
-      gap: 18px;
+      gap:
+        18px;
     }
 
 
     .finance-card {
 
-      padding: 25px;
+      padding:
+        25px;
 
-      border-radius: 18px;
+      border-radius:
+        18px;
 
-      text-align: center;
+      text-align:
+        center;
     }
 
 
     .finance-card strong {
 
-      display: block;
+      display:
+        block;
 
-      font-size: 30px;
+      font-size:
+        30px;
 
-      margin-bottom: 4px;
+      margin-bottom:
+        4px;
     }
 
 
     .finance-green {
 
-      background: #d9f8e5;
+      background:
+        #d9f8e5;
 
-      color: #16834b;
+      color:
+        #16834b;
     }
 
 
     .finance-red {
 
-      background: #ffe1df;
+      background:
+        #ffe1df;
 
-      color: #c93613;
+      color:
+        #c93613;
     }
 
 
     .finance-blue {
 
-      background: #e3efff;
+      background:
+        #e3efff;
 
-      color: #225c9b;
+      color:
+        #225c9b;
     }
 
 
     .finance-note {
 
-      text-align: center;
+      text-align:
+        center;
 
-      color: #765e51;
+      color:
+        #765e51;
 
-      margin-top: 15px;
+      margin-top:
+        15px;
 
-      font-size: 13px;
+      font-size:
+        13px;
     }
+
 
 
     /* =====================================
@@ -1541,33 +2139,41 @@
     ===================================== */
 
     .contact {
-      background: white;
+
+      background:
+        white;
     }
 
 
     .contact-grid {
 
-      display: grid;
+      display:
+        grid;
 
       grid-template-columns:
         repeat(3,1fr);
 
-      gap: 18px;
+      gap:
+        18px;
     }
 
 
     .contact-card {
 
-      padding: 28px 18px;
+      padding:
+        28px 18px;
 
-      text-align: center;
+      text-align:
+        center;
 
-      border-radius: 18px;
+      border-radius:
+        18px;
 
       background:
         #fff9f1;
 
-      transition: .3s;
+      transition:
+        .3s;
     }
 
 
@@ -1580,41 +2186,54 @@
 
     .contact-icon {
 
-      width: 60px;
+      width:
+        60px;
 
-      height: 60px;
+      height:
+        60px;
 
-      display: grid;
+      display:
+        grid;
 
-      place-items: center;
+      place-items:
+        center;
 
-      margin: auto;
+      margin:
+        auto;
 
-      border-radius: 50%;
+      border-radius:
+        50%;
 
       background:
         var(--primary);
 
-      color: white;
+      color:
+        white;
 
-      font-size: 24px;
+      font-size:
+        24px;
     }
 
 
     .contact-card h3 {
 
-      margin-top: 12px;
+      margin-top:
+        12px;
 
-      font-size: 21px;
+      font-size:
+        21px;
     }
 
 
     .contact-card p {
 
-      margin: 6px 0;
+      margin:
+        6px 0;
 
-      color: #735f54;
+      color:
+        #735f54;
     }
+
 
 
     /* =====================================
@@ -1626,20 +2245,25 @@
       background:
         #260b02;
 
-      color: white;
+      color:
+        white;
 
-      text-align: center;
+      text-align:
+        center;
     }
 
 
     .footer-top {
 
-      padding: 40px 20px;
+      padding:
+        40px 20px;
     }
 
 
     .footer-logo {
-      font-size: 45px;
+
+      font-size:
+        45px;
     }
 
 
@@ -1649,31 +2273,39 @@
         "Tiro Devanagari Marathi",
         serif;
 
-      font-size: 28px;
+      font-size:
+        28px;
 
-      color: var(--gold);
+      color:
+        var(--gold);
     }
 
 
     .footer-top p {
 
-      margin-top: 5px;
+      margin-top:
+        5px;
 
-      color: #e5cbb9;
+      color:
+        #e5cbb9;
     }
 
 
     .footer-bottom {
 
-      padding: 15px;
+      padding:
+        15px;
 
       border-top:
         1px solid rgba(255,255,255,.1);
 
-      color: #bda99c;
+      color:
+        #bda99c;
 
-      font-size: 13px;
+      font-size:
+        13px;
     }
+
 
 
     /* =====================================
@@ -1682,193 +2314,273 @@
 
     .lightbox {
 
-      position: fixed;
+      position:
+        fixed;
 
-      inset: 0;
+      inset:
+        0;
 
       background:
-        rgba(0,0,0,.94);
+        rgba(0,0,0,.95);
 
-      z-index: 9999;
+      z-index:
+        9999;
 
-      display: none;
+      display:
+        none;
 
-      align-items: center;
+      align-items:
+        center;
 
-      justify-content: center;
+      justify-content:
+        center;
 
-      padding: 25px;
+      padding:
+        30px;
     }
 
 
     .lightbox.active {
-      display: flex;
+
+      display:
+        flex;
     }
 
 
     .lightbox img {
 
-      max-width: 94%;
+      max-width:
+        95vw;
 
-      max-height: 88vh;
+      max-height:
+        90vh;
 
-      width: auto;
+      width:
+        auto;
 
-      height: auto;
+      height:
+        auto;
 
-      object-fit: contain;
+      object-fit:
+        contain;
 
-      border-radius: 10px;
+      border-radius:
+        10px;
+
+      box-shadow:
+        0 20px 70px rgba(0,0,0,.6);
     }
 
 
     .close-lightbox {
 
-      position: absolute;
+      position:
+        absolute;
 
-      top: 18px;
+      top:
+        15px;
 
-      right: 25px;
+      right:
+        22px;
 
-      border: 0;
+      border:
+        0;
 
-      background: transparent;
+      background:
+        transparent;
 
-      color: white;
+      color:
+        white;
 
-      font-size: 38px;
+      font-size:
+        42px;
 
-      cursor: pointer;
+      cursor:
+        pointer;
+
+      z-index:
+        10;
     }
 
 
+
     /* =====================================
-       BACK TOP
+       BACK TO TOP
     ===================================== */
 
     #backTop {
 
-      position: fixed;
+      position:
+        fixed;
 
-      right: 18px;
+      right:
+        18px;
 
-      bottom: 18px;
+      bottom:
+        18px;
 
-      width: 44px;
+      width:
+        44px;
 
-      height: 44px;
+      height:
+        44px;
 
-      border: 0;
+      border:
+        0;
 
-      border-radius: 50%;
+      border-radius:
+        50%;
 
       background:
         var(--primary);
 
-      color: white;
+      color:
+        white;
 
-      cursor: pointer;
+      cursor:
+        pointer;
 
-      display: none;
+      display:
+        none;
 
-      z-index: 500;
+      z-index:
+        500;
 
-      font-size: 18px;
+      font-size:
+        18px;
     }
 
 
+
     /* =====================================
-       MOBILE
+       TABLET
     ===================================== */
 
     @media(max-width:900px) {
 
       nav {
 
-        position: absolute;
+        position:
+          absolute;
 
-        top: 68px;
+        top:
+          68px;
 
-        left: 4%;
+        left:
+          4%;
 
-        width: 92%;
+        width:
+          92%;
 
         background:
           #3b1205;
 
-        display: none;
+        display:
+          none;
 
-        flex-direction: column;
+        flex-direction:
+          column;
 
-        align-items: stretch;
+        align-items:
+          stretch;
 
-        gap: 0;
+        gap:
+          0;
 
-        padding: 18px;
+        padding:
+          18px;
 
-        border-radius: 14px;
+        border-radius:
+          14px;
       }
 
 
       nav.active {
-        display: flex;
+
+        display:
+          flex;
       }
 
 
       nav a {
-        padding: 10px 5px;
+
+        padding:
+          10px 5px;
       }
 
 
       .menu-btn {
-        display: block;
+
+        display:
+          block;
       }
 
 
       .about-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
       }
 
 
       .event-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
       }
 
 
       .donation-wrapper {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
       }
 
 
       .contact-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
       }
 
 
       .finance-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
       }
 
 
-      .gallery-wrapper {
-        max-width: 100%;
-      }
-
+      /*
+        Tablet gallery
+      */
 
       .gallery-slider {
-        height: 390px;
+
+        height:
+          min(65vh,560px);
+
+        min-height:
+          320px;
       }
 
     }
 
 
+
+    /* =====================================
+       MOBILE
+    ===================================== */
+
     @media(max-width:600px) {
 
       .hero {
 
-        height: 560px;
+        height:
+          560px;
 
-        min-height: 560px;
+        min-height:
+          560px;
 
         background-position:
           center center;
@@ -1876,153 +2588,272 @@
 
 
       .logo strong {
-        font-size: 20px;
+
+        font-size:
+          20px;
       }
 
 
       .logo small {
-        font-size: 10px;
+
+        font-size:
+          10px;
       }
 
 
       .ganesh-symbol {
-        font-size: 52px;
+
+        font-size:
+          52px;
       }
 
 
       .hero h1 {
-        font-size: 43px;
+
+        font-size:
+          43px;
       }
 
 
       .hero h2 {
-        font-size: 27px;
+
+        font-size:
+          27px;
       }
 
 
       .hero-text {
 
-        font-size: 15px;
+        font-size:
+          15px;
 
-        letter-spacing: 1px;
+        letter-spacing:
+          1px;
       }
 
 
       .section {
-        padding: 60px 0;
+
+        padding:
+          60px 0;
       }
 
 
       .about-image img {
-        height: 360px;
+
+        height:
+          360px;
       }
 
 
       .features {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
       }
 
 
       .countdown {
-        gap: 6px;
+
+        gap:
+          6px;
       }
 
 
       .time-box {
 
-        min-width: 65px;
+        min-width:
+          65px;
 
-        padding: 8px 4px;
+        padding:
+          8px 4px;
       }
 
 
       .time-box strong {
-        font-size: 25px;
+
+        font-size:
+          25px;
       }
 
 
       .time-box span {
-        font-size: 11px;
+
+        font-size:
+          11px;
       }
 
 
       .event-card {
-        padding: 14px;
-        gap: 9px;
+
+        padding:
+          14px;
+
+        gap:
+          9px;
       }
 
 
       .event-date {
 
-        min-width: 60px;
+        min-width:
+          60px;
 
-        height: 68px;
+        height:
+          68px;
       }
 
 
       .event-info h3 {
-        font-size: 18px;
+
+        font-size:
+          18px;
       }
 
 
+      /*
+        MOBILE GALLERY
+
+        फोटो crop नाही.
+      */
+
       .gallery-wrapper {
-        padding: 8px;
-        border-radius: 15px;
+
+        padding:
+          7px;
+
+        border-radius:
+          17px;
       }
 
 
       .gallery-slider {
 
-        height: 250px;
+        height:
+          72vh;
 
-        border-radius: 10px;
+        min-height:
+          300px;
+
+        max-height:
+          520px;
+
+        border-radius:
+          12px;
+      }
+
+
+      .gallery-item img {
+
+        max-width:
+          100%;
+
+        max-height:
+          100%;
+
+        border-radius:
+          7px;
       }
 
 
       .gallery-prev,
       .gallery-next {
 
-        width: 38px;
+        width:
+          40px;
 
-        height: 38px;
+        height:
+          40px;
 
-        font-size: 22px;
+        font-size:
+          25px;
       }
 
 
       .gallery-prev {
-        left: 10px;
+
+        left:
+          8px;
       }
 
 
       .gallery-next {
-        right: 10px;
+
+        right:
+          8px;
+      }
+
+
+      .gallery-overlay {
+
+        width:
+          40px;
+
+        height:
+          40px;
+
+        right:
+          12px;
+
+        bottom:
+          12px;
+
+        font-size:
+          18px;
       }
 
 
       .gallery-dot {
 
-        width: 9px;
+        width:
+          9px;
 
-        height: 9px;
+        height:
+          9px;
       }
 
 
       .donation-wrapper {
-        padding: 22px;
+
+        padding:
+          22px;
       }
 
 
       .donation-text h3 {
-        font-size: 27px;
+
+        font-size:
+          27px;
       }
 
 
       .qr-box img {
 
-        width: 170px;
+        width:
+          170px;
 
-        height: 170px;
+        height:
+          170px;
+      }
+
+
+      .lightbox {
+
+        padding:
+          15px;
+      }
+
+
+      .close-lightbox {
+
+        top:
+          8px;
+
+        right:
+          12px;
+
+        font-size:
+          36px;
       }
 
     }
@@ -2054,6 +2885,7 @@
   </div>
 
 </div>
+
 
 
 <!-- =====================================
@@ -2094,12 +2926,9 @@
     <button
       class="menu-btn"
       id="menuBtn"
+      aria-label="Menu"
     >
-
-      <i class="fa-solid fa-bars">
-        ☰
-      </i>
-
+      ☰
     </button>
 
 
@@ -2138,6 +2967,7 @@
   </div>
 
 </header>
+
 
 
 <!-- =====================================
@@ -2206,6 +3036,7 @@
 </section>
 
 
+
 <!-- =====================================
      ABOUT
 ===================================== -->
@@ -2239,14 +3070,12 @@
 
     <div class="about-grid">
 
-
       <div class="about-image">
 
         <img
           src="./assets/ganpati.jpg"
           alt="गणपती बाप्पा"
         >
-
 
         <div class="image-badge">
 
@@ -2384,6 +3213,7 @@
 </section>
 
 
+
 <!-- =====================================
      COUNTDOWN
 ===================================== -->
@@ -2394,17 +3224,13 @@
 
     <div class="countdown-title">
 
-      <span>
-        🪔
-      </span>
+      <span>🪔</span>
 
       <h2>
         गणेशोत्सवाला उरले
       </h2>
 
-      <span>
-        🪔
-      </span>
+      <span>🪔</span>
 
     </div>
 
@@ -2469,6 +3295,7 @@
 </section>
 
 
+
 <!-- =====================================
      PROGRAMS
 ===================================== -->
@@ -2516,6 +3343,7 @@
 </section>
 
 
+
 <!-- =====================================
      AARTI
 ===================================== -->
@@ -2556,6 +3384,7 @@
 </section>
 
 
+
 <!-- =====================================
      GALLERY
 ===================================== -->
@@ -2588,7 +3417,6 @@
 
     <div class="gallery-wrapper">
 
-
       <div
         class="gallery-slider"
         id="gallerySlider"
@@ -2597,11 +3425,15 @@
 
         <!-- PHOTO 1 -->
 
-        <div class="gallery-item active">
+        <div
+          class="gallery-item active"
+          style="--slide-bg:url('./assets/gallery1.jpg')"
+        >
 
           <img
             src="./assets/gallery1.jpg"
             alt="Gallery Photo 1"
+            draggable="false"
           >
 
           <div class="gallery-overlay">
@@ -2609,15 +3441,20 @@
           </div>
 
         </div>
+
 
 
         <!-- PHOTO 2 -->
 
-        <div class="gallery-item">
+        <div
+          class="gallery-item"
+          style="--slide-bg:url('./assets/gallery2.jpg')"
+        >
 
           <img
             src="./assets/gallery2.jpg"
             alt="Gallery Photo 2"
+            draggable="false"
           >
 
           <div class="gallery-overlay">
@@ -2625,15 +3462,20 @@
           </div>
 
         </div>
+
 
 
         <!-- PHOTO 3 -->
 
-        <div class="gallery-item">
+        <div
+          class="gallery-item"
+          style="--slide-bg:url('./assets/gallery3.jpg')"
+        >
 
           <img
             src="./assets/gallery3.jpg"
             alt="Gallery Photo 3"
+            draggable="false"
           >
 
           <div class="gallery-overlay">
@@ -2641,15 +3483,20 @@
           </div>
 
         </div>
+
 
 
         <!-- PHOTO 4 -->
 
-        <div class="gallery-item">
+        <div
+          class="gallery-item"
+          style="--slide-bg:url('./assets/gallery4.jpg')"
+        >
 
           <img
             src="./assets/gallery4.jpg"
             alt="Gallery Photo 4"
+            draggable="false"
           >
 
           <div class="gallery-overlay">
@@ -2658,6 +3505,9 @@
 
         </div>
 
+
+
+        <!-- ARROWS -->
 
         <button
           class="gallery-prev"
@@ -2693,6 +3543,7 @@
 </section>
 
 
+
 <!-- =====================================
      DONATION
 ===================================== -->
@@ -2705,7 +3556,6 @@
   <div class="container">
 
     <div class="donation-wrapper">
-
 
       <div class="donation-text">
 
@@ -2762,12 +3612,12 @@
 
       </div>
 
-
     </div>
 
   </div>
 
 </section>
+
 
 
 <!-- =====================================
@@ -2801,7 +3651,6 @@
 
 
     <div class="finance-grid">
-
 
       <div class="finance-card finance-green">
 
@@ -2848,6 +3697,7 @@
 </section>
 
 
+
 <!-- =====================================
      CONTACT
 ===================================== -->
@@ -2875,7 +3725,6 @@
 
 
     <div class="contact-grid">
-
 
       <div class="contact-card">
 
@@ -2934,6 +3783,7 @@
 </section>
 
 
+
 <!-- =====================================
      FOOTER
 ===================================== -->
@@ -2971,6 +3821,7 @@
 </footer>
 
 
+
 <!-- =====================================
      LIGHTBOX
 ===================================== -->
@@ -2983,6 +3834,7 @@
   <button
     class="close-lightbox"
     id="closeLightbox"
+    aria-label="Close"
   >
     ×
   </button>
@@ -2997,6 +3849,7 @@
 </div>
 
 
+
 <!-- =====================================
      BACK TO TOP
 ===================================== -->
@@ -3009,9 +3862,6 @@
 </button>
 
 
-<!-- =====================================
-     JAVASCRIPT
-===================================== -->
 
 <script>
 
@@ -3145,23 +3995,25 @@ function updateCountdown() {
     festivalDate - Date.now();
 
 
-  if (difference <= 0) return;
-
-
   const days =
-    document.getElementById("days");
-
+    document.getElementById(
+      "days"
+    );
 
   const hours =
-    document.getElementById("hours");
-
+    document.getElementById(
+      "hours"
+    );
 
   const minutes =
-    document.getElementById("minutes");
-
+    document.getElementById(
+      "minutes"
+    );
 
   const seconds =
-    document.getElementById("seconds");
+    document.getElementById(
+      "seconds"
+    );
 
 
   if (
@@ -3170,6 +4022,24 @@ function updateCountdown() {
     !minutes ||
     !seconds
   ) return;
+
+
+  if (difference <= 0) {
+
+    days.innerText =
+      "00";
+
+    hours.innerText =
+      "00";
+
+    minutes.innerText =
+      "00";
+
+    seconds.innerText =
+      "00";
+
+    return;
+  }
 
 
   days.innerText =
@@ -3247,14 +4117,49 @@ const galleryNext =
   );
 
 
-let currentGallery = 0;
+let currentGallery =
+  0;
 
 
-let galleryTimer;
+let galleryTimer =
+  null;
 
 
 
-/* CREATE DOTS */
+/* =====================================
+   SET BACKGROUND FROM IMAGE
+===================================== */
+
+galleryItems.forEach(
+  item => {
+
+    const image =
+      item.querySelector(
+        "img"
+      );
+
+
+    if (!image) return;
+
+
+    /*
+      Image URL browser मध्ये
+      automatically resolve होईल.
+    */
+
+    item.style.setProperty(
+      "--slide-bg",
+      `url("${image.getAttribute("src")}")`
+    );
+
+  }
+);
+
+
+
+/* =====================================
+   CREATE DOTS
+===================================== */
 
 if (
   galleryItems.length &&
@@ -3270,8 +4175,18 @@ if (
         );
 
 
+      dot.type =
+        "button";
+
+
       dot.className =
         "gallery-dot";
+
+
+      dot.setAttribute(
+        "aria-label",
+        `Photo ${index + 1}`
+      );
 
 
       if (index === 0) {
@@ -3308,7 +4223,9 @@ if (
 
 
 
-/* SHOW SLIDE */
+/* =====================================
+   SHOW SLIDE
+===================================== */
 
 function showGallerySlide(
   index
@@ -3318,13 +4235,10 @@ function showGallerySlide(
     return;
 
 
-  if (
-    index < 0
-  ) {
+  if (index < 0) {
 
     index =
       galleryItems.length - 1;
-
   }
 
 
@@ -3333,8 +4247,8 @@ function showGallerySlide(
     galleryItems.length
   ) {
 
-    index = 0;
-
+    index =
+      0;
   }
 
 
@@ -3379,7 +4293,9 @@ function showGallerySlide(
 
 
 
-/* NEXT */
+/* =====================================
+   NEXT
+===================================== */
 
 function nextGallery() {
 
@@ -3391,7 +4307,9 @@ function nextGallery() {
 
 
 
-/* PREVIOUS */
+/* =====================================
+   PREVIOUS
+===================================== */
 
 function previousGallery() {
 
@@ -3403,13 +4321,17 @@ function previousGallery() {
 
 
 
-/* BUTTONS */
+/* =====================================
+   BUTTONS
+===================================== */
 
 if (galleryNext) {
 
   galleryNext.addEventListener(
     "click",
-    () => {
+    event => {
+
+      event.stopPropagation();
 
       nextGallery();
 
@@ -3425,7 +4347,9 @@ if (galleryPrev) {
 
   galleryPrev.addEventListener(
     "click",
-    () => {
+    event => {
+
+      event.stopPropagation();
 
       previousGallery();
 
@@ -3438,14 +4362,25 @@ if (galleryPrev) {
 
 
 
-/* AUTO SLIDE */
+/* =====================================
+   AUTO SLIDE
+===================================== */
 
 function startGallery() {
 
+  clearInterval(
+    galleryTimer
+  );
+
+
   galleryTimer =
     setInterval(
-      nextGallery,
-      3500
+      () => {
+
+        nextGallery();
+
+      },
+      4000
     );
 
 }
@@ -3464,9 +4399,48 @@ function restartGallery() {
 
 if (galleryItems.length) {
 
-  showGallerySlide(0);
+  showGallerySlide(
+    0
+  );
 
   startGallery();
+
+}
+
+
+
+/* =====================================
+   PAUSE SLIDER ON HOVER
+===================================== */
+
+const gallerySlider =
+  document.getElementById(
+    "gallerySlider"
+  );
+
+
+if (gallerySlider) {
+
+  gallerySlider.addEventListener(
+    "mouseenter",
+    () => {
+
+      clearInterval(
+        galleryTimer
+      );
+
+    }
+  );
+
+
+  gallerySlider.addEventListener(
+    "mouseleave",
+    () => {
+
+      startGallery();
+
+    }
+  );
 
 }
 
@@ -3499,7 +4473,24 @@ galleryItems.forEach(
 
     item.addEventListener(
       "click",
-      () => {
+      event => {
+
+        /*
+          Arrow click असल्यास lightbox उघडू नये
+        */
+
+        if (
+          event.target.closest(
+            ".gallery-prev"
+          ) ||
+          event.target.closest(
+            ".gallery-next"
+          )
+        ) {
+
+          return;
+        }
+
 
         const image =
           item.querySelector(
@@ -3534,7 +4525,7 @@ galleryItems.forEach(
 
 
 
-function closeGallery() {
+function closeGalleryLightbox() {
 
   if (!lightbox) return;
 
@@ -3546,7 +4537,6 @@ function closeGallery() {
 
   document.body.style.overflow =
     "";
-
 }
 
 
@@ -3555,7 +4545,7 @@ if (closeLightbox) {
 
   closeLightbox.addEventListener(
     "click",
-    closeGallery
+    closeGalleryLightbox
   );
 
 }
@@ -3572,7 +4562,7 @@ if (lightbox) {
         lightbox
       ) {
 
-        closeGallery();
+        closeGalleryLightbox();
 
       }
 
@@ -3587,10 +4577,85 @@ document.addEventListener(
   event => {
 
     if (
-      event.key === "Escape"
+      event.key ===
+      "Escape"
     ) {
 
-      closeGallery();
+      closeGalleryLightbox();
+
+    }
+
+
+    if (
+      lightbox &&
+      lightbox.classList.contains("active")
+    ) {
+
+      if (
+        event.key ===
+        "ArrowRight"
+      ) {
+
+        /*
+          Lightbox मध्ये पुढचा photo
+          उघडणे
+        */
+
+        currentGallery++;
+
+        if (
+          currentGallery >=
+          galleryItems.length
+        ) {
+
+          currentGallery = 0;
+        }
+
+
+        const image =
+          galleryItems[
+            currentGallery
+          ].querySelector("img");
+
+
+        if (image) {
+
+          lightboxImage.src =
+            image.src;
+        }
+
+      }
+
+
+      if (
+        event.key ===
+        "ArrowLeft"
+      ) {
+
+        currentGallery--;
+
+        if (
+          currentGallery < 0
+        ) {
+
+          currentGallery =
+            galleryItems.length - 1;
+        }
+
+
+        const image =
+          galleryItems[
+            currentGallery
+          ].querySelector("img");
+
+
+        if (image) {
+
+          lightboxImage.src =
+            image.src;
+        }
+
+      }
 
     }
 
@@ -3685,8 +4750,13 @@ if (backTop) {
     () => {
 
       window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+
+        top:
+          0,
+
+        behavior:
+          "smooth"
+
       });
 
     }
@@ -3714,11 +4784,31 @@ function escapeHTML(value) {
   return String(
     value ?? ""
   )
-  .replaceAll("&","&amp;")
-  .replaceAll("<","&lt;")
-  .replaceAll(">","&gt;")
-  .replaceAll('"',"&quot;")
-  .replaceAll("'","&#039;");
+
+  .replaceAll(
+    "&",
+    "&amp;"
+  )
+
+  .replaceAll(
+    "<",
+    "&lt;"
+  )
+
+  .replaceAll(
+    ">",
+    "&gt;"
+  )
+
+  .replaceAll(
+    '"',
+    "&quot;"
+  )
+
+  .replaceAll(
+    "'",
+    "&#039;"
+  );
 
 }
 
@@ -3760,19 +4850,6 @@ async function loadPrograms() {
       await response.json();
 
 
-    /*
-      Backend कडून
-
-      {
-        success: true,
-        programs: [...]
-      }
-
-      किंवा direct array
-
-      दोन्ही support.
-    */
-
     const programs =
       Array.isArray(result)
         ? result
@@ -3805,7 +4882,8 @@ async function loadPrograms() {
     }
 
 
-    list.innerHTML = "";
+    list.innerHTML =
+      "";
 
 
     programs.forEach(
@@ -3849,10 +4927,6 @@ async function loadPrograms() {
           date;
 
 
-        /*
-          Date format
-        */
-
         if (date) {
 
           const parsedDate =
@@ -3869,8 +4943,11 @@ async function loadPrograms() {
               parsedDate.toLocaleDateString(
                 "mr-IN",
                 {
-                  day: "2-digit",
-                  month: "short"
+                  day:
+                    "2-digit",
+
+                  month:
+                    "short"
                 }
               );
 
@@ -4041,7 +5118,9 @@ async function loadFinance() {
     if (donationElement) {
 
       donationElement.innerText =
-        formatMoney(donation);
+        formatMoney(
+          donation
+        );
 
     }
 
@@ -4049,7 +5128,9 @@ async function loadFinance() {
     if (expenseElement) {
 
       expenseElement.innerText =
-        formatMoney(expense);
+        formatMoney(
+          expense
+        );
 
     }
 
@@ -4057,7 +5138,9 @@ async function loadFinance() {
     if (balanceElement) {
 
       balanceElement.innerText =
-        formatMoney(balance);
+        formatMoney(
+          balance
+        );
 
     }
 
@@ -4084,12 +5167,18 @@ function formatMoney(amount) {
   return new Intl.NumberFormat(
     "en-IN",
     {
-      style: "currency",
 
-      currency: "INR",
+      style:
+        "currency",
 
-      maximumFractionDigits: 0
+      currency:
+        "INR",
+
+      maximumFractionDigits:
+        0
+
     }
+
   ).format(
     Number(amount) || 0
   );
