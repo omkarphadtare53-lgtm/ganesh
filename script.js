@@ -101,7 +101,7 @@ if (menuBtn && navMenu) {
 
 const festivalDate =
   new Date(
-    "2026-09-06T10:00:00"
+    "2026-09-14T5:00:00"
   ).getTime();
 
 
