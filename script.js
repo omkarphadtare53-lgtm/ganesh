@@ -62,13 +62,8 @@ if (menuBtn && navMenu) {
 
     if (icon) {
 
-      icon.classList.toggle(
-        "fa-bars"
-      );
-
-      icon.classList.toggle(
-        "fa-xmark"
-      );
+      icon.classList.toggle("fa-bars");
+      icon.classList.toggle("fa-xmark");
 
     }
 
@@ -88,13 +83,8 @@ if (menuBtn && navMenu) {
 
         if (icon) {
 
-          icon.classList.remove(
-            "fa-xmark"
-          );
-
-          icon.classList.add(
-            "fa-bars"
-          );
+          icon.classList.remove("fa-xmark");
+          icon.classList.add("fa-bars");
 
         }
 
@@ -120,9 +110,6 @@ function updateCountdown() {
   const countdown =
     festivalDate - Date.now();
 
-  if (countdown <= 0) return;
-
-
   const days =
     document.getElementById("days");
 
@@ -143,6 +130,18 @@ function updateCountdown() {
     !seconds
   ) {
     return;
+  }
+
+
+  if (countdown <= 0) {
+
+    days.innerText = "00";
+    hours.innerText = "00";
+    minutes.innerText = "00";
+    seconds.innerText = "00";
+
+    return;
+
   }
 
 
@@ -192,41 +191,297 @@ setInterval(
 
 
 /* =========================================
-   GALLERY AUTO SLIDE
+   GALLERY
+   FULL WIDTH + NO CROP + AUTO SLIDER
 ========================================= */
 
+const galleryGrid =
+  document.querySelector(".gallery-grid");
+
 const galleryItems =
-  document.querySelectorAll(
-    ".gallery-item"
-  );
+  document.querySelectorAll(".gallery-item");
+
+let currentGallery = 0;
+let galleryTimer = null;
 
 
-let currentGallery =
-  0;
+/* -----------------------------------------
+   GALLERY CSS FIX
+----------------------------------------- */
+
+if (
+  galleryGrid &&
+  galleryItems.length
+) {
+
+  /*
+   * Grid काढून carousel layout बनवतो
+   */
+
+  galleryGrid.style.display = "block";
+  galleryGrid.style.position = "relative";
+  galleryGrid.style.width = "100%";
+  galleryGrid.style.overflow = "hidden";
+  galleryGrid.style.borderRadius = "20px";
 
 
-function showGallerySlide(index) {
+  galleryItems.forEach((item, index) => {
 
-  if (!galleryItems.length) return;
+    item.style.position = "absolute";
+    item.style.left = "0";
+    item.style.top = "0";
+    item.style.width = "100%";
+    item.style.margin = "0";
+    item.style.borderRadius = "20px";
+    item.style.overflow = "hidden";
+
+    /*
+     * Photo crop होऊ नये
+     */
+
+    const img =
+      item.querySelector("img");
+
+    if (img) {
+
+      img.style.width = "100%";
+      img.style.height = "auto";
+      img.style.maxWidth = "100%";
+      img.style.objectFit = "contain";
+      img.style.display = "block";
+      img.style.margin = "0 auto";
+
+    }
+
+    /*
+     * सुरुवातीला फक्त पहिला फोटो
+     */
+
+    if (index === 0) {
+
+      item.style.opacity = "1";
+      item.style.transform =
+        "translateX(0)";
+
+      item.style.zIndex = "2";
+
+    } else {
+
+      item.style.opacity = "0";
+      item.style.transform =
+        "translateX(100%)";
+
+      item.style.zIndex = "1";
+
+    }
+
+    item.style.transition =
+      "opacity 0.7s ease, transform 0.7s ease";
+
+  });
 
 
-  galleryItems.forEach(
-    (item, i) => {
+  /* ---------------------------------------
+     IMAGE LOAD नंतर योग्य HEIGHT
+  --------------------------------------- */
 
-      item.style.transition =
-        "opacity 0.6s ease, transform 0.6s ease";
+  function resizeGallery() {
 
-      if (i === index) {
+    const activeItem =
+      galleryItems[currentGallery];
 
-        item.style.opacity = "1";
-        item.style.transform =
-          "scale(1)";
+    if (!activeItem) return;
+
+    const img =
+      activeItem.querySelector("img");
+
+    if (!img) return;
+
+
+    if (
+      img.complete &&
+      img.naturalWidth > 0
+    ) {
+
+      const width =
+        galleryGrid.clientWidth;
+
+      const ratio =
+        img.naturalHeight /
+        img.naturalWidth;
+
+      const height =
+        width * ratio;
+
+      galleryGrid.style.height =
+        Math.min(
+          Math.max(height, 220),
+          600
+        ) + "px";
+
+    }
+
+  }
+
+
+  galleryItems.forEach(item => {
+
+    const img =
+      item.querySelector("img");
+
+    if (img) {
+
+      if (img.complete) {
+
+        resizeGallery();
 
       } else {
 
-        item.style.opacity = "0.75";
-        item.style.transform =
-          "scale(0.97)";
+        img.addEventListener(
+          "load",
+          resizeGallery
+        );
+
+      }
+
+    }
+
+  });
+
+
+  window.addEventListener(
+    "resize",
+    resizeGallery
+  );
+
+
+  /* ---------------------------------------
+     SHOW SLIDE
+  --------------------------------------- */
+
+  function showGallerySlide(nextIndex) {
+
+    if (!galleryItems.length) return;
+
+    if (
+      nextIndex < 0 ||
+      nextIndex >= galleryItems.length
+    ) {
+      return;
+    }
+
+
+    const previousIndex =
+      currentGallery;
+
+
+    currentGallery =
+      nextIndex;
+
+
+    galleryItems.forEach(
+      (item, index) => {
+
+        if (index === currentGallery) {
+
+          item.style.opacity = "1";
+          item.style.transform =
+            "translateX(0)";
+          item.style.zIndex = "2";
+
+        } else if (
+          index === previousIndex
+        ) {
+
+          item.style.opacity = "0";
+          item.style.transform =
+            "translateX(-100%)";
+          item.style.zIndex = "1";
+
+        } else {
+
+          item.style.opacity = "0";
+          item.style.transform =
+            "translateX(100%)";
+          item.style.zIndex = "0";
+
+        }
+
+      }
+    );
+
+
+    resizeGallery();
+
+  }
+
+
+  /* ---------------------------------------
+     NEXT SLIDE
+  --------------------------------------- */
+
+  function nextGallerySlide() {
+
+    let next =
+      currentGallery + 1;
+
+    if (
+      next >= galleryItems.length
+    ) {
+      next = 0;
+    }
+
+    showGallerySlide(next);
+
+  }
+
+
+  /* ---------------------------------------
+     AUTO SLIDE
+  --------------------------------------- */
+
+  if (galleryItems.length > 1) {
+
+    galleryTimer =
+      setInterval(
+        nextGallerySlide,
+        3000
+      );
+
+  }
+
+
+  /* ---------------------------------------
+     PAUSE ON HOVER
+  --------------------------------------- */
+
+  galleryGrid.addEventListener(
+    "mouseenter",
+    () => {
+
+      if (galleryTimer) {
+
+        clearInterval(
+          galleryTimer
+        );
+
+      }
+
+    }
+  );
+
+
+  galleryGrid.addEventListener(
+    "mouseleave",
+    () => {
+
+      if (galleryItems.length > 1) {
+
+        galleryTimer =
+          setInterval(
+            nextGallerySlide,
+            3000
+          );
 
       }
 
@@ -234,63 +489,6 @@ function showGallerySlide(index) {
   );
 
 }
-
-
-if (galleryItems.length > 0) {
-
-  showGallerySlide(0);
-
-
-  setInterval(() => {
-
-    currentGallery++;
-
-    if (
-      currentGallery >=
-      galleryItems.length
-    ) {
-
-      currentGallery = 0;
-
-    }
-
-    showGallerySlide(
-      currentGallery
-    );
-
-  }, 3000);
-
-}
-
-
-/* =========================================
-   GALLERY HOVER EFFECT
-========================================= */
-
-galleryItems.forEach(item => {
-
-  item.addEventListener(
-    "mouseenter",
-    () => {
-
-      item.style.transform =
-        "scale(1.03)";
-
-    }
-  );
-
-
-  item.addEventListener(
-    "mouseleave",
-    () => {
-
-      item.style.transform =
-        "scale(1)";
-
-    }
-  );
-
-});
 
 
 /* =========================================
@@ -501,12 +699,407 @@ if (backTop) {
 
 
 /* =========================================
-   ADMIN API
+   API
 ========================================= */
 
 const API_URL =
   "https://ganesh-b.onrender.com";
 
+
+/* =========================================
+   SAFE HTML
+========================================= */
+
+function escapeHTML(value) {
+
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================================
+   LOAD PROGRAMS
+========================================= */
+
+async function loadPrograms() {
+
+  const list =
+    document.getElementById(
+      "programList"
+    );
+
+  if (!list) return;
+
+
+  try {
+
+    const response =
+      await fetch(
+        `${API_URL}/api/programs`
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        "Programs API failed"
+      );
+
+    }
+
+
+    const result =
+      await response.json();
+
+
+    /*
+     * Backend response:
+     *
+     * {
+     *   success: true,
+     *   programs: [...]
+     * }
+     *
+     * तसेच direct array सुद्धा support.
+     */
+
+    const programs =
+      Array.isArray(result)
+        ? result
+        : Array.isArray(result.programs)
+          ? result.programs
+          : [];
+
+
+    if (programs.length === 0) {
+
+      list.innerHTML = `
+
+        <div class="empty">
+
+          📅 सध्या कोणतेही
+          कार्यक्रम उपलब्ध नाहीत.
+
+          <br><br>
+
+          लवकरच नवीन कार्यक्रम
+          येथे प्रकाशित केले जातील.
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    list.innerHTML = "";
+
+
+    programs.forEach(
+      program => {
+
+        const card =
+          document.createElement(
+            "div"
+          );
+
+        card.className =
+          "event-card";
+
+
+        const title =
+          escapeHTML(
+            program.title
+          );
+
+
+        const description =
+          escapeHTML(
+            program.description
+          );
+
+
+        const time =
+          escapeHTML(
+            program.program_time
+          );
+
+
+        let dateText = "";
+
+
+        if (program.program_date) {
+
+          const date =
+            new Date(
+              program.program_date
+            );
+
+
+          if (
+            !isNaN(
+              date.getTime()
+            )
+          ) {
+
+            dateText =
+              date.toLocaleDateString(
+                "mr-IN",
+                {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric"
+                }
+              );
+
+          } else {
+
+            dateText =
+              escapeHTML(
+                program.program_date
+              );
+
+          }
+
+        }
+
+
+        card.innerHTML = `
+
+          <div class="event-date">
+
+            <strong>
+              ${program.program_date
+                ? new Date(
+                    program.program_date
+                  ).getDate()
+                : ""}
+            </strong>
+
+            <span>
+              ${program.program_date
+                ? new Date(
+                    program.program_date
+                  ).toLocaleDateString(
+                    "mr-IN",
+                    {
+                      month: "short"
+                    }
+                  )
+                : ""}
+            </span>
+
+          </div>
+
+
+          <div class="event-icon">
+            🙏
+          </div>
+
+
+          <div class="event-info">
+
+            <h3>
+              ${title}
+            </h3>
+
+            <p>
+              📅 ${dateText}
+            </p>
+
+            ${
+              time
+                ? `
+                  <div class="event-time">
+                    ⏰ ${time}
+                  </div>
+                `
+                : ""
+            }
+
+            ${
+              description
+                ? `
+                  <p>
+                    ${description}
+                  </p>
+                `
+                : ""
+            }
+
+          </div>
+
+        `;
+
+
+        list.appendChild(
+          card
+        );
+
+      }
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "Programs Error:",
+      error
+    );
+
+
+    list.innerHTML = `
+
+      <div class="empty">
+
+        ⚠️ कार्यक्रम सध्या
+        load करता आले नाहीत.
+
+        <br><br>
+
+        कृपया थोड्या वेळाने पुन्हा प्रयत्न करा.
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =========================================
+   LOAD FINANCE
+========================================= */
+
+async function loadFinance() {
+
+  try {
+
+    const response =
+      await fetch(
+        `${API_URL}/api/finance/summary`
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        "Finance API failed"
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    const donation =
+      Number(
+        data.total_donations ??
+        data.totalDonation ??
+        0
+      );
+
+
+    const expense =
+      Number(
+        data.total_expenses ??
+        data.totalExpense ??
+        0
+      );
+
+
+    const balance =
+      Number(
+        data.balance ??
+        donation - expense
+      );
+
+
+    const donationElement =
+      document.getElementById(
+        "publicDonation"
+      );
+
+    const expenseElement =
+      document.getElementById(
+        "publicExpense"
+      );
+
+    const balanceElement =
+      document.getElementById(
+        "publicBalance"
+      );
+
+
+    if (donationElement) {
+
+      donationElement.textContent =
+        formatMoney(donation);
+
+    }
+
+
+    if (expenseElement) {
+
+      expenseElement.textContent =
+        formatMoney(expense);
+
+    }
+
+
+    if (balanceElement) {
+
+      balanceElement.textContent =
+        formatMoney(balance);
+
+    }
+
+
+  } catch (error) {
+
+    console.error(
+      "Finance Error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   MONEY FORMAT
+========================================= */
+
+function formatMoney(amount) {
+
+  return new Intl.NumberFormat(
+    "en-IN",
+    {
+      style: "currency",
+      currency: "INR",
+      maximumFractionDigits: 0
+    }
+  ).format(
+    Number(amount) || 0
+  );
+
+}
+
+
+/* =========================================
+   ADMIN ELEMENTS
+========================================= */
 
 const loginCard =
   document.getElementById(
@@ -539,7 +1132,7 @@ const logoutButton =
 
 
 /* =========================================
-   LOGIN
+   ADMIN LOGIN
 ========================================= */
 
 if (loginForm) {
@@ -821,7 +1414,11 @@ if (logoutButton) {
 
 
 /* =========================================
-   START AUTH CHECK
+   START
 ========================================= */
+
+loadPrograms();
+
+loadFinance();
 
 checkAuthentication();
