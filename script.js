@@ -99,16 +99,21 @@ if (menuBtn && navMenu) {
    COUNTDOWN
 ========================================= */
 
+/* =====================================
+   COUNTDOWN
+===================================== */
+
 const festivalDate =
   new Date(
-    "2026-09-14T17:00:00"
+    "2026-09-14T10:00:00"
   ).getTime();
 
 
 function updateCountdown() {
 
-  const countdown =
+  const difference =
     festivalDate - Date.now();
+
 
   const days =
     document.getElementById("days");
@@ -128,12 +133,10 @@ function updateCountdown() {
     !hours ||
     !minutes ||
     !seconds
-  ) {
-    return;
-  }
+  ) return;
 
 
-  if (countdown <= 0) {
+  if (difference <= 0) {
 
     days.innerText = "00";
     hours.innerText = "00";
@@ -141,14 +144,13 @@ function updateCountdown() {
     seconds.innerText = "00";
 
     return;
-
   }
 
 
   days.innerText =
     String(
       Math.floor(
-        countdown / 86400000
+        difference / 86400000
       )
     ).padStart(2, "0");
 
@@ -156,7 +158,7 @@ function updateCountdown() {
   hours.innerText =
     String(
       Math.floor(
-        (countdown % 86400000) /
+        (difference % 86400000) /
         3600000
       )
     ).padStart(2, "0");
@@ -165,7 +167,7 @@ function updateCountdown() {
   minutes.innerText =
     String(
       Math.floor(
-        (countdown % 3600000) /
+        (difference % 3600000) /
         60000
       )
     ).padStart(2, "0");
@@ -174,7 +176,7 @@ function updateCountdown() {
   seconds.innerText =
     String(
       Math.floor(
-        (countdown % 60000) /
+        (difference % 60000) /
         1000
       )
     ).padStart(2, "0");
